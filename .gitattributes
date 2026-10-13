@@ -1,0 +1,8 @@
+# Texto con saltos de línea LF en el repo, aunque edites en Windows
+* text=auto eol=lf
+
+# Binarios: nunca tocar
+*.png  binary
+*.ico  binary
+*.webp binary
+*.jpg  binary

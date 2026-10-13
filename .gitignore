@@ -1,0 +1,11 @@
+# Capturas originales en alta resolución (solo respaldo local; el sitio usa img/shots)
+gameshots/
+
+# Sistema
+Thumbs.db
+desktop.ini
+.DS_Store
+
+# Editores
+.vscode/
+*.swp

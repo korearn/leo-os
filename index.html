@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>LeOS</title>
+  <meta name="description" content="El rincón de Leo en la web: videojuegos, anime, música y todo lo que me gusta.">
+  <link rel="canonical" href="https://leo-os.neocities.org/">
+  <meta property="og:title" content="LeOS">
+  <meta property="og:description"
+    content="El rincón de Leo en la web: videojuegos, anime, música y todo lo que me gusta.">
+  <meta property="og:url" content="https://leo-os.neocities.org/">
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" href="/favicon.png" type="image/png">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <a class="skip" href="#contenido">Saltar al contenido</a>
+
+  <!-- Barra de estado: lo que suena ahora -->
+  <div class="statusbar" role="status">
+    <div class="statusbar__inner">
+      <span class="statusbar__label">En la consola</span>
+      <div class="ticker" aria-hidden="true">
+        <span>Star Wars Galactic Racer &nbsp;&nbsp;✦&nbsp;&nbsp; Persona 4 Golden, episodio 9 &nbsp;&nbsp;✦&nbsp;&nbsp;
+          Dune, página 49 &nbsp;&nbsp;✦&nbsp;&nbsp; Siguiente película: Arrival &nbsp;&nbsp;✦&nbsp;&nbsp;</span>
+        <span>Star Wars Galactic Racer &nbsp;&nbsp;✦&nbsp;&nbsp; Persona 4 Golden, episodio 9 &nbsp;&nbsp;✦&nbsp;&nbsp;
+          Dune, página 49 &nbsp;&nbsp;✦&nbsp;&nbsp; Siguiente película: Arrival &nbsp;&nbsp;✦&nbsp;&nbsp;</span>
+      </div>
+      <time class="statusbar__clock" id="reloj">--:--</time>
+    </div>
+  </div>
+
+  <div class="page">
+
+    <!-- HERO: la memory card -->
+    <header class="hero">
+      <div class="hero__brand">
+        <h1 class="wordmark">LeOS</h1>
+        <p class="hero__bio">Hola, soy Leo. Este es mi rincón en la web: los juegos, el anime, la música y las cosas que
+          me formaron. Siéntete libre de curiosear 👾</p>
+      </div>
+
+      <nav class="card" aria-labelledby="card-title">
+        <div class="card__bar">
+          <svg class="card__chip" viewBox="0 0 10 12" aria-hidden="true" shape-rendering="crispEdges">
+            <rect x="0" y="0" width="10" height="12" fill="#2a2463" />
+            <rect x="1" y="1" width="8" height="5" fill="#5fe0ff" />
+            <rect x="2" y="8" width="1" height="3" fill="#ffc20e" />
+            <rect x="4" y="8" width="1" height="3" fill="#ffc20e" />
+            <rect x="6" y="8" width="1" height="3" fill="#ffc20e" />
+          </svg>
+          <h2 id="card-title">Memory Card, ranura A</h2>
+          <span class="card__free">Elige un archivo</span>
+        </div>
+
+        <ul class="slots">
+          <li>
+            <a class="slot" href="construccion.html">
+              <svg class="slot__icon" viewBox="0 0 16 16" aria-hidden="true" shape-rendering="crispEdges">
+                <rect x="2" y="5" width="12" height="6" fill="#9aa6d6" />
+                <rect x="1" y="6" width="1" height="5" fill="#9aa6d6" />
+                <rect x="14" y="6" width="1" height="5" fill="#9aa6d6" />
+                <rect x="1" y="11" width="3" height="2" fill="#9aa6d6" />
+                <rect x="12" y="11" width="3" height="2" fill="#9aa6d6" />
+                <rect x="4" y="7" width="1" height="3" fill="#120f2e" />
+                <rect x="3" y="8" width="3" height="1" fill="#120f2e" />
+                <rect x="11" y="7" width="1" height="1" fill="#e2231a" />
+                <rect x="12" y="8" width="1" height="1" fill="#00a650" />
+                <rect x="10" y="8" width="1" height="1" fill="#ffc20e" />
+                <rect x="11" y="9" width="1" height="1" fill="#0062ae" />
+              </svg>
+              <span class="slot__name">Videojuegos</span>
+              <span class="slot__meta">De Ocarina of Time a Cyberpunk</span>
+            </a>
+          </li>
+          <li>
+            <a class="slot" href="construccion.html">
+              <svg class="slot__icon" viewBox="0 0 16 16" aria-hidden="true" shape-rendering="crispEdges">
+                <rect x="7" y="1" width="2" height="3" fill="#ffc20e" />
+                <rect x="1" y="6" width="14" height="2" fill="#ffc20e" />
+                <rect x="3" y="8" width="10" height="2" fill="#ffc20e" />
+                <rect x="5" y="4" width="6" height="2" fill="#ffc20e" />
+                <rect x="4" y="10" width="3" height="3" fill="#ffc20e" />
+                <rect x="9" y="10" width="3" height="3" fill="#ffc20e" />
+                <rect x="3" y="13" width="2" height="2" fill="#ffc20e" />
+                <rect x="11" y="13" width="2" height="2" fill="#ffc20e" />
+              </svg>
+              <span class="slot__name">Anime y manga</span>
+              <span class="slot__meta">Lo que veo y lo que me marcó</span>
+            </a>
+          </li>
+          <li>
+            <a class="slot" href="construccion.html">
+              <svg class="slot__icon" viewBox="0 0 16 16" aria-hidden="true" shape-rendering="crispEdges">
+                <rect x="6" y="2" width="8" height="2" fill="#5fe0ff" />
+                <rect x="6" y="4" width="2" height="8" fill="#5fe0ff" />
+                <rect x="12" y="4" width="2" height="6" fill="#5fe0ff" />
+                <rect x="3" y="11" width="4" height="3" fill="#5fe0ff" />
+                <rect x="9" y="9" width="4" height="3" fill="#5fe0ff" />
+              </svg>
+              <span class="slot__name">Música</span>
+              <span class="slot__meta">Bandas, discos y lo que produzco</span>
+            </a>
+          </li>
+          <li>
+            <a class="slot" href="construccion.html">
+              <svg class="slot__icon" viewBox="0 0 16 16" aria-hidden="true" shape-rendering="crispEdges">
+                <rect x="2" y="3" width="5" height="10" fill="#7b5cff" />
+                <rect x="9" y="3" width="5" height="10" fill="#7b5cff" />
+                <rect x="7" y="4" width="2" height="9" fill="#2a2463" />
+                <rect x="3" y="5" width="3" height="1" fill="#e8f4ff" />
+                <rect x="3" y="7" width="3" height="1" fill="#e8f4ff" />
+                <rect x="10" y="5" width="3" height="1" fill="#e8f4ff" />
+                <rect x="10" y="7" width="2" height="1" fill="#e8f4ff" />
+              </svg>
+              <span class="slot__name">Cine, series y cómics</span>
+              <span class="slot__meta">Sobre todo ciencia ficción</span>
+            </a>
+          </li>
+          <li>
+            <a class="slot" href="galeria.html">
+              <svg class="slot__icon" viewBox="0 0 16 16" aria-hidden="true" shape-rendering="crispEdges">
+                <rect x="1" y="4" width="14" height="10" fill="#9aa6d6" />
+                <rect x="4" y="2" width="5" height="2" fill="#9aa6d6" />
+                <rect x="5" y="6" width="6" height="6" fill="#120f2e" />
+                <rect x="6" y="7" width="4" height="4" fill="#5fe0ff" />
+                <rect x="7" y="8" width="1" height="1" fill="#e8f4ff" />
+                <rect x="12" y="5" width="2" height="1" fill="#e2231a" />
+              </svg>
+              <span class="slot__name">Galería</span>
+              <span class="slot__meta">Fotos que tomo dentro de los juegos</span>
+            </a>
+          </li>
+          <li>
+            <a class="slot" href="construccion.html">
+              <svg class="slot__icon" viewBox="0 0 16 16" aria-hidden="true" shape-rendering="crispEdges">
+                <rect x="5" y="1" width="6" height="6" fill="#e8f4ff" />
+                <rect x="6" y="3" width="1" height="1" fill="#120f2e" />
+                <rect x="9" y="3" width="1" height="1" fill="#120f2e" />
+                <rect x="7" y="5" width="2" height="1" fill="#120f2e" />
+                <rect x="3" y="9" width="10" height="6" fill="#00a650" />
+                <rect x="2" y="10" width="1" height="5" fill="#00a650" />
+                <rect x="13" y="10" width="1" height="5" fill="#00a650" />
+              </svg>
+              <span class="slot__name">Sobre mí</span>
+              <span class="slot__meta">Quién está detrás de esta página</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </header>
+
+    <main id="contenido" class="layout">
+
+      <div class="col-main">
+        <!-- Ahora mismo -->
+        <section class="window" aria-labelledby="now-title">
+          <h2 class="window__title" id="now-title">Ahora mismo</h2>
+          <div class="window__body">
+            <ul class="now">
+              <li class="now__item">
+                <span class="now__kind">Juego</span>
+                <span class="now__name">Cyberpunk 2077</span>
+                <span class="now__where">Phantom Liberty</span>
+              </li>
+              <li class="now__item">
+                <span class="now__kind">Juego</span>
+                <span class="now__name">Star Wars Galactic Racer</span>
+                <span class="now__where">Actual obsesión</span>
+              </li>
+              <li class="now__item">
+                <span class="now__kind">Anime</span>
+                <span class="now__name">Persona 4 Golden</span>
+                <span class="now__where">Ep. 9 de 12</span>
+                <span class="bar" role="img" aria-label="9 de 12 episodios"><span style="--p: 75%"></span></span>
+              </li>
+              <li class="now__item">
+                <span class="now__kind">Anime</span>
+                <span class="now__name">Kuuchuu Buranko</span>
+                <span class="now__where">Ep. 6 de 11</span>
+                <span class="bar" role="img" aria-label="6 de 11 episodios"><span style="--p: 54%"></span></span>
+              </li>
+              <li class="now__item">
+                <span class="now__kind">Libro</span>
+                <span class="now__name">Dune</span>
+                <span class="now__where">p. 49</span>
+              </li>
+              <li class="now__item">
+                <span class="now__kind">Cómic</span>
+                <span class="now__name">One World Under Doom</span>
+                <span class="now__where">#4</span>
+              </li>
+              <li class="now__item">
+                <span class="now__kind">Película</span>
+                <span class="now__name">Arrival</span>
+                <span class="now__where">La siguiente en la lista</span>
+              </li>
+            </ul>
+          </div>
+        </section>
+
+        <!-- Galería -->
+        <section class="window" aria-labelledby="gal-title">
+          <h2 class="window__title" id="gal-title">Galería</h2>
+          <div class="window__body">
+            <p class="window__note">Fotos que tomo dentro de los juegos. Toca una para verla en grande.</p>
+            <div class="gallery">
+              <figure class="shot">
+                <a class="shot__frame" href="img/shots/ffx.webp"><img src="img/shots/ffx-mini.webp"
+                    alt="Tidus en un muelle frente al mar turquesa" width="640" height="360" loading="lazy"></a>
+                <figcaption>Final Fantasy X</figcaption>
+              </figure>
+              <figure class="shot">
+                <a class="shot__frame" href="img/shots/nms.webp"><img src="img/shots/nms-mini.webp"
+                    alt="Viaje por el hiperespacio entre luces violeta y amarillas" width="640" height="360"
+                    loading="lazy"></a>
+                <figcaption>No Man's Sky</figcaption>
+              </figure>
+              <figure class="shot">
+                <a class="shot__frame" href="img/shots/hollow-night.webp"><img src="img/shots/hollow-night-mini.webp"
+                    alt="El Caballero descansa en una banca bajo una luz azul" width="640" height="360"
+                    loading="lazy"></a>
+                <figcaption>Hollow Knight</figcaption>
+              </figure>
+              <figure class="shot">
+                <a class="shot__frame" href="img/shots/cyber2077-cars.webp"><img
+                    src="img/shots/cyber2077-cars-mini.webp"
+                    alt="Autos frente a un letrero de neón en Night City, de noche" width="640" height="360"
+                    loading="lazy"></a>
+                <figcaption>Cyberpunk 2077</figcaption>
+              </figure>
+              <figure class="shot">
+                <a class="shot__frame" href="img/shots/outer-wilds.webp"><img src="img/shots/outer-wilds-mini.webp"
+                    alt="Cabina de la nave con notas pegadas en la pared" width="640" height="360" loading="lazy"></a>
+                <figcaption>Outer Wilds</figcaption>
+              </figure>
+              <figure class="shot">
+                <a class="shot__frame" href="img/shots/sekiro.webp"><img src="img/shots/sekiro-mini.webp"
+                    alt="Dos personajes junto a un campo de juncos, de noche" width="640" height="360"
+                    loading="lazy"></a>
+                <figcaption>Sekiro</figcaption>
+              </figure>
+            </div>
+            <p class="window__more"><a href="galeria.html">Ver las 14 capturas</a></p>
+          </div>
+        </section>
+      </div>
+
+      <aside class="col-side">
+        <section class="window" aria-labelledby="fav-title">
+          <h2 class="window__title" id="fav-title">Favoritos de siempre</h2>
+          <div class="window__body">
+            <dl class="favs">
+              <dt>Juegos</dt>
+              <dd>Majora's Mask, StarFox 64, Star Wars Racer</dd>
+              <dt>Anime</dt>
+              <dd>Death Note, Fullmetal Alchemist</dd>
+              <dt>Películas</dt>
+              <dd>Back to the Future, 2001: A Space Odyssey</dd>
+              <dt>Discos</dt>
+              <dd>Loveless, de My Bloody Valentine</dd>
+              <dt>Bandas</dt>
+              <dd>DRIMS, The Strokes, Arctic Monkeys, Mac DeMarco</dd>
+            </dl>
+          </div>
+        </section>
+
+        <section class="window" aria-labelledby="btn-title">
+          <h2 class="window__title" id="btn-title">Enlázame</h2>
+          <div class="window__body">
+            <p class="window__note">Si tienes sitio, copia mi botón. Si me gusta el tuyo, lo pongo aquí.</p>
+            <div class="badges">
+              <span class="badge badge--me">LeOS</span>
+              <span class="badge badge--neo">neocities</span>
+              <span class="badge badge--hand">hecho a mano</span>
+              <span class="badge badge--night">modo noche</span>
+            </div>
+          </div>
+        </section>
+
+        <section class="window" aria-labelledby="vis-title">
+          <h2 class="window__title" id="vis-title">Bitácora</h2>
+          <div class="window__body">
+            <p class="counter" aria-label="Visitas: próximamente">
+              <span>0</span><span>0</span><span>0</span><span>0</span><span>0</span><span>1</span></p>
+            <p class="window__note">Actualizado el 12 de octubre de 2026.</p>
+          </div>
+        </section>
+      </aside>
+
+    </main>
+
+    <footer class="footer">
+      <p>Hecho a mano y alojado en Neocities. Se ve mejor de noche.</p>
+    </footer>
+  </div>
+
+  <script>
+    // Reloj de la barra de estado
+    (function () {
+      var el = document.getElementById('reloj');
+      function tick() {
+        var d = new Date();
+        el.textContent = d.toLocaleTimeString('es-MX', { hour: '2-digit', minute: '2-digit' });
+        el.setAttribute('datetime', d.toISOString());
+      }
+      tick();
+      setInterval(tick, 30000);
+    })();
+  </script>
+</body>
+
+</html>
