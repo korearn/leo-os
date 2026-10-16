@@ -1,6 +1,6 @@
 """Genera la página Anime y manga desde el vault.
 
-- Now.md (filas 📺): la tele de "Viendo ahora".
+- Now.md (filas Anime de Activo y Rotación): la tele de "Viendo ahora".
 - Anime.md: Vistos (⭐ = cinta VHS) y Por ver.
 - Manga.md: Leyendo, Leídos (⭐ = tomo en la repisa) y Por leer.
 
@@ -20,6 +20,8 @@ import json
 import re
 import sys
 from pathlib import Path
+
+from now_lib import leer_now as leer_now_md
 
 AQUI = Path(__file__).resolve().parent
 e = html.escape
@@ -69,23 +71,26 @@ def anio(f: dict) -> str:
 
 # ---------- bloques ----------
 
-def html_tv(now: list[dict], emoji: str) -> str:
+def html_tv(viendo: list[dict]) -> str:
     I = "              "
-    items = [f for f in now if f.get("medio", "").replace("\ufe0f", "").strip() == emoji.replace("\ufe0f", "")]
-    if not items:
+    if not viendo:
         return f'{I}<li class="tv__empty">Sin señal. No estoy viendo nada ahora.</li>\n'
     out = []
-    for n, f in enumerate(items, start=1):
-        obra, voy = limpiar(f.get("obra", "")), f.get("voy en", "")
-        m = re.match(r"^(?:S\d+\s*)?E(\d+)\s*(?:/\s*(\d+))?$", voy, re.I)
-        ep = f"EP {int(m.group(1)):02d}" + (f"/{int(m.group(2)):02d}" if m and m.group(2) else "") if m else voy
+    for n, f in enumerate(viendo, start=1):
+        av = f["avance"]
+        if av["regla"] in ("episodio", "temporada + episodio"):
+            m = re.search(r"E(\d+)(?:/(\d+))?$", av["codigo"])
+            ep = f"EP {int(m.group(1)):02d}" + (f"/{int(m.group(2)):02d}" if m.group(2) else "")
+            if av["codigo"].startswith("S"):
+                ep = av["codigo"].split("E")[0] + " " + ep
+        else:
+            ep = av["codigo"]
         out.append(f'{I}<li class="tv__item">')
         out.append(f'{I}  <span class="tv__ch">CH {n:02d}</span>')
-        out.append(f'{I}  <span class="tv__name">{e(obra)}</span>')
-        out.append(f'{I}  <span class="tv__ep">{e(ep)}</span>')
-        if m and m.group(2):
-            pct = round(min(int(m.group(1)) / int(m.group(2)), 1) * 100)
-            out.append(f'{I}  <span class="tv__bar" role="img" aria-label="Episodio {int(m.group(1))} de {int(m.group(2))}"><span style="--p: {pct}%"></span></span>')
+        out.append(f'{I}  <span class="tv__name">{e(f["obra"])}</span>')
+        out.append(f'{I}  <span class="tv__ep" title="{e(av["texto"])}">{e(ep)}</span>')
+        if av["pct"] is not None:
+            out.append(f'{I}  <span class="tv__bar" role="img" aria-label="{e(av["texto"])}"><span style="--p: {av["pct"]}%"></span></span>')
         out.append(f"{I}</li>")
     return "\n".join(out) + "\n"
 
@@ -167,13 +172,6 @@ def html_lista_manga(manga: dict) -> str:
     return ("\n".join(out) if out else f'{I}<p class="empty-note">Lista en construcción.</p>') + "\n"
 
 
-def leer_now(ruta: Path) -> list[dict]:
-    t = leer_tablas(ruta).get("Activo", [])
-    for f in t:
-        f["medio"] = f.get("medio", "")
-    return t
-
-
 def reemplazar(doc: str, nombre: str, nuevo: str) -> str:
     patron = re.compile(rf"(<!-- {nombre}:start -->\n?)(.*?)([ \t]*<!-- {nombre}:end -->)", re.S)
     if not patron.search(doc):
@@ -190,10 +188,10 @@ def main() -> None:
     cfg = json.loads((AQUI / "anime.json").read_text(encoding="utf-8"))
     anime = leer_tablas(Path(args.anime or cfg["vault_anime"]))
     manga = leer_tablas(Path(args.manga or cfg["vault_manga"]))
-    now = leer_now(Path(args.now or cfg["vault_now"]))
+    now, avisos = leer_now_md(Path(args.now or cfg["vault_now"]))
     pagina = (AQUI / cfg["pagina"]).resolve()
 
-    viendo = [f for f in now if f["medio"].replace("\ufe0f", "").strip() == cfg["emoji_anime"]]
+    viendo = [f for f in now["activo"] + now["rotacion"] if f["medio"] == cfg.get("medio_tv", "anime")]
     vistos = [f for f in anime.get("Vistos", []) if f.get("anime")]
     print(f"Viendo (desde Now): {len(viendo)}  ·  Vistos: {len(vistos)} ({sum(f['_fav'] for f in vistos)} ⭐)  ·  "
           f"Por ver: {len([f for f in anime.get('Por ver', []) if f.get('anime')])}")
@@ -205,7 +203,7 @@ def main() -> None:
         return
 
     doc = pagina.read_text(encoding="utf-8")
-    doc = reemplazar(doc, "anime:tv", html_tv(now, cfg["emoji_anime"]))
+    doc = reemplazar(doc, "anime:tv", html_tv(viendo))
     doc = reemplazar(doc, "anime:vhs", html_vhs(anime.get("Vistos", []), cfg))
     doc = reemplazar(doc, "anime:lista", html_lista_anime(anime))
     doc = reemplazar(doc, "manga:leyendo", html_leyendo(manga))

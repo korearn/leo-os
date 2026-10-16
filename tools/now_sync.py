@@ -1,8 +1,11 @@
 """Sincroniza la sección "Ahora mismo" del sitio con la nota Now.md del vault.
 
-Lee la tabla de "## Activo" en Now.md y reescribe en index.html lo que hay entre
-los marcadores <!-- now:list:start/end -->, <!-- now:ticker:start/end --> y
-<!-- now:date:start/end -->. Las plantillas de texto viven en tools/now.json.
+Lee "## Activo" y "## Rotación" de Now.md y reescribe en index.html lo que hay entre
+los marcadores <!-- now:list -->, <!-- now:rotacion -->, <!-- now:ticker -->,
+<!-- now:date --> y <!-- now:visitas -->. Formatos en tools/now.json; medios en tools/medios.json.
+
+Además avisa (sin bloquear) si hay dos obras del mismo medio en Activo, si un medio no existe
+o si algo de Activo lleva más de N días sin avanzar (lo recuerda en tools/now_state.json).
 
 Uso (desde la carpeta del sitio):
     python tools/now_sync.py            # actualiza index.html
@@ -15,116 +18,64 @@ import argparse
 import datetime as dt
 import html
 import json
-import re
 import sys
 import urllib.request
 from pathlib import Path
 
-AQUI = Path(__file__).resolve().parent
+from now_lib import AQUI, cargar_json, leer_now
+
 MESES = ["enero", "febrero", "marzo", "abril", "mayo", "junio", "julio",
          "agosto", "septiembre", "octubre", "noviembre", "diciembre"]
 SEP = " &nbsp;&nbsp;✦&nbsp;&nbsp; "
+e = html.escape
 
 
-def sin_selector(s: str) -> str:
-    """Quita el selector de variación de los emoji (🎞️ y 🎞 cuentan igual)."""
-    return s.replace("️", "").strip()
-
-
-def limpiar_obra(s: str) -> str:
-    """[[Kuuchuu Buranko]] -> Kuuchuu Buranko ; [[nota|Alias]] -> Alias."""
-    s = s.strip()
-    m = re.fullmatch(r"\[\[([^\]|]+)(?:\|([^\]]+))?\]\]", s)
-    if m:
-        return (m.group(2) or m.group(1)).strip()
-    return s
-
-
-def leer_tabla(now_md: Path) -> list[dict]:
-    texto = now_md.read_text(encoding="utf-8")
-    m = re.search(r"^## Activo\s*$(.*?)(?=^## |\Z)", texto, re.M | re.S)
-    if not m:
-        sys.exit("No encontré la sección '## Activo' en Now.md")
-
-    filas = [l for l in m.group(1).splitlines() if l.strip().startswith("|")]
-    if len(filas) < 3:
-        sys.exit("La tabla de '## Activo' está vacía")
-
-    items = []
-    for fila in filas[2:]:  # salta encabezado y separador
-        celdas = [c.strip() for c in fila.strip().strip("|").split("|")]
-        if len(celdas) < 3 or not celdas[1]:
-            continue  # filas vacías o sin obra
-        items.append({
-            "medio": sin_selector(celdas[0]),
-            "obra": limpiar_obra(celdas[1]),
-            "voy": celdas[2],
-        })
-    return items
-
-
-def rellenar(plantilla: str, obra: str, voy: str, grupos: tuple) -> str:
-    out = plantilla.replace("{obra}", obra).replace("{voy}", voy)
-    for i, g in enumerate(grupos, start=1):
-        out = out.replace("{" + str(i) + "}", g or "")
-    return out
-
-
-def formatear(item: dict, cfg: dict) -> dict:
-    tipos = {sin_selector(k): v for k, v in cfg["tipos"].items()}
-    tipo = tipos.get(item["medio"], item["medio"])
-    obra, voy = item["obra"], item["voy"]
-
-    for regla in cfg["formatos"]:
-        m = re.match(regla["patron"], voy, re.I)
-        if not m:
-            continue
-        g = m.groups()
-        barra = None
-        if "barra" in regla:
-            num, den = (int(g[i - 1]) for i in regla["barra"])
-            if den > 0:
-                barra = (num, den, round(min(num / den, 1) * 100))
-        return {
-            "tipo": tipo, "obra": obra,
-            "texto": rellenar(regla["texto"], obra, voy, g),
-            "ticker": rellenar(regla.get("ticker", "{obra}"), obra, voy, g),
-            "barra": barra,
-        }
-
-    d = cfg["por_defecto"]
-    return {
-        "tipo": tipo, "obra": obra,
-        "texto": rellenar(d["texto"], obra, voy, ()),
-        "ticker": rellenar(d["ticker"], obra, voy, ()),
-        "barra": None,
-    }
+def html_item(it: dict, I: str, compacto: bool = False) -> str:
+    """Una fila tipo archivo de memory card: medio, título, ficha de avance y medidor (siempre presente)."""
+    av = it["avance"]
+    est = av["estado"]
+    clase = "now__item" + (" now__item--compact" if compacto else "")
+    if av["es_codigo"]:
+        ficha = f'<code class="now__chip now__chip--{est} mono" title="{e(av["texto"])}">{e(av["codigo"])}</code>'
+    else:
+        ficha = f'<span class="now__chip now__chip--{est}">{e(av["codigo"])}</span>'
+    pct = av["pct"] if est == "progreso" else (100 if est == "abierto" else 0)
+    lineas = [
+        f'{I}<li class="{clase}" style="--medio: var(--m-{e(it["medio"])}, var(--niebla))">',
+        f'{I}  <span class="now__kind"><span class="now__swatch" aria-hidden="true"></span>{e(it["etiqueta"])}</span>',
+        f'{I}  <span class="now__name">{e(it["obra"])}</span>',
+        f'{I}  {ficha}',
+    ]
+    if it["sobre"] and not compacto:
+        lineas.append(f'{I}  <span class="now__about">{e(it["sobre"])}</span>')
+    lineas.append(f'{I}  <span class="meter meter--{est}" role="img" aria-label="{e(av["texto"])}">'
+                  f'<span style="--p: {pct}%"></span></span>')
+    lineas.append(f"{I}</li>")
+    return "\n".join(lineas)
 
 
 def html_lista(items: list[dict]) -> str:
-    e = html.escape
-    bloques = []
-    for it in items:
-        lineas = [
-            '              <li class="now__item">',
-            f'                <span class="now__kind">{e(it["tipo"])}</span>',
-            f'                <span class="now__name">{e(it["obra"])}</span>',
-            f'                <span class="now__where">{e(it["texto"])}</span>',
-        ]
-        if it["barra"]:
-            num, den, pct = it["barra"]
-            lineas.append(
-                f'                <span class="bar" role="img" aria-label="{num} de {den}">'
-                f'<span style="--p: {pct}%"></span></span>'
-            )
-        lineas.append("              </li>")
-        bloques.append("\n".join(lineas))
-    return "\n".join(bloques) + "\n"
+    I = "              "
+    if not items:
+        return f'{I}<li class="now__empty">Nada en la consola por ahora.</li>\n'
+    return "\n".join(html_item(it, I) for it in items) + "\n"
 
 
-def html_ticker(items: list[dict], tipos_ok: list[str]) -> str:
-    partes = [html.escape(it["ticker"]) for it in items if it["tipo"] in tipos_ok]
-    linea = SEP.join(partes) + SEP
+def html_rotacion(items: list[dict]) -> str:
+    I = "            "
+    if not items:
+        return ""
+    filas = "\n".join(html_item(it, I + "    ", compacto=True) for it in items)
+    return (f'{I}<div class="now__rot">\n'
+            f'{I}  <p class="now__rot-bar"><span class="now__rot-title">En rotación</span>'
+            f'<span class="now__rot-note">Lo sigo, sin prisa</span></p>\n'
+            f'{I}  <ul class="now now--compact">\n{filas}\n{I}  </ul>\n'
+            f'{I}</div>\n')
+
+
+def html_ticker(items: list[dict], medios_ok: list[str]) -> str:
+    partes = [e(it["obra"]) for it in items if it["medio"] in medios_ok]
+    linea = SEP.join(partes) + SEP if partes else "Sin juegos en la consola" + SEP
     span = f"        <span>{linea}</span>\n"
     return span + span  # dos copias para que el desplazamiento sea continuo
 
@@ -149,12 +100,38 @@ def html_contador(n: int) -> str:
     return "".join(f"<span>{d}</span>" for d in f"{n:06d}")
 
 
-def reemplazar(doc: str, nombre: str, nuevo: str) -> str:
+def reemplazar(doc: str, nombre: str, nuevo: str, obligatorio: bool = True) -> str:
+    import re
     patron = re.compile(
         rf"(<!-- now:{nombre}:start -->\n?)(.*?)([ \t]*<!-- now:{nombre}:end -->)", re.S)
     if not patron.search(doc):
-        sys.exit(f"Falta el marcador now:{nombre} en index.html")
+        if obligatorio:
+            sys.exit(f"Falta el marcador now:{nombre} en index.html")
+        print(f"(no hay marcador now:{nombre} en index.html; se omite)")
+        return doc
     return patron.sub(lambda m: m.group(1) + nuevo + m.group(3), doc, count=1)
+
+
+def revisar_avance(todos: list[dict], cfg: dict, escribir: bool) -> list[str]:
+    """Recuerda cuándo cambió por última vez 'Voy en' de cada obra y avisa si Activo se estancó."""
+    ruta = AQUI / cfg.get("estado", "now_state.json")
+    try:
+        estado = json.loads(ruta.read_text(encoding="utf-8"))
+    except (OSError, ValueError):
+        estado = {}
+    hoy = dt.date.today()
+    nuevo, avisos = {}, []
+    limite = int(cfg.get("dias_sin_avance", 21))
+    for it in todos:
+        prev = estado.get(it["obra"], {})
+        desde = prev.get("desde") if prev.get("voy") == it["voy"] else hoy.isoformat()
+        nuevo[it["obra"]] = {"voy": it["voy"], "desde": desde, "inicio": prev.get("inicio", hoy.isoformat())}
+        dias = (hoy - dt.date.fromisoformat(desde)).days
+        if it["seccion"] == "activo" and dias > limite and it["avance"]["estado"] == "progreso":
+            avisos.append(f"{it['obra']} lleva {dias} días sin avanzar: ¿pasarla a Rotación?")
+    if escribir:
+        ruta.write_text(json.dumps(nuevo, ensure_ascii=False, indent=2) + "\n", encoding="utf-8", newline="\n")
+    return avisos
 
 
 def main() -> None:
@@ -163,23 +140,30 @@ def main() -> None:
     ap.add_argument("--now", help="ruta a Now.md (si no, la de now.json)")
     args = ap.parse_args()
 
-    cfg = json.loads((AQUI / "now.json").read_text(encoding="utf-8"))
-    now_md = Path(args.now or cfg["vault_now"])
+    cfg = cargar_json("now.json")
+    now, avisos = leer_now(Path(args.now or cfg["vault_now"]), cfg)
+    activo, rotacion = now["activo"], now["rotacion"]
     index = (AQUI / cfg["index"]).resolve()
 
-    items = [formatear(i, cfg) for i in leer_tabla(now_md)]
-
-    for it in items:
-        extra = f"  [{it['barra'][2]}%]" if it["barra"] else ""
-        print(f"  {it['tipo']:<9} {it['obra']:<28} {it['texto']}{extra}")
+    for titulo, lista in (("Activo", activo), ("Rotación", rotacion)):
+        print(f"{titulo}:")
+        for it in lista:
+            av = it["avance"]
+            extra = f"  [{av['pct']}%]" if av["pct"] is not None else ""
+            print(f"  {it['etiqueta']:<9} {it['obra']:<28} {av['codigo']}{extra}")
+    avisos += revisar_avance(activo + rotacion, cfg, escribir=not args.dry_run)
+    for a in avisos:
+        print(f"  ⚠ {a}")
 
     if args.dry_run:
         print("\n(dry-run: no se escribió nada)")
         return
 
     doc = index.read_text(encoding="utf-8")
-    doc = reemplazar(doc, "list", html_lista(items))
-    doc = reemplazar(doc, "ticker", html_ticker(items, cfg.get("ticker_tipos", [])))
+    doc = reemplazar(doc, "list", html_lista(activo))
+    doc = reemplazar(doc, "rotacion", html_rotacion(rotacion if cfg.get("rotacion_en_web", True) else []),
+                     obligatorio=False)
+    doc = reemplazar(doc, "ticker", html_ticker(activo, cfg.get("ticker_medios", [])))
     doc = reemplazar(doc, "date", fecha_hoy())
     if cfg.get("neocities_sitio") and "<!-- now:visitas:start -->" in doc:
         n = visitas(cfg["neocities_sitio"])
@@ -189,7 +173,7 @@ def main() -> None:
             doc = reemplazar(doc, "visitas", html_contador(n))
             print(f"Visitas: {n}")
     index.write_text(doc, encoding="utf-8", newline="\n")
-    print(f"\nListo: {index.name} actualizado con {len(items)} elementos.")
+    print(f"\nListo: {index.name} actualizado ({len(activo)} activos, {len(rotacion)} en rotación).")
 
 
 if __name__ == "__main__":

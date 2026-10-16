@@ -29,8 +29,8 @@
       <span class="statusbar__label">En la consola</span>
       <div class="ticker" aria-hidden="true">
         <!-- now:ticker:start -->
-        <span>Cyberpunk 2077 &nbsp;&nbsp;✦&nbsp;&nbsp; Star Wars Galactic Racer &nbsp;&nbsp;✦&nbsp;&nbsp; Kuuchuu Buranko &nbsp;&nbsp;✦&nbsp;&nbsp; Dune &nbsp;&nbsp;✦&nbsp;&nbsp; One World Under Doom &nbsp;&nbsp;✦&nbsp;&nbsp; Arrival &nbsp;&nbsp;✦&nbsp;&nbsp; </span>
-        <span>Cyberpunk 2077 &nbsp;&nbsp;✦&nbsp;&nbsp; Star Wars Galactic Racer &nbsp;&nbsp;✦&nbsp;&nbsp; Kuuchuu Buranko &nbsp;&nbsp;✦&nbsp;&nbsp; Dune &nbsp;&nbsp;✦&nbsp;&nbsp; One World Under Doom &nbsp;&nbsp;✦&nbsp;&nbsp; Arrival &nbsp;&nbsp;✦&nbsp;&nbsp; </span>
+        <span>Star Wars Galactic Racer &nbsp;&nbsp;✦&nbsp;&nbsp; Kimetsu no Yaiba &nbsp;&nbsp;✦&nbsp;&nbsp; Dune &nbsp;&nbsp;✦&nbsp;&nbsp; One World Under Doom &nbsp;&nbsp;✦&nbsp;&nbsp; </span>
+        <span>Star Wars Galactic Racer &nbsp;&nbsp;✦&nbsp;&nbsp; Kimetsu no Yaiba &nbsp;&nbsp;✦&nbsp;&nbsp; Dune &nbsp;&nbsp;✦&nbsp;&nbsp; One World Under Doom &nbsp;&nbsp;✦&nbsp;&nbsp; </span>
         <!-- now:ticker:end -->
       </div>
       <time class="statusbar__clock" id="reloj">--:--</time>
@@ -43,8 +43,8 @@
     <header class="hero">
       <div class="hero__brand">
         <h1 class="wordmark">LeOS</h1>
-        <p class="hero__bio">Hola, soy Leo. Este es mi rincón en la web: los juegos, el anime, la música y las cosas que
-          me formaron. Siéntete libre de curiosear 👾</p>
+        <p class="hero__bio">Hola, soy Leo. Este es mi espacio en la web: los juegos, el anime, la música y las cosas que
+          han sido de mi interés. Siéntete libre de curiosear 👾</p>
       </div>
 
       <nav class="card" aria-labelledby="card-title">
@@ -166,39 +166,52 @@
           <div class="window__body">
             <ul class="now">
               <!-- now:list:start -->
-              <li class="now__item">
-                <span class="now__kind">Juego</span>
-                <span class="now__name">Cyberpunk 2077</span>
-                <span class="now__where">Phantom Liberty</span>
-              </li>
-              <li class="now__item">
-                <span class="now__kind">Juego</span>
+              <li class="now__item" style="--medio: var(--m-game, var(--niebla))">
+                <span class="now__kind"><span class="now__swatch" aria-hidden="true"></span>Juego</span>
                 <span class="now__name">Star Wars Galactic Racer</span>
-                <span class="now__where">Actual obsesión</span>
+                <code class="now__chip now__chip--abierto mono" title="Jugando, sin una meta fija">PLAY</code>
+                <span class="now__about">Actual obsesión</span>
+                <span class="meter meter--abierto" role="img" aria-label="Jugando, sin una meta fija"><span style="--p: 100%"></span></span>
               </li>
-              <li class="now__item">
-                <span class="now__kind">Anime</span>
-                <span class="now__name">Kuuchuu Buranko</span>
-                <span class="now__where">Ep. 6 de 11</span>
-                <span class="bar" role="img" aria-label="6 de 11"><span style="--p: 55%"></span></span>
+              <li class="now__item" style="--medio: var(--m-anime, var(--niebla))">
+                <span class="now__kind"><span class="now__swatch" aria-hidden="true"></span>Anime</span>
+                <span class="now__name">Kimetsu no Yaiba</span>
+                <code class="now__chip now__chip--progreso mono" title="Temporada 1, ep. 10 de 26">S1E10/26</code>
+                <span class="meter meter--progreso" role="img" aria-label="Temporada 1, ep. 10 de 26"><span style="--p: 38%"></span></span>
               </li>
-              <li class="now__item">
-                <span class="now__kind">Libro</span>
+              <li class="now__item" style="--medio: var(--m-book, var(--niebla))">
+                <span class="now__kind"><span class="now__swatch" aria-hidden="true"></span>Libro</span>
                 <span class="now__name">Dune</span>
-                <span class="now__where">p. 49</span>
+                <code class="now__chip now__chip--progreso mono" title="Página 49 de 779">P49/779</code>
+                <span class="meter meter--progreso" role="img" aria-label="Página 49 de 779"><span style="--p: 6%"></span></span>
               </li>
-              <li class="now__item">
-                <span class="now__kind">Cómic</span>
+              <li class="now__item" style="--medio: var(--m-comic, var(--niebla))">
+                <span class="now__kind"><span class="now__swatch" aria-hidden="true"></span>Cómic</span>
                 <span class="now__name">One World Under Doom</span>
-                <span class="now__where">#4</span>
-              </li>
-              <li class="now__item">
-                <span class="now__kind">Película</span>
-                <span class="now__name">Arrival</span>
-                <span class="now__where">La siguiente en la lista</span>
+                <code class="now__chip now__chip--progreso mono" title="Número 4 de 9">#4/9</code>
+                <span class="meter meter--progreso" role="img" aria-label="Número 4 de 9"><span style="--p: 44%"></span></span>
               </li>
               <!-- now:list:end -->
             </ul>
+            <!-- now:rotacion:start -->
+            <div class="now__rot">
+              <p class="now__rot-bar"><span class="now__rot-title">En rotación</span><span class="now__rot-note"></span></p>
+              <ul class="now now--compact">
+                <li class="now__item now__item--compact" style="--medio: var(--m-game, var(--niebla))">
+                  <span class="now__kind"><span class="now__swatch" aria-hidden="true"></span>Juego</span>
+                  <span class="now__name">Deadlock</span>
+                  <code class="now__chip now__chip--abierto mono" title="Jugando, sin una meta fija">PLAY</code>
+                  <span class="meter meter--abierto" role="img" aria-label="Jugando, sin una meta fija"><span style="--p: 100%"></span></span>
+                </li>
+                <li class="now__item now__item--compact" style="--medio: var(--m-anime, var(--niebla))">
+                  <span class="now__kind"><span class="now__swatch" aria-hidden="true"></span>Anime</span>
+                  <span class="now__name">Kuuchuu Buranko</span>
+                  <code class="now__chip now__chip--progreso mono" title="Ep. 6 de 11">E6/11</code>
+                  <span class="meter meter--progreso" role="img" aria-label="Ep. 6 de 11"><span style="--p: 55%"></span></span>
+                </li>
+              </ul>
+            </div>
+            <!-- now:rotacion:end -->
           </div>
         </section>
 
@@ -286,8 +299,8 @@
         <section class="window" aria-labelledby="vis-title">
           <h2 class="window__title" id="vis-title">Bitácora</h2>
           <div class="window__body">
-            <p class="counter" id="visitas" aria-label="Visitas al sitio"><!-- now:visitas:start --><span>0</span><span>0</span><span>0</span><span>1</span><span>2</span><span>2</span><!-- now:visitas:end --></p>
-            <p class="window__note"><!-- now:date:start -->Actualizado el 15 de octubre de 2026.<!-- now:date:end --></p>
+            <p class="counter" id="visitas" aria-label="Visitas al sitio"><!-- now:visitas:start --><span>0</span><span>0</span><span>0</span><span>1</span><span>8</span><span>1</span><!-- now:visitas:end --></p>
+            <p class="window__note"><!-- now:date:start -->Actualizado el 16 de octubre de 2026.<!-- now:date:end --></p>
           </div>
         </section>
       </aside>

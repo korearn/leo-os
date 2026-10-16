@@ -1,60 +1,116 @@
 {
-  "_ayuda": "Plantillas para tools/now_sync.py. {obra} es el título; {1}, {2}... son los grupos que captura el patrón. Las reglas se prueban en orden y gana la primera que coincide.",
+  "_ayuda": "Formatos de la columna 'Voy en' de Now.md. Se prueban en orden y gana el primero que coincide (sin importar mayúsculas ni espacios). {1}, {2}... son los números capturados; lo que va entre [corchetes] desaparece si su número está vacío (p. ej. sin total). 'codigo' es lo que se ve en la web; 'texto' es la versión legible (al pasar el cursor y para lectores de pantalla). 'barra': [avance, total] → barra de progreso solo si hay total. Los medios viven en tools/medios.json. 'estado': 'abierto' = sin medida de avance (juegos sin final claro); una celda vacía cuenta igual que PLAY.",
   "vault_now": "D:/LeOS/Vault/Brain/Leo_OS/Knowledge/Lore/Now.md",
   "index": "../index.html",
-  "tipos": {
-    "🎮": "Juego",
-    "📺": "Anime",
-    "📕": "Libro",
-    "📔": "Cómic",
-    "🎞": "Película"
-  },
+  "estado": "now_state.json",
   "formatos": [
     {
-      "nombre": "episodios con total",
-      "patron": "^(?:S\\d+\\s*)?E(\\d+)\\s*/\\s*(\\d+)$",
-      "texto": "Ep. {1} de {2}",
+      "nombre": "temporada + episodio",
+      "patron": "^S\\s*(\\d+)\\s*E\\s*(\\d+)\\s*(?:/\\s*(\\d+))?$",
+      "codigo": "S{1}E{2}[/{3}]",
+      "texto": "Temporada {1}, ep. {2}[ de {3}]",
+      "barra": [
+        2,
+        3
+      ]
+    },
+    {
+      "nombre": "episodio",
+      "patron": "^E\\s*(\\d+)\\s*(?:/\\s*(\\d+))?$",
+      "codigo": "E{1}[/{2}]",
+      "texto": "Ep. {1}[ de {2}]",
       "barra": [
         1,
         2
-      ],
-      "ticker": "{obra}"
+      ]
     },
     {
-      "nombre": "episodio suelto",
-      "patron": "^(?:S\\d+\\s*)?E(\\d+)$",
-      "texto": "Ep. {1}",
-      "ticker": "{obra}"
+      "nombre": "capítulo",
+      "patron": "^C\\s*(\\d+)\\s*(?:/\\s*(\\d+))?$",
+      "codigo": "C{1}[/{2}]",
+      "texto": "Cap. {1}[ de {2}]",
+      "barra": [
+        1,
+        2
+      ]
+    },
+    {
+      "nombre": "volumen",
+      "patron": "^V\\s*(\\d+)\\s*(?:/\\s*(\\d+))?$",
+      "codigo": "V{1}[/{2}]",
+      "texto": "Vol. {1}[ de {2}]",
+      "barra": [
+        1,
+        2
+      ]
     },
     {
       "nombre": "página",
-      "patron": "^p\\.?\\s*(\\d+)$",
-      "texto": "p. {1}",
-      "ticker": "{obra}"
+      "patron": "^P\\.?\\s*(\\d+)\\s*(?:/\\s*(\\d+))?$",
+      "codigo": "P{1}[/{2}]",
+      "texto": "Página {1}[ de {2}]",
+      "barra": [
+        1,
+        2
+      ]
     },
     {
-      "nombre": "número de cómic",
-      "patron": "^#(\\d+)$",
-      "texto": "#{1}",
-      "ticker": "{obra}"
+      "nombre": "número",
+      "patron": "^#\\s*(\\d+)\\s*(?:/\\s*(\\d+))?$",
+      "codigo": "#{1}[/{2}]",
+      "texto": "Número {1}[ de {2}]",
+      "barra": [
+        1,
+        2
+      ]
+    },
+    {
+      "nombre": "porcentaje",
+      "patron": "^(\\d{1,3})\\s*%$",
+      "codigo": "{1}%",
+      "texto": "{1}% completado",
+      "barra": [
+        1
+      ],
+      "total_fijo": 100
+    },
+    {
+      "nombre": "horas",
+      "patron": "^(\\d+)\\s*h$",
+      "codigo": "{1}h",
+      "texto": "{1} horas jugadas",
+      "estado": "abierto"
     },
     {
       "nombre": "por empezar",
-      "patron": "^Comenzar$",
-      "texto": "La siguiente en la lista",
-      "ticker": "{obra}"
+      "patron": "^(?:NEW|Comenzar)$",
+      "codigo": "NEW",
+      "texto": "Por empezar"
+    },
+    {
+      "nombre": "jugando",
+      "patron": "^PLAY$",
+      "codigo": "PLAY",
+      "texto": "Jugando, sin una meta fija",
+      "estado": "abierto"
     }
   ],
-  "por_defecto": {
-    "texto": "{voy}",
-    "ticker": "{obra}"
-  },
-  "ticker_tipos": [
-    "Juego",
-    "Anime",
-    "Libro",
-    "Cómic",
-    "Película"
+  "ticker_medios": [
+    "game",
+    "anime",
+    "series",
+    "manga",
+    "book",
+    "comic",
+    "movie"
   ],
-  "neocities_sitio": "leo-os"
+  "rotacion_en_web": true,
+  "un_activo_por_medio": true,
+  "dias_sin_avance": 21,
+  "neocities_sitio": "leo-os",
+  "vacio": {
+    "codigo": "PLAY",
+    "texto": "En curso",
+    "estado": "abierto"
+  }
 }

@@ -22,6 +22,7 @@
   --n64-azul:     #0062ae;
 
   --pixel: "Pixelify Sans", "Courier New", monospace;
+  --code: Consolas, "Lucida Console", "Courier New", monospace;
   --texto: "Trebuchet MS", "Lucida Grande", "Lucida Sans Unicode", Tahoma, sans-serif;
 
   --cristal: rgba(42, 36, 99, 0.58);
@@ -243,34 +244,94 @@ a:hover { color: var(--hielo); }
 .window__note:last-child { margin-bottom: 0; }
 
 /* ---------- Ahora mismo ---------- */
-.now { list-style: none; margin: 0; padding: 0; }
+/* Ahora mismo: cada obra es un archivo guardado. Misma estructura en todas las filas:
+   medio (color N64) · título · ficha de avance · medidor por segmentos. */
+:root {
+  --m-game: var(--n64-verde);
+  --m-anime: var(--n64-rojo);
+  --m-manga: #ff6f91;
+  --m-series: var(--aqua);
+  --m-book: var(--n64-amarillo);
+  --m-comic: #4a9bff;
+  --m-movie: var(--uva);
+}
+.now { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
 .now__item {
   display: grid;
-  grid-template-columns: 76px minmax(0, 1fr) auto;
-  column-gap: 12px;
-  align-items: baseline;
-  padding: 9px 0;
-  border-bottom: 1px dotted rgba(150,220,255,.18);
+  grid-template-columns: 88px minmax(0, 1fr) auto;
+  column-gap: 12px; row-gap: 3px;
+  align-items: center;
+  padding: 10px 12px 11px;
+  background: rgba(18, 15, 46, .55);
+  border: 1px solid rgba(150,220,255,.14);
+  border-left: 3px solid var(--medio);
+  border-radius: 6px;
 }
-.now__item:last-child { border-bottom: 0; }
-.now__kind { font-family: var(--pixel); font-size: 13px; color: var(--aqua); }
-.now__name { font-weight: bold; }
-.now__where { color: var(--niebla); font-size: 13px; text-align: right; }
-
-/* Barra de progreso por segmentos, como la batería de una portátil vieja */
-.bar {
-  grid-column: 2 / -1;
-  display: block;
-  height: 8px; margin-top: 6px;
-  background: repeating-linear-gradient(to right, rgba(18,15,46,.9) 0 9px, transparent 9px 11px);
+.now__kind {
+  grid-row: 1 / span 3; align-self: start;
+  display: flex; align-items: center; gap: 7px;
+  font-family: var(--pixel); font-size: 13px; color: var(--niebla);
+  padding-top: 2px;
+}
+.now__swatch {
+  width: 10px; height: 10px; flex: none;
+  background: var(--medio);
+  box-shadow: inset -2px -2px 0 rgba(0,0,0,.35), 0 0 6px var(--medio);
+}
+.now__name { font-weight: bold; min-width: 0; }
+.now__about { grid-column: 2 / -1; color: var(--niebla); font-size: 12px; font-style: italic; }
+.now__chip {
+  justify-self: end;
+  font-size: 12px; line-height: 1.5;
+  padding: 0 7px;
+  border-radius: 3px;
+  color: var(--aqua);
+  background: rgba(18,15,46,.8);
   border: 1px solid rgba(150,220,255,.25);
-  border-radius: 2px;
-  overflow: hidden;
+  cursor: help; white-space: nowrap;
 }
-.bar span {
+.now__chip--nuevo { color: var(--n64-amarillo); border-color: rgba(255,194,14,.45); }
+.now__chip--abierto { color: var(--hielo); }
+.now__chip--abierto::before {
+  content: ""; display: inline-block; width: 6px; height: 6px; margin-right: 6px; vertical-align: 1px;
+  border-radius: 50%; background: var(--n64-verde); box-shadow: 0 0 6px var(--n64-verde);
+}
+.mono { font-family: var(--code); letter-spacing: .02em; }
+
+/* Medidor por segmentos, como la batería de una portátil vieja.
+   progreso = verde hasta el %; nuevo = vacío; abierto = lleno tenue (jugando, sin medida). */
+.meter {
+  grid-column: 2 / -1;
+  display: block; height: 8px; margin-top: 5px;
+  background: repeating-linear-gradient(to right, rgba(5,3,20,.9) 0 9px, transparent 9px 11px);
+  border: 1px solid rgba(150,220,255,.22);
+  border-radius: 2px; overflow: hidden;
+}
+.meter span {
   display: block; height: 100%; width: var(--p);
   background: repeating-linear-gradient(to right, var(--n64-verde) 0 9px, transparent 9px 11px);
 }
+.meter--nuevo { border-color: rgba(255,194,14,.4); }
+.meter--abierto span {
+  background: repeating-linear-gradient(to right, color-mix(in srgb, var(--medio) 40%, transparent) 0 9px, transparent 9px 11px);
+}
+.now__empty { color: var(--niebla); padding: 8px 0; }
+
+/* En rotación: mismo archivo, versión compacta */
+.now__rot { margin-top: 16px; }
+.now__rot-bar {
+  display: flex; align-items: baseline; justify-content: space-between; gap: 10px;
+  margin: 0 0 8px; padding: 0 2px 8px;
+  border-bottom: 1px dashed rgba(150,220,255,.25);
+  font-family: var(--pixel);
+}
+.now__rot-title { color: var(--hielo); font-size: 14px; }
+.now__rot-note { color: var(--niebla); font-size: 12px; }
+.now--compact { gap: 6px; }
+.now__item--compact { padding: 7px 12px 8px; font-size: 14px; border-left-width: 2px; background: rgba(18,15,46,.35); }
+.now__item--compact .now__kind { grid-row: 1 / span 2; font-size: 12px; }
+.now__item--compact .meter { height: 5px; margin-top: 3px; }
+.now__item--compact .meter, .now__item--compact .meter span { background-size: auto; }
 
 /* ---------- Galería ---------- */
 .gallery { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
@@ -376,8 +437,9 @@ a.shot__frame:hover, a.shot__frame:focus-visible {
   .slots { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .gallery { gap: 8px; }
   .gallery--full { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
-  .now__item { grid-template-columns: 64px minmax(0, 1fr); }
-  .now__where { grid-column: 2; text-align: left; }
+  .now__item { grid-template-columns: minmax(0, 1fr) auto; }
+  .now__kind { grid-row: auto; grid-column: 1 / -1; padding-top: 0; }
+  .meter, .now__about { grid-column: 1 / -1; }
   .statusbar__clock { display: none; }
 }
 

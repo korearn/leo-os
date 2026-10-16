@@ -4,10 +4,11 @@
   "vault_series": "D:/LeOS/Vault/Brain/Leo_OS/Knowledge/Lore/Series/Series.md",
   "vault_comics": "D:/LeOS/Vault/Brain/Leo_OS/Knowledge/Lore/Comics/Comics.md",
   "vault_now": "D:/LeOS/Vault/Brain/Leo_OS/Knowledge/Lore/Now.md",
-  "cartelera": {
-    "🎞": "Película",
-    "📔": "Cómic"
-  },
+  "cartelera_medios": [
+    "movie",
+    "series",
+    "comic"
+  ],
   "pagina": "../cine.html",
   "mostrar_calificacion": false,
   "colores": {

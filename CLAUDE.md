@@ -20,13 +20,14 @@ Todo se genera desde el vault de Obsidian (`D:\LeOS\Vault\Brain\Leo_OS`). Los sc
 
 | Página | Nota(s) del vault | Script | Config |
 |---|---|---|---|
-| `index.html` (Ahora mismo, barra de estado, fecha, contador de visitas) | `Knowledge/Lore/Now.md` | `tools/now_sync.py` | `tools/now.json` |
+| `index.html` (Ahora mismo + "En rotación", barra de estado, fecha, contador de visitas) | `Knowledge/Lore/Now.md` (Activo y Rotación) | `tools/now_sync.py` | `tools/now.json` (formatos de "Voy en", avisos) |
 | `juegos.html` (estante + "Todos mis juegos") | `Knowledge/Games/Shelf.md` | `tools/shelf_sync.py` | `tools/shelf.json` (colores por juego, nombres cortos) |
 | `musica.html` | `Knowledge/Lore/Music/Records.md` + `Bands.md` | `tools/music_sync.py` | `tools/music.json` |
-| `anime.html` | `Lore/Anime/Anime.md`, `Lore/Manga/Manga.md`, filas 📺 de `Now.md` | `tools/anime_sync.py` | `tools/anime.json` |
-| `cine.html` | `Lore/Movies/Movies.md`, `Lore/Series/Series.md`, `Lore/Comics/Comics.md`, filas 🎞️/📔 de `Now.md` | `tools/cine_sync.py` | `tools/cine.json` |
+| `anime.html` | `Lore/Anime/Anime.md`, `Lore/Manga/Manga.md`, filas `Anime` de `Now.md` | `tools/anime_sync.py` | `tools/anime.json` |
+| `cine.html` | `Lore/Movies/Movies.md`, `Lore/Series/Series.md`, `Lore/Comics/Comics.md`, filas `Movie`/`Series`/`Comic` de `Now.md` | `tools/cine_sync.py` | `tools/cine.json` |
 | `galeria.html`, `sobre-mi.html`, `construccion.html`, `not_found.html` | — (HTML a mano) | — | — |
 
+- **Now.md** se lee con `tools/now_lib.py` (compartido por now/anime/cine). Medios en `tools/medios.json` (una palabra: `Game`, `Anime`, `Series`, `Manga`, `Book`, `Comic`, `Movie`). "Voy en" en formato código: `E6/11`, `S2E3/10`, `C12/200`, `V3/23`, `P49/779`, `#4/9`, `45%`, `NEW` (con `/total` sale barra). Columnas por encabezado: Medio, Obra, Voy en, Sobre (sale en la web), Hueco (solo vault). Secciones: Activo (1 por medio), Rotación (línea pequeña en la web), Siguiente (no se publica). `tools/now_state.json` guarda cuándo avanzó cada obra para avisar a los 21 días.
 - **Todo de una vez:** `python tools/sync.py` (o `--dry-run`). Python 3 en Windows, solo librería estándar.
 - **⭐** en cualquier tabla = destacado en la web (cartucho, CD, boleto, VHS, tomo…). Sin ⭐ = solo en las listas.
 - **Columna "Nota"** = descripción breve que se muestra en la web (p. ej. "Retrofuturismo y líneas temporales"). Todos los títulos deben tener una.
@@ -49,7 +50,7 @@ Todo se genera desde el vault de Obsidian (`D:\LeOS\Vault\Brain\Leo_OS`). Los sc
 - No uses datos sensibles en la web (nombre legal, UPC/ISRC del EP, ciudad exacta, empresa).
 
 ## Pendientes (ronda de revisiones)
-- [ ] **Now.md:** mejorar el formato para automatizar mejor lo que pasa a la web (siguiente tarea).
+- [x] **Now.md:** formato nuevo (medios por palabra, códigos de avance, Activo/Rotación/Siguiente) — 2026-10-16. Falta que Leo lo revise en vivo.
 - [ ] Música: que *Glass Ecosystem* (Aero Memory, 4 pistas) suene: embed de Spotify/YouTube o MP3 si el plan gratis los acepta. No vender ni promocionar (reglas de Neocities).
 - [ ] Música: lista completa desplegable de discos (hoy solo salen los ⭐).
 - [ ] Página propia de Pokémon (equipos por juego desde `Knowledge/Games/Pokemon/Teams.md`).

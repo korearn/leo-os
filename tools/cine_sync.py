@@ -1,7 +1,7 @@
 """Genera la página Cine, series y cómics desde el vault.
 
 - Movies.md (⭐ = boleto), Series.md (⭐ = guía de canales), Comics.md (⭐ = cómic embolsado).
-- Now.md: "En cartelera" (filas 🎞️ y 📔).
+- Now.md: "En cartelera" (filas Movie, Series y Comic de Activo y Rotación; las de Siguiente como "próxima función").
 
 Reescribe en cine.html lo que hay entre los marcadores <!-- cine:... -->.
 
@@ -19,6 +19,8 @@ import json
 import re
 import sys
 from pathlib import Path
+
+from now_lib import leer_now
 
 AQUI = Path(__file__).resolve().parent
 e = html.escape
@@ -172,17 +174,24 @@ def lista(m: dict, s: dict, c: dict, cfg: dict) -> str:
     return ("\n".join(out) if out else f'{I}<p class="empty-note">Lista en construcción.</p>') + "\n"
 
 
-def cartelera(now: list[dict], cfg: dict) -> str:
+def cartelera(now: dict, cfg: dict) -> str:
     I = "              "
-    tipos = {k.replace("\ufe0f", ""): v for k, v in cfg["cartelera"].items()}
+    medios = cfg.get("cartelera_medios", ["movie", "series", "comic"])
     out = []
-    for f in now:
-        medio = f.get("medio", "").replace("\ufe0f", "").strip()
-        if medio not in tipos:
+    for f in now["activo"] + now["rotacion"]:
+        if f["medio"] not in medios:
             continue
-        voy = f.get("voy en", "")
-        detalle = tipos[medio] + (", por empezar" if voy.lower() == "comenzar" else (f", {voy}" if voy else ""))
-        out += [f"{I}<dt>{e(limpiar(f['_t'] if 'obra' not in f else f['obra']))}</dt>", f"{I}<dd>{e(detalle)}</dd>"]
+        av = f["avance"]
+        if av["nuevo"]:
+            detalle = f"{e(f['etiqueta'])}, por empezar"
+        elif av["es_codigo"]:
+            detalle = f'{e(f["etiqueta"])} · <code class="mono" title="{e(av["texto"])}">{e(av["codigo"])}</code>'
+        else:
+            detalle = e(f["etiqueta"]) + (f", {e(av['codigo'])}" if av["codigo"] else "")
+        out += [f"{I}<dt>{e(f['obra'])}</dt>", f"{I}<dd>{detalle}</dd>"]
+    for f in now["siguiente"]:
+        if f["medio"] in medios:
+            out += [f"{I}<dt>{e(f['obra'])}</dt>", f"{I}<dd>{e(f['etiqueta'])}, próxima función</dd>"]
     if not out:
         return f"{I}<dt>Sin función</dt>\n{I}<dd>Nada en cartelera por ahora.</dd>\n"
     return "\n".join(out) + "\n"
@@ -206,7 +215,7 @@ def main() -> None:
     m = leer_tablas(Path(args.movies or cfg["vault_movies"]))
     s = leer_tablas(Path(args.series or cfg["vault_series"]))
     c = leer_tablas(Path(args.comics or cfg["vault_comics"]))
-    now = leer_tablas(Path(args.now or cfg["vault_now"])).get("Activo", [])
+    now, _ = leer_now(Path(args.now or cfg["vault_now"]))
     pagina = (AQUI / cfg["pagina"]).resolve()
 
     def cuenta(lst):
