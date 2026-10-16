@@ -1,0 +1,145 @@
+{
+  "_ayuda": "Configuración de tools/shelf_sync.py. 'juegos' guarda los colores y nombres cortos del estante por título (el título debe ser igual al de Shelf.md). Estilos: --label, --label2 (etiqueta), --shell (plástico), --disc (tinte del disco).",
+  "vault_shelf": "D:/LeOS/Vault/Brain/Leo_OS/Knowledge/Games/Shelf.md",
+  "pagina": "../juegos.html",
+  "consolas": [
+    {
+      "nombre": "NES",
+      "clase": "nes",
+      "acento": "#e2231a"
+    },
+    {
+      "nombre": "Mega Drive",
+      "clase": "md",
+      "acento": "#1c4fd6"
+    },
+    {
+      "nombre": "Game Boy",
+      "clase": "gb",
+      "acento": "#9aa6d6"
+    },
+    {
+      "nombre": "Super Nintendo",
+      "clase": "snes",
+      "acento": "#7b5cff"
+    },
+    {
+      "nombre": "PlayStation",
+      "clase": "disc",
+      "acento": "#9aa6d6"
+    },
+    {
+      "nombre": "Nintendo 64",
+      "clase": "n64",
+      "acento": "#00a650"
+    },
+    {
+      "nombre": "Game Boy Color",
+      "clase": "gb",
+      "acento": "#7b5cff"
+    },
+    {
+      "nombre": "PS2",
+      "clase": "disc",
+      "acento": "#0062ae"
+    },
+    {
+      "nombre": "Game Boy Advance",
+      "clase": "gba",
+      "acento": "#5b4a9a"
+    },
+    {
+      "nombre": "GameCube",
+      "clase": "disc",
+      "acento": "#5b4a9a"
+    },
+    {
+      "nombre": "Xbox",
+      "clase": "disc",
+      "acento": "#00a650"
+    },
+    {
+      "nombre": "Nintendo DS",
+      "clase": "ds",
+      "acento": "#9aa6d6"
+    },
+    {
+      "nombre": "Wii",
+      "clase": "disc",
+      "acento": "#e8f4ff"
+    },
+    {
+      "nombre": "Nintendo 3DS",
+      "clase": "3ds",
+      "acento": "#e2231a"
+    },
+    {
+      "nombre": "Switch",
+      "clase": "switch",
+      "acento": "#e2231a"
+    },
+    {
+      "nombre": "PC",
+      "clase": "disc",
+      "acento": "#5fe0ff"
+    }
+  ],
+  "estados": {
+    "jugando": "Jugando",
+    "terminado": "Terminado",
+    "pausa": "En pausa",
+    "abandonado": "Abandonado"
+  },
+  "mostrar": {
+    "por_jugar": true,
+    "wishlist": true
+  },
+  "juegos": {
+    "Super Mario Bros.": {
+      "estilo": "--label:#d8382c;--label2:#2a4fd6"
+    },
+    "Sonic the Hedgehog": {
+      "estilo": "--label:#1f56d8;--label2:#f2c230"
+    },
+    "Star Fox 64": {
+      "estilo": "--label:#1f5fb0;--label2:#83a06e"
+    },
+    "The Legend of Zelda: Ocarina of Time": {
+      "estilo": "--label:#f0e330;--label2:#e13737",
+      "corto": "Ocarina of Time"
+    },
+    "Pokémon Stadium": {
+      "estilo": "--label:#d6802f;--label2:#1d6497"
+    },
+    "Star Wars Episode I: Racer": {
+      "estilo": "--label:#167ec4;--label2:#c2862a"
+    },
+    "The Legend of Zelda: Majora's Mask": {
+      "estilo": "--shell:linear-gradient(to bottom, #f3cf58, #dfa82c 45%, #b47f15);--label:#56237e;--label2:#315a46",
+      "corto": "Majora's Mask"
+    },
+    "Pokémon Crystal": {
+      "estilo": "--shell:linear-gradient(to bottom, rgba(14, 185, 207, 0.781), rgba(1, 162, 175, 0.658));--label:#1984b0ff;--label2:#bfe3ff"
+    },
+    "Donkey Kong Country": {
+      "estilo": "--shell:linear-gradient(to bottom, rgba(255, 196, 0, 0.85), rgba(255, 152, 0, 0.85));--label:#067021;--label2:#e5cd34ff"
+    },
+    "Grand Theft Auto: San Andreas": {
+      "estilo": "--disc:rgba(40,180,90,.18)",
+      "corto": "GTA: San Andreas"
+    },
+    "The Legend of Zelda: Breath of the Wild": {
+      "estilo": "--label:#3fb7c9;--label2:#e6d8a8",
+      "corto": "Breath of the Wild"
+    },
+    "Cyberpunk 2077": {
+      "estilo": "--disc:rgba(255,226,40,.16)"
+    },
+    "The Legend of Zelda: A Link to the Past": {
+      "corto": "A Link to the Past"
+    },
+    "Final Fantasy X | X-2 HD Remaster": {
+      "corto": "Final Fantasy X"
+    }
+  }
+}

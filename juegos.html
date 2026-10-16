@@ -1,0 +1,753 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Videojuegos | LeOS</title>
+  <meta name="description" content="Los juegos que juego, los que me formaron y mi línea de Pokémon.">
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" href="/favicon.png" type="image/png">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <div class="page">
+    <header class="subhead">
+      <a class="wordmark wordmark--small" href="index.html">LeOS</a>
+      <a class="subhead__back" href="index.html">Volver a la memory card</a>
+    </header>
+
+    <!-- Intro -->
+    <section class="window intro" aria-labelledby="v-title">
+      <h1 class="window__title" id="v-title">Videojuegos</h1>
+      <div class="window__body">
+        <p>Los videojuegos son arte interactivo: interactuar con diferentes mundos, historias y 
+          apreciar sus estéticas. Un buen juego respeta tu tiempo; si se siente como un segundo trabajo, no se queda
+          en mi rotación.</p>
+      </div>
+    </section>
+
+    <main class="layout">
+      <div class="col-main">
+
+        <!-- Estante: lo que me formó -->
+        <section class="window" aria-labelledby="shelf-title">
+          <h2 class="window__title" id="shelf-title">El estante</h2>
+          <div class="window__body">
+            <p class="window__note">Algunos de mis favoritos de todos los tiempos, por consola y en orden de salida.</p>
+            <div class="shelf">
+              <!-- shelf:estante:start -->
+              <section class="shelf__row" style="--accent:#e2231a" aria-labelledby="sh-nes">
+                <h3 class="shelf__console" id="sh-nes">NES</h3>
+                <ul class="shelf__games">
+                  <li class="game game--nes" style="--label:#d8382c;--label2:#2a4fd6">
+                    <span class="game__box" aria-hidden="true"><span class="game__label"></span></span>
+                    <span class="game__title">Super Mario Bros.</span>
+                    <span class="game__year">1985</span>
+                  </li>
+                </ul>
+              </section>
+              <section class="shelf__row" style="--accent:#1c4fd6" aria-labelledby="sh-mega-drive">
+                <h3 class="shelf__console" id="sh-mega-drive">Mega Drive</h3>
+                <ul class="shelf__games">
+                  <li class="game game--md" style="--label:#1f56d8;--label2:#f2c230">
+                    <span class="game__box" aria-hidden="true"><span class="game__label"></span></span>
+                    <span class="game__title">Sonic the Hedgehog</span>
+                    <span class="game__year">1991</span>
+                  </li>
+                  <li class="game game--md" style="--label:#7b3fa8;--label2:#e0b23a">
+                    <span class="game__box" aria-hidden="true"><span class="game__label"></span></span>
+                    <span class="game__title">Ecco the Dolphin</span>
+                    <span class="game__year">1992</span>
+                  </li>
+                </ul>
+              </section>
+              <section class="shelf__row" style="--accent:#7b5cff" aria-labelledby="sh-super-nintendo">
+                <h3 class="shelf__console" id="sh-super-nintendo">Super Nintendo</h3>
+                <ul class="shelf__games">
+                  <li class="game game--snes" style="--label:#c2862a;--label2:#2b2b31">
+                    <span class="game__box" aria-hidden="true"><span class="game__label"></span></span>
+                    <span class="game__title">A Link to the Past</span>
+                    <span class="game__year">1991</span>
+                  </li>
+                  <li class="game game--snes" style="--label:#167ec4;--label2:#e8f4ff">
+                    <span class="game__box" aria-hidden="true"><span class="game__label"></span></span>
+                    <span class="game__title">EarthBound</span>
+                    <span class="game__year">1994</span>
+                  </li>
+                </ul>
+              </section>
+              <section class="shelf__row" style="--accent:#00a650" aria-labelledby="sh-nintendo-64">
+                <h3 class="shelf__console" id="sh-nintendo-64">Nintendo 64</h3>
+                <ul class="shelf__games">
+                  <li class="game game--n64" style="--label:#2f8f4e;--label2:#e8e0c8">
+                    <span class="game__box" aria-hidden="true"><span class="game__label"></span></span>
+                    <span class="game__title">Super Mario 64</span>
+                    <span class="game__year">1996</span>
+                  </li>
+                  <li class="game game--n64" style="--label:#3a3f9a;--label2:#5fe0ff">
+                    <span class="game__box" aria-hidden="true"><span class="game__label"></span></span>
+                    <span class="game__title">Bomberman 64</span>
+                    <span class="game__year">1997</span>
+                  </li>
+                  <li class="game game--n64" style="--label:#167ec4;--label2:#e8f4ff">
+                    <span class="game__box" aria-hidden="true"><span class="game__label"></span></span>
+                    <span class="game__title">Mario Kart 64</span>
+                    <span class="game__year">1997</span>
+                  </li>
+                  <li class="game game--n64" style="--label:#1f5fb0;--label2:#83a06e">
+                    <span class="game__box" aria-hidden="true"><span class="game__label"></span></span>
+                    <span class="game__title">Star Fox 64</span>
+                    <span class="game__year">1997</span>
+                  </li>
+                  <li class="game game--n64" style="--label:#f0e330;--label2:#e13737">
+                    <span class="game__box" aria-hidden="true"><span class="game__label"></span></span>
+                    <span class="game__title">Ocarina of Time</span>
+                    <span class="game__year">1998</span>
+                  </li>
+                  <li class="game game--n64" style="--label:#c2862a;--label2:#2b2b31">
+                    <span class="game__box" aria-hidden="true"><span class="game__label"></span></span>
+                    <span class="game__title">LEGO Racers</span>
+                    <span class="game__year">1999</span>
+                  </li>
+                  <li class="game game--n64" style="--label:#d6802f;--label2:#1d6497">
+                    <span class="game__box" aria-hidden="true"><span class="game__label"></span></span>
+                    <span class="game__title">Pokémon Stadium</span>
+                    <span class="game__year">1999</span>
+                  </li>
+                  <li class="game game--n64" style="--label:#167ec4;--label2:#c2862a">
+                    <span class="game__box" aria-hidden="true"><span class="game__label"></span></span>
+                    <span class="game__title">Star Wars Episode I: Racer</span>
+                    <span class="game__year">1999</span>
+                  </li>
+                  <li class="game game--n64" style="--shell:linear-gradient(to bottom, #f3cf58, #dfa82c 45%, #b47f15);--label:#56237e;--label2:#315a46">
+                    <span class="game__box" aria-hidden="true"><span class="game__label"></span></span>
+                    <span class="game__title">Majora&#x27;s Mask</span>
+                    <span class="game__year">2000</span>
+                  </li>
+                </ul>
+              </section>
+              <section class="shelf__row" style="--accent:#7b5cff" aria-labelledby="sh-game-boy-color">
+                <h3 class="shelf__console" id="sh-game-boy-color">Game Boy Color</h3>
+                <ul class="shelf__games">
+                  <li class="game game--gb" style="--label:#3a3f9a;--label2:#5fe0ff">
+                    <span class="game__box" aria-hidden="true"><span class="game__label"></span></span>
+                    <span class="game__title">Pokémon Silver</span>
+                    <span class="game__year">1999</span>
+                  </li>
+                  <li class="game game--gb" style="--shell:linear-gradient(to bottom, rgba(255, 196, 0, 0.85), rgba(255, 152, 0, 0.85));--label:#067021;--label2:#e5cd34ff">
+                    <span class="game__box" aria-hidden="true"><span class="game__label"></span></span>
+                    <span class="game__title">Donkey Kong Country</span>
+                    <span class="game__year">2000</span>
+                  </li>
+                  <li class="game game--gb" style="--shell:linear-gradient(to bottom, rgba(14, 185, 207, 0.781), rgba(1, 162, 175, 0.658));--label:#1984b0ff;--label2:#bfe3ff">
+                    <span class="game__box" aria-hidden="true"><span class="game__label"></span></span>
+                    <span class="game__title">Pokémon Crystal</span>
+                    <span class="game__year">2000</span>
+                  </li>
+                </ul>
+              </section>
+              <section class="shelf__row" style="--accent:#5b4a9a" aria-labelledby="sh-game-boy-advance">
+                <h3 class="shelf__console" id="sh-game-boy-advance">Game Boy Advance</h3>
+                <ul class="shelf__games">
+                  <li class="game game--gba" style="--label:#c2862a;--label2:#2b2b31">
+                    <span class="game__box" aria-hidden="true"><span class="game__label"></span></span>
+                    <span class="game__title">Pokémon Emerald</span>
+                    <span class="game__year">2004</span>
+                  </li>
+                  <li class="game game--gba" style="--label:#0e7d6e;--label2:#f2e6b0">
+                    <span class="game__box" aria-hidden="true"><span class="game__label"></span></span>
+                    <span class="game__title">Pokémon FireRed</span>
+                    <span class="game__year">2004</span>
+                  </li>
+                  <li class="game game--gba" style="--label:#3a3f9a;--label2:#5fe0ff">
+                    <span class="game__box" aria-hidden="true"><span class="game__label"></span></span>
+                    <span class="game__title">Donkey Kong Country 3</span>
+                    <span class="game__year">2005</span>
+                  </li>
+                </ul>
+              </section>
+              <section class="shelf__row" style="--accent:#00a650" aria-labelledby="sh-xbox">
+                <h3 class="shelf__console" id="sh-xbox">Xbox</h3>
+                <ul class="shelf__games">
+                  <li class="game game--disc" style="--disc:rgba(40,180,90,.18)">
+                    <span class="game__box" aria-hidden="true"><span class="game__label"></span></span>
+                    <span class="game__title">GTA: San Andreas</span>
+                    <span class="game__year">2004</span>
+                  </li>
+                  <li class="game game--disc" style="--label:#3a3f9a;--label2:#5fe0ff">
+                    <span class="game__box" aria-hidden="true"><span class="game__label"></span></span>
+                    <span class="game__title">Burnout Revenge</span>
+                    <span class="game__year">2005</span>
+                  </li>
+                </ul>
+              </section>
+              <section class="shelf__row" style="--accent:#9aa6d6" aria-labelledby="sh-nintendo-ds">
+                <h3 class="shelf__console" id="sh-nintendo-ds">Nintendo DS</h3>
+                <ul class="shelf__games">
+                  <li class="game game--ds" style="--label:#167ec4;--label2:#e8f4ff">
+                    <span class="game__box" aria-hidden="true"><span class="game__label"></span></span>
+                    <span class="game__title">Animal Crossing: Wild World</span>
+                    <span class="game__year">2005</span>
+                  </li>
+                  <li class="game game--ds" style="--label:#0e7d6e;--label2:#f2e6b0">
+                    <span class="game__box" aria-hidden="true"><span class="game__label"></span></span>
+                    <span class="game__title">Pokémon SoulSilver</span>
+                    <span class="game__year">2009</span>
+                  </li>
+                  <li class="game game--ds" style="--label:#7b3fa8;--label2:#e0b23a">
+                    <span class="game__box" aria-hidden="true"><span class="game__label"></span></span>
+                    <span class="game__title">Pokémon Black</span>
+                    <span class="game__year">2010</span>
+                  </li>
+                </ul>
+              </section>
+              <section class="shelf__row" style="--accent:#e2231a" aria-labelledby="sh-nintendo-3ds">
+                <h3 class="shelf__console" id="sh-nintendo-3ds">Nintendo 3DS</h3>
+                <ul class="shelf__games">
+                  <li class="game game--3ds" style="--label:#d8382c;--label2:#f2f2f2">
+                    <span class="game__box" aria-hidden="true"><span class="game__label"></span></span>
+                    <span class="game__title">Pokémon Y</span>
+                    <span class="game__year">2013</span>
+                  </li>
+                </ul>
+              </section>
+              <section class="shelf__row" style="--accent:#e2231a" aria-labelledby="sh-switch">
+                <h3 class="shelf__console" id="sh-switch">Switch</h3>
+                <ul class="shelf__games">
+                  <li class="game game--switch" style="--label:#3fb7c9;--label2:#e6d8a8">
+                    <span class="game__box" aria-hidden="true"><span class="game__label"></span></span>
+                    <span class="game__title">Breath of the Wild</span>
+                    <span class="game__year">2017</span>
+                  </li>
+                  <li class="game game--switch" style="--label:#0e7d6e;--label2:#f2e6b0">
+                    <span class="game__box" aria-hidden="true"><span class="game__label"></span></span>
+                    <span class="game__title">Pokémon Legends: Z-A</span>
+                    <span class="game__year">2025</span>
+                  </li>
+                </ul>
+              </section>
+              <section class="shelf__row" style="--accent:#5fe0ff" aria-labelledby="sh-pc">
+                <h3 class="shelf__console" id="sh-pc">PC</h3>
+                <ul class="shelf__games">
+                  <li class="game game--disc" style="--label:#7b3fa8;--label2:#e0b23a">
+                    <span class="game__box" aria-hidden="true"><span class="game__label"></span></span>
+                    <span class="game__title">Final Fantasy X</span>
+                    <span class="game__year">2001</span>
+                  </li>
+                  <li class="game game--disc" style="--label:#d8382c;--label2:#f2f2f2">
+                    <span class="game__box" aria-hidden="true"><span class="game__label"></span></span>
+                    <span class="game__title">Dark Souls</span>
+                    <span class="game__year">2011</span>
+                  </li>
+                  <li class="game game--disc" style="--label:#d8382c;--label2:#f2f2f2">
+                    <span class="game__box" aria-hidden="true"><span class="game__label"></span></span>
+                    <span class="game__title">Devil May Cry 5</span>
+                    <span class="game__year">2019</span>
+                  </li>
+                  <li class="game game--disc" style="--disc:rgba(255,226,40,.16)">
+                    <span class="game__box" aria-hidden="true"><span class="game__label"></span></span>
+                    <span class="game__title">Cyberpunk 2077</span>
+                    <span class="game__year">2020</span>
+                  </li>
+                  <li class="game game--disc" style="--label:#b83a6a;--label2:#f3d7a0">
+                    <span class="game__box" aria-hidden="true"><span class="game__label"></span></span>
+                    <span class="game__title">Doom Eternal</span>
+                    <span class="game__year">2020</span>
+                  </li>
+                  <li class="game game--disc" style="--label:#c2862a;--label2:#2b2b31">
+                    <span class="game__box" aria-hidden="true"><span class="game__label"></span></span>
+                    <span class="game__title">Elden Ring</span>
+                    <span class="game__year">2022</span>
+                  </li>
+                  <li class="game game--disc" style="--label:#b83a6a;--label2:#f3d7a0">
+                    <span class="game__box" aria-hidden="true"><span class="game__label"></span></span>
+                    <span class="game__title">Diablo IV</span>
+                    <span class="game__year">2023</span>
+                  </li>
+                  <li class="game game--disc" style="--label:#3a3f9a;--label2:#5fe0ff">
+                    <span class="game__box" aria-hidden="true"><span class="game__label"></span></span>
+                    <span class="game__title">Hogwarts Legacy</span>
+                    <span class="game__year">2023</span>
+                  </li>
+                  <li class="game game--disc" style="--label:#2f8f4e;--label2:#e8e0c8">
+                    <span class="game__box" aria-hidden="true"><span class="game__label"></span></span>
+                    <span class="game__title">Call of Duty Black Ops 6</span>
+                    <span class="game__year">2024</span>
+                  </li>
+                  <li class="game game--disc" style="--label:#167ec4;--label2:#e8f4ff">
+                    <span class="game__box" aria-hidden="true"><span class="game__label"></span></span>
+                    <span class="game__title">F1 25</span>
+                    <span class="game__year">2025</span>
+                  </li>
+                  <li class="game game--disc" style="--label:#0e7d6e;--label2:#f2e6b0">
+                    <span class="game__box" aria-hidden="true"><span class="game__label"></span></span>
+                    <span class="game__title">Star Wars Galactic Racer</span>
+                    <span class="game__year">2026</span>
+                  </li>
+                </ul>
+              </section>
+              <!-- shelf:estante:end -->
+            </div>
+          </div>
+        </section>
+
+        <!-- Rotación -->
+        <section class="window" aria-labelledby="rot-title">
+          <h2 class="window__title" id="rot-title">Mi rotación</h2>
+          <div class="window__body">
+            <p class="window__note">Cada juego que tengo instalado cumple una función distinta.</p>
+            <!-- Máximo 2 juegos por grupo: lo que de verdad tienes instalado. Si un grupo queda vacío, borra el <li> y deja "Nada por ahora". -->
+            <div class="rotation">
+              <div class="rotation__group">
+                <h3>Challenges</h3>
+                <p>Atención total, leer patrones, reflejos.</p>
+                <ul>
+                  <li>Black Myth: Wukong</li>
+                  <li>Monster Hunter Rise</li>
+                  <li>Elden Ring</li>
+                </ul>
+              </div>
+              <div class="rotation__group">
+                <h3>Flow</h3>
+                <p>Repetición y ritmo para vaciar la mente.</p>
+                <ul>
+                  <li>Devil May Cry 5</li>
+                  <li>F1 25</li>
+                  <li>Star Wars Galactic Racer</li>
+                </ul>
+              </div>
+              <div class="rotation__group">
+                <h3>Home</h3>
+                <p>Ritmo pausado y clásicos.</p>
+                <ul>
+                  <li>Pokémon SoulSilver</li>
+                  <li>Ocarina of Time</li>
+                  <li>Animal Crossing: New Leaf</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Pokémon -->
+        <section class="window" aria-labelledby="poke-title">
+          <h2 class="window__title" id="poke-title">Pokémon</h2>
+          <div class="window__body">
+            <h3 class="sub">Mi equipo definitivo</h3>
+            <p class="window__note">Uno por región, armado para la sexta generación.</p>
+            <ol class="party">
+              <li class="party__mon">
+                <span class="party__name">Metagross</span>
+                <span class="party__alias">The Hardware Anchor</span>
+                <span class="party__types"><span class="type type--steel">Acero</span><span class="type type--psychic">Psíquico</span></span>
+                <span class="party__origin">Hoenn</span>
+              </li>
+              <li class="party__mon">
+                <span class="party__name">Cloyster</span>
+                <span class="party__alias">The Priority Executioner</span>
+                <span class="party__types"><span class="type type--water">Agua</span><span class="type type--ice">Hielo</span></span>
+                <span class="party__origin">Kanto</span>
+              </li>
+              <li class="party__mon">
+                <span class="party__name">Suicune</span>
+                <span class="party__alias">The Recursive Loop</span>
+                <span class="party__types"><span class="type type--water">Agua</span></span>
+                <span class="party__origin">Johto</span>
+              </li>
+              <li class="party__mon">
+                <span class="party__name">Gengar</span>
+                <span class="party__alias">The High-Speed Thread</span>
+                <span class="party__types"><span class="type type--ghost">Fantasma</span><span class="type type--poison">Veneno</span></span>
+                <span class="party__origin">Kanto</span>
+              </li>
+              <li class="party__mon">
+                <span class="party__name">Zoroark</span>
+                <span class="party__alias">The Identity Spoofing</span>
+                <span class="party__types"><span class="type type--dark">Siniestro</span></span>
+                <span class="party__origin">Teselia</span>
+              </li>
+              <li class="party__mon">
+                <span class="party__name">Porygon-Z</span>
+                <span class="party__alias">The Logic Glitch</span>
+                <span class="party__types"><span class="type type--normal">Normal</span></span>
+                <span class="party__origin">Sinnoh</span>
+              </li>
+            </ol>
+
+            <h3 class="sub">Los que he jugado</h3>
+            <ul class="chips">
+              <li>Yellow</li><li>Fire Red</li><li>SoulSilver</li><li>Emerald</li><li>Platinum</li><li>Black</li>
+              <li>White</li><li>Black 2</li><li>White 2</li><li>X</li><li>Y</li><li>Alpha Sapphire</li><li>Moon</li>
+              <li>Ultra Moon</li><li>Sword</li><li>Legends: Arceus</li><li>Shining Pearl</li><li>Violet</li><li>Legends: Z-A</li>
+            </ul>
+          </div>
+        </section>
+      </div>
+
+      <aside class="col-side">
+        <section class="window" aria-labelledby="play-title">
+          <h2 class="window__title" id="play-title">Jugando ahora</h2>
+          <div class="window__body">
+            <dl class="favs">
+              <dt>Cyberpunk 2077</dt>
+              <dd>Phantom Liberty</dd>
+              <dt>Star Wars Galactic Racer</dt>
+              <dd>Actual obsesión</dd>
+            </dl>
+          </div>
+        </section>
+
+        <section class="window" aria-labelledby="comp-title">
+          <h2 class="window__title" id="comp-title">Competitivo</h2>
+          <div class="window__body">
+            <p class="side-text">Por el placer de jugar de vez en cuando.</p>
+            <dl class="favs">
+              <dt>League of Legends</dt>
+              <dd>Jungla, main Kha'Zix</dd>
+              <dt>También</dt>
+              <dd>Valorant, StarCraft 2, F1 25</dd>
+            </dl>
+          </div>
+        </section>
+
+        <section class="window" aria-labelledby="rig-title">
+          <h2 class="window__title" id="rig-title">Mi equipo</h2>
+          <div class="window__body">
+            <dl class="specs">
+              <dt>CPU</dt><dd>Ryzen 7 5800X</dd>
+              <dt>GPU</dt><dd>RTX 4070 Ti Super</dd>
+              <dt>RAM</dt><dd>32 GB DDR4</dd>
+              <dt>Monitor</dt><dd>27", 1080p a 165 Hz</dd>
+              <dt>Mouse</dt><dd>Ajazz AJ139 Pro</dd>
+              <dt>Portátil</dt><dd>New Nintendo 3DS LL CFW</dd>
+            </dl>
+          </div>
+        </section>
+
+        <section class="window" aria-labelledby="gl-title">
+          <h2 class="window__title" id="gl-title">Capturas</h2>
+          <div class="window__body">
+            <a class="shot__frame shot__frame--link" href="galeria.html"><img src="img/shots/ffx-mini.webp"
+                alt="Tidus en un muelle frente al mar turquesa" width="640" height="360" loading="lazy"></a>
+            <p class="window__more"><a href="galeria.html">Ver la galería</a></p>
+          </div>
+        </section>
+      </aside>
+    </main>
+
+    <section class="window allgames" id="todos" aria-labelledby="all-title">
+      <h2 class="window__title" id="all-title">Todos mis juegos</h2>
+      <div class="window__body">
+          <!-- shelf:listas:start -->
+          <p class="window__note">He jugado 170 juegos y tengo 87 esperando turno. Los de la ⭐ están en el estante.</p>
+          <details class="gamelist" open>
+            <summary>Clásicos <span class="gamelist__count">70</span></summary>
+            <h3 class="gamelist__console">NES <small>1</small></h3>
+            <ul class="gamelist__items">
+              <li><span class="gl__year">1985</span> <span class="gl__name">Super Mario Bros.</span> <span class="gl__fav" title="En el estante">⭐</span></li>
+            </ul>
+            <h3 class="gamelist__console">Mega Drive <small>6</small></h3>
+            <ul class="gamelist__items">
+              <li><span class="gl__year">1991</span> <span class="gl__name">Sonic the Hedgehog</span> <span class="gl__fav" title="En el estante">⭐</span></li>
+              <li><span class="gl__year">1992</span> <span class="gl__name">Batman Returns</span></li>
+              <li><span class="gl__year">1992</span> <span class="gl__name">Ecco the Dolphin</span> <span class="gl__fav" title="En el estante">⭐</span></li>
+              <li><span class="gl__year">1992</span> <span class="gl__name">Sonic the Hedgehog 2</span></li>
+              <li><span class="gl__year">1993</span> <span class="gl__name">Aladdin</span></li>
+              <li><span class="gl__year">1994</span> <span class="gl__name">Earthworm Jim</span></li>
+            </ul>
+            <h3 class="gamelist__console">Super Nintendo <small>6</small></h3>
+            <ul class="gamelist__items">
+              <li><span class="gl__year">1990</span> <span class="gl__name">Super Mario World</span></li>
+              <li><span class="gl__year">1991</span> <span class="gl__name">The Legend of Zelda: A Link to the Past</span> <span class="gl__fav" title="En el estante">⭐</span></li>
+              <li><span class="gl__year">1993</span> <span class="gl__name">Mega Man X</span></li>
+              <li><span class="gl__year">1993</span> <span class="gl__name">Super Mario All-Stars</span></li>
+              <li><span class="gl__year">1994</span> <span class="gl__name">EarthBound</span> <span class="gl__fav" title="En el estante">⭐</span></li>
+              <li><span class="gl__year">1995</span> <span class="gl__name">Chrono Trigger</span></li>
+            </ul>
+            <h3 class="gamelist__console">Nintendo 64 <small>27</small></h3>
+            <ul class="gamelist__items">
+              <li><span class="gl__year">1996</span> <span class="gl__name">Cruis&#x27;n USA</span></li>
+              <li><span class="gl__year">1996</span> <span class="gl__name">Super Mario 64</span> <span class="gl__fav" title="En el estante">⭐</span></li>
+              <li><span class="gl__year">1997</span> <span class="gl__name">Bomberman 64</span> <span class="gl__fav" title="En el estante">⭐</span></li>
+              <li><span class="gl__year">1997</span> <span class="gl__name">Doom 64</span></li>
+              <li><span class="gl__year">1997</span> <span class="gl__name">Extreme G</span></li>
+              <li><span class="gl__year">1997</span> <span class="gl__name">Mario Kart 64</span> <span class="gl__fav" title="En el estante">⭐</span></li>
+              <li><span class="gl__year">1997</span> <span class="gl__name">Star Fox 64</span> <span class="gl__fav" title="En el estante">⭐</span></li>
+              <li><span class="gl__year">1998</span> <span class="gl__name">Nascar &#x27;99</span></li>
+              <li><span class="gl__year">1998</span> <span class="gl__name">Star Wars: Rogue Squadron</span></li>
+              <li><span class="gl__year">1998</span> <span class="gl__name">The Legend of Zelda: Ocarina of Time</span> <span class="gl__fav" title="En el estante">⭐</span></li>
+              <li><span class="gl__year">1998</span> <span class="gl__name">Turok 2: Seeds of Evil</span></li>
+              <li><span class="gl__year">1998</span> <span class="gl__name">Yoshi&#x27;s Story</span></li>
+              <li><span class="gl__year">1999</span> <span class="gl__name">Donkey Kong 64</span></li>
+              <li><span class="gl__year">1999</span> <span class="gl__name">Jet Force Gemini</span></li>
+              <li><span class="gl__year">1999</span> <span class="gl__name">LEGO Racers</span> <span class="gl__fav" title="En el estante">⭐</span></li>
+              <li><span class="gl__year">1999</span> <span class="gl__name">Pokémon Stadium</span> <span class="gl__fav" title="En el estante">⭐</span></li>
+              <li><span class="gl__year">1999</span> <span class="gl__name">Star Wars Episode I: Racer</span> <span class="gl__fav" title="En el estante">⭐</span></li>
+              <li><span class="gl__year">1999</span> <span class="gl__name">Super Smash Bros.</span></li>
+              <li><span class="gl__year">1999</span> <span class="gl__name">Tonic Trouble</span></li>
+              <li><span class="gl__year">1999</span> <span class="gl__name">Toy Story 2: Buzz Lightyear to the Rescue!</span></li>
+              <li><span class="gl__year">2000</span> <span class="gl__name">Banjo Tooie</span></li>
+              <li><span class="gl__year">2000</span> <span class="gl__name">Kirby 64: The Crystal Shards</span></li>
+              <li><span class="gl__year">2000</span> <span class="gl__name">Mario Party 2</span></li>
+              <li><span class="gl__year">2000</span> <span class="gl__name">Perfect Dark</span></li>
+              <li><span class="gl__year">2000</span> <span class="gl__name">The Legend of Zelda: Majora&#x27;s Mask</span> <span class="gl__fav" title="En el estante">⭐</span></li>
+              <li><span class="gl__year">2001</span> <span class="gl__name">Conker&#x27;s Bad Fur Day</span></li>
+              <li><span class="gl__year">2001</span> <span class="gl__name">Mega Man 64</span></li>
+            </ul>
+            <h3 class="gamelist__console">Game Boy Color <small>6</small></h3>
+            <ul class="gamelist__items">
+              <li><span class="gl__year">1998</span> <span class="gl__name">Pokémon Yellow</span></li>
+              <li><span class="gl__year">1999</span> <span class="gl__name">Pokémon Gold</span></li>
+              <li><span class="gl__year">1999</span> <span class="gl__name">Pokémon Silver</span> <span class="gl__fav" title="En el estante">⭐</span></li>
+              <li><span class="gl__year">1999</span> <span class="gl__name">Star Wars: Episode I - Racer</span></li>
+              <li><span class="gl__year">2000</span> <span class="gl__name">Donkey Kong Country</span> <span class="gl__fav" title="En el estante">⭐</span></li>
+              <li><span class="gl__year">2000</span> <span class="gl__name">Pokémon Crystal</span> <span class="gl__fav" title="En el estante">⭐</span></li>
+            </ul>
+            <h3 class="gamelist__console">Game Boy Advance <small>6</small></h3>
+            <ul class="gamelist__items">
+              <li><span class="gl__year">2001</span> <span class="gl__name">Klonoa: Empire of Dreams</span></li>
+              <li><span class="gl__year">2003</span> <span class="gl__name">Donkey Kong Country</span></li>
+              <li><span class="gl__year">2003</span> <span class="gl__name">Fire Emblem</span></li>
+              <li><span class="gl__year">2004</span> <span class="gl__name">Pokémon Emerald</span> <span class="gl__fav" title="En el estante">⭐</span></li>
+              <li><span class="gl__year">2004</span> <span class="gl__name">Pokémon FireRed</span> <span class="gl__fav" title="En el estante">⭐</span></li>
+              <li><span class="gl__year">2005</span> <span class="gl__name">Donkey Kong Country 3</span> <span class="gl__fav" title="En el estante">⭐</span></li>
+            </ul>
+            <h3 class="gamelist__console">Xbox <small>4</small></h3>
+            <ul class="gamelist__items">
+              <li><span class="gl__year">2004</span> <span class="gl__name">Grand Theft Auto: San Andreas</span> <span class="gl__fav" title="En el estante">⭐</span></li>
+              <li><span class="gl__year">2004</span> <span class="gl__name">Halo 2</span></li>
+              <li><span class="gl__year">2005</span> <span class="gl__name">Burnout Revenge</span> <span class="gl__fav" title="En el estante">⭐</span></li>
+              <li><span class="gl__year">2005</span> <span class="gl__name">Psychonauts</span></li>
+            </ul>
+            <h3 class="gamelist__console">Nintendo DS <small>14</small></h3>
+            <ul class="gamelist__items">
+              <li><span class="gl__year">2004</span> <span class="gl__name">Super Mario 64 DS</span></li>
+              <li><span class="gl__year">2005</span> <span class="gl__name">Animal Crossing: Wild World</span> <span class="gl__fav" title="En el estante">⭐</span></li>
+              <li><span class="gl__year">2005</span> <span class="gl__name">Mario Kart DS</span></li>
+              <li><span class="gl__year">2006</span> <span class="gl__name">New Super Mario Bros.</span></li>
+              <li><span class="gl__year">2008</span> <span class="gl__name">Chrono Trigger</span></li>
+              <li><span class="gl__year">2008</span> <span class="gl__name">Pokémon Platinum</span></li>
+              <li><span class="gl__year">2009</span> <span class="gl__name">Pokémon SoulSilver</span> <span class="gl__fav" title="En el estante">⭐</span></li>
+              <li><span class="gl__year">2010</span> <span class="gl__name">LEGO Harry Potter: Years 1-4</span></li>
+              <li><span class="gl__year">2010</span> <span class="gl__name">Pokémon Black</span> <span class="gl__fav" title="En el estante">⭐</span></li>
+              <li><span class="gl__year">2010</span> <span class="gl__name">Pokémon White</span></li>
+              <li><span class="gl__year">2010</span> <span class="gl__name">Sonic &amp; SEGA All-Stars Racing</span></li>
+              <li><span class="gl__year">2011</span> <span class="gl__name">Plants vs. Zombies</span></li>
+              <li><span class="gl__year">2012</span> <span class="gl__name">Pokémon Black 2</span></li>
+              <li><span class="gl__year">2012</span> <span class="gl__name">Pokémon White 2</span></li>
+            </ul>
+          </details>
+          <details class="gamelist">
+            <summary>Modernos <span class="gamelist__count">100</span></summary>
+            <ul class="gamelist__items">
+              <li><span class="gl__year">1999</span> <span class="gl__name">Star Wars Episode I Racer</span> <span class="gl__plat">PC</span></li>
+              <li><span class="gl__year">2001</span> <span class="gl__name">Final Fantasy X | X-2 HD Remaster</span> <span class="gl__fav" title="En el estante">⭐</span> <span class="gl__plat">PC</span></li>
+              <li><span class="gl__year">2008</span> <span class="gl__name">Burnout Paradise</span> <span class="gl__plat">PC</span></li>
+              <li><span class="gl__year">2009</span> <span class="gl__name">Batman: Arkham Asylum</span> <span class="gl__plat">PC</span></li>
+              <li><span class="gl__year">2009</span> <span class="gl__name">League of Legends</span> <span class="gl__plat">PC</span></li>
+              <li><span class="gl__year">2009</span> <span class="gl__name">Persona 3 Portable</span> <span class="gl__plat">PC</span></li>
+              <li><span class="gl__year">2010</span> <span class="gl__name">Alan Wake</span> <span class="gl__plat">PC</span></li>
+              <li><span class="gl__year">2010</span> <span class="gl__name">Fallout: New Vegas</span> <span class="gl__plat">PC</span></li>
+              <li><span class="gl__year">2010</span> <span class="gl__name">StarCraft 2</span> <span class="gl__plat">PC</span></li>
+              <li><span class="gl__year">2011</span> <span class="gl__name">Batman Arkham City</span> <span class="gl__plat">PC</span></li>
+              <li><span class="gl__year">2011</span> <span class="gl__name">Dark Souls</span> <span class="gl__fav" title="En el estante">⭐</span> <span class="gl__plat">PC</span></li>
+              <li><span class="gl__year">2011</span> <span class="gl__name">Mario Kart 7</span> <span class="gl__plat">Nintendo 3DS</span></li>
+              <li><span class="gl__year">2012</span> <span class="gl__name">Call of Duty: Black Ops II</span> <span class="gl__plat">PC</span></li>
+              <li><span class="gl__year">2012</span> <span class="gl__name">Hotline Miami</span> <span class="gl__plat">PC</span></li>
+              <li><span class="gl__year">2012</span> <span class="gl__name">Need for Speed Most Wanted</span> <span class="gl__plat">PC</span></li>
+              <li><span class="gl__year">2012</span> <span class="gl__name">Okami HD</span> <span class="gl__plat">PC</span></li>
+              <li><span class="gl__year">2012</span> <span class="gl__name">Persona 4 Golden</span> <span class="gl__plat">PC</span></li>
+              <li><span class="gl__year">2013</span> <span class="gl__name">Final Fantasy XIV Online</span> <span class="gl__plat">PC</span></li>
+              <li><span class="gl__year">2013</span> <span class="gl__name">Grand Theft Auto V</span> <span class="gl__plat">PC</span></li>
+              <li><span class="gl__year">2013</span> <span class="gl__name">Pokémon X</span> <span class="gl__plat">Nintendo 3DS</span></li>
+              <li><span class="gl__year">2013</span> <span class="gl__name">Pokémon Y</span> <span class="gl__fav" title="En el estante">⭐</span> <span class="gl__plat">Nintendo 3DS</span></li>
+              <li><span class="gl__year">2014</span> <span class="gl__name">Dark Souls II</span> <span class="gl__plat">PC</span></li>
+              <li><span class="gl__year">2014</span> <span class="gl__name">Pokémon Alpha Sapphire</span> <span class="gl__plat">Nintendo 3DS</span></li>
+              <li><span class="gl__year">2015</span> <span class="gl__name">Batman: Arkham Knight</span> <span class="gl__plat">PC</span></li>
+              <li><span class="gl__year">2015</span> <span class="gl__name">Call of Duty: Black Ops III</span> <span class="gl__plat">PC</span></li>
+              <li><span class="gl__year">2015</span> <span class="gl__name">Emily is Away</span> <span class="gl__plat">PC</span></li>
+              <li><span class="gl__year">2015</span> <span class="gl__name">Hotline Miami 2</span> <span class="gl__plat">PC</span></li>
+              <li><span class="gl__year">2015</span> <span class="gl__name">The Witcher 3: Wild Hunt</span> <span class="gl__plat">PC</span></li>
+              <li><span class="gl__year">2015</span> <span class="gl__name">Xenoblade Chronicles</span> <span class="gl__plat">Nintendo 3DS</span></li>
+              <li><span class="gl__year">2015</span> <span class="gl__name">Yakuza 0</span> <span class="gl__plat">PC</span></li>
+              <li><span class="gl__year">2016</span> <span class="gl__name">Dark Souls III</span> <span class="gl__plat">PC</span></li>
+              <li><span class="gl__year">2016</span> <span class="gl__name">Final Fantasy XV</span> <span class="gl__plat">PC</span></li>
+              <li><span class="gl__year">2016</span> <span class="gl__name">Naruto Shippuden: Ultimate Ninja Storm 4</span> <span class="gl__plat">PC</span></li>
+              <li><span class="gl__year">2016</span> <span class="gl__name">No Man&#x27;s Sky</span> <span class="gl__plat">PC</span></li>
+              <li><span class="gl__year">2016</span> <span class="gl__name">Overwatch</span> <span class="gl__plat">PC</span></li>
+              <li><span class="gl__year">2016</span> <span class="gl__name">Pokémon Moon</span> <span class="gl__plat">Nintendo 3DS</span></li>
+              <li><span class="gl__year">2017</span> <span class="gl__name">Duck Season</span> <span class="gl__plat">PC</span></li>
+              <li><span class="gl__year">2017</span> <span class="gl__name">Hollow Knight</span> <span class="gl__plat">PC</span></li>
+              <li><span class="gl__year">2017</span> <span class="gl__name">Horizon Zero Dawn</span> <span class="gl__plat">PC</span></li>
+              <li><span class="gl__year">2017</span> <span class="gl__name">Minecraft: New Nintendo 3DS Edition</span> <span class="gl__plat">Nintendo 3DS</span></li>
+              <li><span class="gl__year">2017</span> <span class="gl__name">NieR: Automata</span> <span class="gl__plat">PC</span></li>
+              <li><span class="gl__year">2017</span> <span class="gl__name">Night in the Woods</span> <span class="gl__plat">PC</span></li>
+              <li><span class="gl__year">2017</span> <span class="gl__name">Pokémon Ultra Moon</span> <span class="gl__plat">Nintendo 3DS</span></li>
+              <li><span class="gl__year">2017</span> <span class="gl__name">Senran Kagura Peach Beach Splash</span> <span class="gl__plat">PC</span></li>
+              <li><span class="gl__year">2017</span> <span class="gl__name">Star Wars Battlefront II</span> <span class="gl__plat">PC</span></li>
+              <li><span class="gl__year">2017</span> <span class="gl__name">The Legend of Zelda: Breath of the Wild</span> <span class="gl__fav" title="En el estante">⭐</span> <span class="gl__plat">Switch</span></li>
+              <li><span class="gl__year">2018</span> <span class="gl__name">Dead Cells</span> <span class="gl__plat">PC</span></li>
+              <li><span class="gl__year">2018</span> <span class="gl__name">God of War</span> <span class="gl__plat">PC</span></li>
+              <li><span class="gl__year">2018</span> <span class="gl__name">Starlink: Battle for Atlas</span> <span class="gl__plat">PC</span></li>
+              <li><span class="gl__year">2019</span> <span class="gl__name">A Dance of Fire and Ice</span> <span class="gl__plat">PC</span></li>
+              <li><span class="gl__year">2019</span> <span class="gl__name">Code Vein</span> <span class="gl__plat">PC</span></li>
+              <li><span class="gl__year">2019</span> <span class="gl__name">Daemon X Machina</span> <span class="gl__plat">PC</span></li>
+              <li><span class="gl__year">2019</span> <span class="gl__name">Death Stranding</span> <span class="gl__plat">PC</span></li>
+              <li><span class="gl__year">2019</span> <span class="gl__name">Devil May Cry 5</span> <span class="gl__fav" title="En el estante">⭐</span> <span class="gl__plat">PC</span></li>
+              <li><span class="gl__year">2019</span> <span class="gl__name">Outer Wilds</span> <span class="gl__plat">PC</span></li>
+              <li><span class="gl__year">2019</span> <span class="gl__name">Persona 5 Royal</span> <span class="gl__plat">PC</span></li>
+              <li><span class="gl__year">2019</span> <span class="gl__name">Pokémon Sword</span> <span class="gl__plat">Switch</span></li>
+              <li><span class="gl__year">2019</span> <span class="gl__name">Sekiro: Shadows Die Twice</span> <span class="gl__plat">PC</span></li>
+              <li><span class="gl__year">2020</span> <span class="gl__name">Cyberpunk 2077</span> <span class="gl__fav" title="En el estante">⭐</span> <span class="gl__plat">PC</span> <span class="gl__state gl__state--jugando">Jugando</span></li>
+              <li><span class="gl__year">2020</span> <span class="gl__name">Doom Eternal</span> <span class="gl__fav" title="En el estante">⭐</span> <span class="gl__plat">PC</span></li>
+              <li><span class="gl__year">2020</span> <span class="gl__name">Dragon Ball Z Kakarot</span> <span class="gl__plat">PC</span></li>
+              <li><span class="gl__year">2020</span> <span class="gl__name">Ghost of Tsushima</span> <span class="gl__plat">PC</span></li>
+              <li><span class="gl__year">2020</span> <span class="gl__name">Mafia: Definitive Edition</span> <span class="gl__plat">PC</span></li>
+              <li><span class="gl__year">2020</span> <span class="gl__name">Risk of Rain 2</span> <span class="gl__plat">PC</span></li>
+              <li><span class="gl__year">2020</span> <span class="gl__name">SpongeBob SquarePants: Battle for Bikini Bottom - Rehydrated</span> <span class="gl__plat">PC</span></li>
+              <li><span class="gl__year">2020</span> <span class="gl__name">Star Wars: Squadrons</span> <span class="gl__plat">PC</span></li>
+              <li><span class="gl__year">2020</span> <span class="gl__name">Valorant</span> <span class="gl__plat">PC</span></li>
+              <li><span class="gl__year">2020</span> <span class="gl__name">Yakuza: Like a Dragon</span> <span class="gl__plat">PC</span></li>
+              <li><span class="gl__year">2021</span> <span class="gl__name">Marvel&#x27;s Guardians of the Galaxy</span> <span class="gl__plat">PC</span></li>
+              <li><span class="gl__year">2021</span> <span class="gl__name">Monster Hunter Rise</span> <span class="gl__plat">PC</span></li>
+              <li><span class="gl__year">2021</span> <span class="gl__name">Pokémon Shining Pearl</span> <span class="gl__plat">Switch</span></li>
+              <li><span class="gl__year">2022</span> <span class="gl__name">Elden Ring</span> <span class="gl__fav" title="En el estante">⭐</span> <span class="gl__plat">PC</span></li>
+              <li><span class="gl__year">2022</span> <span class="gl__name">Hatsune Miku: Project DIVA Mega Mix+</span> <span class="gl__plat">PC</span></li>
+              <li><span class="gl__year">2022</span> <span class="gl__name">LEGO Star Wars: The Skywalker Saga</span> <span class="gl__plat">PC</span></li>
+              <li><span class="gl__year">2022</span> <span class="gl__name">Pokémon Legends: Arceus</span> <span class="gl__plat">Switch</span></li>
+              <li><span class="gl__year">2022</span> <span class="gl__name">Pokémon Violet</span> <span class="gl__plat">Switch</span></li>
+              <li><span class="gl__year">2022</span> <span class="gl__name">Redout II</span> <span class="gl__plat">PC</span></li>
+              <li><span class="gl__year">2023</span> <span class="gl__name">Armored Core VI Fires of Rubicon</span> <span class="gl__plat">PC</span></li>
+              <li><span class="gl__year">2023</span> <span class="gl__name">Baldurs Gate 3</span> <span class="gl__plat">PC</span></li>
+              <li><span class="gl__year">2023</span> <span class="gl__name">Diablo IV</span> <span class="gl__fav" title="En el estante">⭐</span> <span class="gl__plat">PC</span></li>
+              <li><span class="gl__year">2023</span> <span class="gl__name">Hitman World of Assassination</span> <span class="gl__plat">PC</span></li>
+              <li><span class="gl__year">2023</span> <span class="gl__name">Hogwarts Legacy</span> <span class="gl__fav" title="En el estante">⭐</span> <span class="gl__plat">PC</span></li>
+              <li><span class="gl__year">2023</span> <span class="gl__name">Hot Wheels Unleashed 2 Turbocharged</span> <span class="gl__plat">PC</span></li>
+              <li><span class="gl__year">2023</span> <span class="gl__name">Jedi Survivor</span> <span class="gl__plat">PC</span></li>
+              <li><span class="gl__year">2023</span> <span class="gl__name">LEGO 2K Drive</span> <span class="gl__plat">PC</span></li>
+              <li><span class="gl__year">2023</span> <span class="gl__name">Resident Evil 4</span> <span class="gl__plat">PC</span></li>
+              <li><span class="gl__year">2023</span> <span class="gl__name">Street Fighter 6</span> <span class="gl__plat">PC</span></li>
+              <li><span class="gl__year">2024</span> <span class="gl__name">Balatro</span> <span class="gl__plat">PC</span></li>
+              <li><span class="gl__year">2024</span> <span class="gl__name">Black Myth: Wukong</span> <span class="gl__plat">PC</span></li>
+              <li><span class="gl__year">2024</span> <span class="gl__name">Call of Duty Black Ops 6</span> <span class="gl__fav" title="En el estante">⭐</span> <span class="gl__plat">PC</span></li>
+              <li><span class="gl__year">2024</span> <span class="gl__name">Helldivers 2</span> <span class="gl__plat">PC</span></li>
+              <li><span class="gl__year">2024</span> <span class="gl__name">Marvel Rivals</span> <span class="gl__plat">PC</span></li>
+              <li><span class="gl__year">2024</span> <span class="gl__name">MiSide</span> <span class="gl__plat">PC</span></li>
+              <li><span class="gl__year">2025</span> <span class="gl__name">Elden Ring Nightreign</span> <span class="gl__plat">PC</span></li>
+              <li><span class="gl__year">2025</span> <span class="gl__name">F1 25</span> <span class="gl__fav" title="En el estante">⭐</span> <span class="gl__plat">PC</span></li>
+              <li><span class="gl__year">2025</span> <span class="gl__name">He is Coming</span> <span class="gl__plat">PC</span></li>
+              <li><span class="gl__year">2025</span> <span class="gl__name">Metal Gear Solid Delta</span> <span class="gl__plat">PC</span></li>
+              <li><span class="gl__year">2025</span> <span class="gl__name">Pokémon Legends: Z-A</span> <span class="gl__fav" title="En el estante">⭐</span> <span class="gl__plat">Switch</span> <span class="gl__state gl__state--pausa">En pausa</span></li>
+              <li><span class="gl__year">2025</span> <span class="gl__name">Shape of Dreams</span> <span class="gl__plat">PC</span></li>
+              <li><span class="gl__year">2026</span> <span class="gl__name">Star Wars Galactic Racer</span> <span class="gl__fav" title="En el estante">⭐</span> <span class="gl__plat">PC</span> <span class="gl__state gl__state--jugando">Jugando</span></li>
+            </ul>
+          </details>
+          <details class="gamelist">
+            <summary>Por jugar <span class="gamelist__count">87</span></summary>
+            <ul class="gamelist__items gamelist__items--plain">
+              <li><span class="gl__name">Ace Combat 7</span> <span class="gl__plat">Steam</span></li>
+              <li><span class="gl__name">Alice: Madness Returns</span> <span class="gl__plat">Steam</span></li>
+              <li><span class="gl__name">Arc Raiders</span> <span class="gl__plat">Steam</span></li>
+              <li><span class="gl__name">Atelier Ryza: Ever Darkness &amp; the Secret Hideout DX</span> <span class="gl__plat">Steam</span></li>
+              <li><span class="gl__name">Batman Arkham Origins</span> <span class="gl__plat">Steam</span></li>
+              <li><span class="gl__name">Bioshock 2</span> <span class="gl__plat">Steam</span></li>
+              <li><span class="gl__name">Black Mesa</span> <span class="gl__plat">Steam</span></li>
+              <li><span class="gl__name">Borderlands 2</span> <span class="gl__plat">Steam</span></li>
+              <li><span class="gl__name">Brutal Legend</span> <span class="gl__plat">Steam</span></li>
+              <li><span class="gl__name">Bully</span> <span class="gl__plat">Steam</span></li>
+              <li><span class="gl__name">Castlevania: Lords of Shadow</span> <span class="gl__plat">Steam</span></li>
+              <li><span class="gl__name">Citizen Sleeper 2</span> <span class="gl__plat">Steam</span></li>
+              <li><span class="gl__name">Cult of the Lamb</span> <span class="gl__plat">Steam</span></li>
+              <li><span class="gl__name">Cuphead</span> <span class="gl__plat">Steam</span></li>
+              <li><span class="gl__name">Darkwood</span> <span class="gl__plat">Steam</span></li>
+              <li><span class="gl__name">Dead as Disco</span> <span class="gl__plat">Steam</span></li>
+              <li><span class="gl__name">Digimon Story Cyber Sleuth</span> <span class="gl__plat">Steam</span></li>
+              <li><span class="gl__name">Digimon Story Time Stranger</span> <span class="gl__plat">Steam</span></li>
+              <li><span class="gl__name">Disco Elysium</span> <span class="gl__plat">Steam</span></li>
+              <li><span class="gl__name">Dishonored 2</span> <span class="gl__plat">Steam</span></li>
+              <li><span class="gl__name">Doki Doki Literature Club</span> <span class="gl__plat">Steam</span></li>
+              <li><span class="gl__name">Doom 2016</span> <span class="gl__plat">Steam</span></li>
+              <li><span class="gl__name">Doom: The Dark Ages</span> <span class="gl__plat">Steam</span></li>
+              <li><span class="gl__name">Dragon Ball Xenoverse 2</span> <span class="gl__plat">Steam</span></li>
+              <li><span class="gl__name">Dragon Quest I &amp; II HD-2D Remake</span> <span class="gl__plat">Steam</span></li>
+              <li><span class="gl__name">Dragon Quest III HD-2D Remake</span> <span class="gl__plat">Steam</span></li>
+              <li><span class="gl__name">Dragon&#x27;s Dogma: Dark Ariser</span> <span class="gl__plat">Steam</span></li>
+              <li><span class="gl__name">DragonSword: Awakening</span> <span class="gl__plat">Steam</span></li>
+              <li><span class="gl__name">Dredge</span> <span class="gl__plat">Steam</span></li>
+              <li><span class="gl__name">Evil West</span> <span class="gl__plat">Steam</span></li>
+              <li><span class="gl__name">Expedition 33</span> <span class="gl__plat">Steam</span></li>
+              <li><span class="gl__name">Faith</span> <span class="gl__plat">Steam</span></li>
+              <li><span class="gl__name">Gatekeeper</span> <span class="gl__plat">Steam</span></li>
+              <li><span class="gl__name">Gotham Knights</span> <span class="gl__plat">Steam</span></li>
+              <li><span class="gl__name">Granblue Fantasy: Relink</span> <span class="gl__plat">Steam</span></li>
+              <li><span class="gl__name">Hades</span> <span class="gl__plat">Steam</span></li>
+              <li><span class="gl__name">Hades II</span> <span class="gl__plat">Steam</span></li>
+              <li><span class="gl__name">Half-Life 2 RTX</span> <span class="gl__plat">Steam</span></li>
+              <li><span class="gl__name">Harry Potter: Quidditch Champions</span> <span class="gl__plat">Steam</span></li>
+              <li><span class="gl__name">Hi-Fi Rush</span> <span class="gl__plat">Steam</span></li>
+              <li><span class="gl__name">High on Life</span> <span class="gl__plat">Steam</span></li>
+              <li><span class="gl__name">Hollow Knight: Silksong</span> <span class="gl__plat">Steam</span></li>
+              <li><span class="gl__name">Horizon Forbidden West</span> <span class="gl__plat">Steam</span></li>
+              <li><span class="gl__name">Kill la Kill -IF</span> <span class="gl__plat">Steam</span></li>
+              <li><span class="gl__name">Kingdom Hearts HD 1.5+2.5 ReMix</span> <span class="gl__plat">Steam</span></li>
+              <li><span class="gl__name">Kingdom Hearts HD 2.8</span> <span class="gl__plat">Steam</span></li>
+              <li><span class="gl__name">Kingdom Hearts III + Re Mind</span> <span class="gl__plat">Steam</span></li>
+              <li><span class="gl__name">LEGO Batman</span> <span class="gl__plat">Steam</span></li>
+              <li><span class="gl__name">LEGO Batman 2: DC Super Heroes</span> <span class="gl__plat">Steam</span></li>
+              <li><span class="gl__name">LEGO Batman 3: Beyond Gotham</span> <span class="gl__plat">Steam</span></li>
+              <li><span class="gl__name">LEGO Horizon Adventures</span> <span class="gl__plat">Steam</span></li>
+              <li><span class="gl__name">LEGO Jurassic World</span> <span class="gl__plat">Steam</span></li>
+              <li><span class="gl__name">Lies of P</span> <span class="gl__plat">Steam</span></li>
+              <li><span class="gl__name">Like a Dragon Gaiden: The Man Who Erased His Name</span> <span class="gl__plat">Steam</span></li>
+              <li><span class="gl__name">Like a Dragon: Infinite Wealth</span> <span class="gl__plat">Steam</span></li>
+              <li><span class="gl__name">Like a Dragon: Pirate Yakuza in Hawaii</span> <span class="gl__plat">Steam</span></li>
+              <li><span class="gl__name">Manhunt</span> <span class="gl__plat">Steam</span></li>
+              <li><span class="gl__name">Marvel&#x27;s Spider-Man Remastered</span> <span class="gl__plat">Steam</span></li>
+              <li><span class="gl__name">Marvel&#x27;s Spider-Man: Miles Morales</span> <span class="gl__plat">Steam</span></li>
+              <li><span class="gl__name">Metaphor: ReFantazio</span> <span class="gl__plat">Steam</span></li>
+              <li><span class="gl__name">Metro 2033</span> <span class="gl__plat">Steam</span></li>
+              <li><span class="gl__name">Metro Exodus</span> <span class="gl__plat">Steam</span></li>
+              <li><span class="gl__name">Metro Last Light</span> <span class="gl__plat">Steam</span></li>
+              <li><span class="gl__name">Milk inside a bag of milk inside a bag of milk</span> <span class="gl__plat">Steam</span></li>
+              <li><span class="gl__name">Monster Hunter: World</span> <span class="gl__plat">Steam</span></li>
+              <li><span class="gl__name">Mouthwashing</span> <span class="gl__plat">Steam</span></li>
+              <li><span class="gl__name">NieR Replicant</span> <span class="gl__plat">Steam</span></li>
+              <li><span class="gl__name">Nine Sols</span> <span class="gl__plat">Steam</span></li>
+              <li><span class="gl__name">One Piece: Pirate Warriors 4</span> <span class="gl__plat">Steam</span></li>
+              <li><span class="gl__name">Phoenix Wright: Ace Attorney Trilogy</span> <span class="gl__plat">Steam</span></li>
+              <li><span class="gl__name">Project Wingman</span> <span class="gl__plat">Steam</span></li>
+              <li><span class="gl__name">Resident Evil</span> <span class="gl__plat">Steam</span></li>
+              <li><span class="gl__name">Resident Evil 2</span> <span class="gl__plat">Steam</span></li>
+              <li><span class="gl__name">Resident Evil 3</span> <span class="gl__plat">Steam</span></li>
+              <li><span class="gl__name">Resident Evil 7 Biohazard</span> <span class="gl__plat">Steam</span></li>
+              <li><span class="gl__name">Resident Evil Village</span> <span class="gl__plat">Steam</span></li>
+              <li><span class="gl__name">Shadow of the Tom Raider</span> <span class="gl__plat">Steam</span></li>
+              <li><span class="gl__name">Shin Megami Tensei V: Vengeance</span> <span class="gl__plat">Steam</span></li>
+              <li><span class="gl__name">Silent Hill 2</span> <span class="gl__plat">Steam</span></li>
+              <li><span class="gl__name">Silent Hill f</span> <span class="gl__plat">Steam</span></li>
+              <li><span class="gl__name">Silent Hill Homecoming</span> <span class="gl__plat">Steam</span></li>
+              <li><span class="gl__name">Sonic Frontier</span> <span class="gl__plat">Steam</span></li>
+              <li><span class="gl__name">Steelrising</span> <span class="gl__plat">Steam</span></li>
+              <li><span class="gl__name">Stray</span> <span class="gl__plat">Steam</span></li>
+              <li><span class="gl__name">The Elder Scrolls IV: Oblivion</span> <span class="gl__plat">Steam</span></li>
+              <li><span class="gl__name">The Elder Scrolls V: Skyrim</span> <span class="gl__plat">Steam</span></li>
+              <li><span class="gl__name">The Gunk</span> <span class="gl__plat">Steam</span></li>
+            </ul>
+          </details>
+          <!-- shelf:listas:end -->
+      </div>
+    </section>
+
+    <footer class="footer">
+      <p>Hecho a mano y alojado en Neocities. Se ve mejor de noche.</p>
+    </footer>
+  </div>
+</body>
+
+</html>

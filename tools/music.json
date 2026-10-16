@@ -1,0 +1,11 @@
+{
+  "_ayuda": "Configuración de tools/music_sync.py. 'discos' guarda los colores del estuche por título exacto (--cover y --cover2). Sin colores, cada disco recibe unos automáticos.",
+  "vault_records": "D:/LeOS/Vault/Brain/Leo_OS/Knowledge/Lore/Music/Records.md",
+  "vault_bands": "D:/LeOS/Vault/Brain/Leo_OS/Knowledge/Lore/Music/Bands.md",
+  "pagina": "../musica.html",
+  "top": 10,
+  "discos": {
+    "Loveless": "--cover:#d6337a;--cover2:#5a1a6e",
+    "AM": "--cover:#1a1a22;--cover2:#3a3a48"
+  }
+}

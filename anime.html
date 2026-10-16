@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Anime y manga | LeOS</title>
+  <meta name="description" content="Lo que estoy viendo, mis animes favoritos y mi repisa de manga.">
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" href="/favicon.png" type="image/png">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <div class="page">
+    <header class="subhead">
+      <a class="wordmark wordmark--small" href="index.html">LeOS</a>
+      <a class="subhead__back" href="index.html">Volver a la memory card</a>
+    </header>
+
+    <section class="window intro" aria-labelledby="a-title">
+      <h1 class="window__title" id="a-title">Anime y manga</h1>
+      <div class="window__body">
+        <p>Crecí con Death Note y Fullmetal Alchemist. Hoy veo anime mientras hago otras cosas en la PC, y quiero
+          volver a llenar la repisa de manga.</p>
+      </div>
+    </section>
+
+    <main class="layout">
+      <div class="col-main">
+
+        <!-- La tele: la pieza memorable de esta página -->
+        <section class="tv" aria-labelledby="tv-title">
+          <div class="tv__screen">
+            <h2 class="tv__osd" id="tv-title">Viendo ahora</h2>
+            <ol class="tv__list">
+              <!-- anime:tv:start -->
+              <li class="tv__item">
+                <span class="tv__ch">CH 01</span>
+                <span class="tv__name">Kuuchuu Buranko</span>
+                <span class="tv__ep">EP 06/11</span>
+                <span class="tv__bar" role="img" aria-label="Episodio 6 de 11"><span style="--p: 55%"></span></span>
+              </li>
+              <!-- anime:tv:end -->
+            </ol>
+          </div>
+          <div class="tv__panel" aria-hidden="true">
+            <span class="tv__grille"></span>
+            <span class="tv__knob"></span><span class="tv__knob"></span>
+            <span class="tv__led"></span>
+          </div>
+        </section>
+
+        <section class="window" aria-labelledby="vhs-title">
+          <h2 class="window__title" id="vhs-title">Mis favoritos</h2>
+          <div class="window__body">
+            <ul class="vhs">
+              <!-- anime:vhs:start -->
+              <li class="tape" style="--tape:#7b3fa8">
+                <span class="tape__label">Neon Genesis Evangelion <span class="tape__year">1995</span></span>
+                <span class="tape__note">Mechas y angustia existencial</span>
+              </li>
+              <li class="tape" style="--tape:#c8302a">
+                <span class="tape__label">Fullmetal Alchemist <span class="tape__year">2003</span></span>
+                <span class="tape__note">Alquimia, hermanos y el precio de todo</span>
+              </li>
+              <li class="tape" style="--tape:#7a1f2b">
+                <span class="tape__label">Death Note <span class="tape__year">2006</span></span>
+                <span class="tape__note">Thriller psicológico de gato y ratón</span>
+              </li>
+              <li class="tape" style="--tape:#7b3fa8">
+                <span class="tape__label">Psycho-Pass <span class="tape__year">2012</span></span>
+                <span class="tape__note">Cyberpunk y justicia predictiva</span>
+              </li>
+              <li class="tape" style="--tape:#b83a6a">
+                <span class="tape__label">Ghost in the Shell: Arise <span class="tape__year">2013</span></span>
+                <span class="tape__note">El alma en la máquina</span>
+              </li>
+              <li class="tape" style="--tape:#1f5fb0">
+                <span class="tape__label">Mob Psycho 100 <span class="tape__year">2016</span></span>
+                <span class="tape__note">Poderes psíquicos y animación explosiva</span>
+              </li>
+              <li class="tape" style="--tape:#7b3fa8">
+                <span class="tape__label">Jujutsu Kaisen <span class="tape__year">2020</span></span>
+                <span class="tape__note">Maldiciones y peleas con mucho estilo</span>
+              </li>
+              <!-- anime:vhs:end -->
+            </ul>
+          </div>
+        </section>
+
+        <section class="window" aria-labelledby="al-title">
+          <h2 class="window__title" id="al-title">Mi lista</h2>
+          <div class="window__body">
+            <!-- anime:lista:start -->
+            <details class="gamelist" open>
+              <summary>Vistos <span class="gamelist__count">23</span></summary>
+              <ul class="gamelist__items">
+                <li><span class="gl__year">1986</span> <span class="gl__name">Dragon Ball</span></li>
+                <li><span class="gl__year">1989</span> <span class="gl__name">Dragon Ball Z</span></li>
+                <li><span class="gl__year">1995</span> <span class="gl__name">Neon Genesis Evangelion</span> <span class="gl__fav" title="Favorito">⭐</span></li>
+                <li><span class="gl__year">2000</span> <span class="gl__name">Yu-Gi-Oh!</span></li>
+                <li><span class="gl__year">2001</span> <span class="gl__name">Baki the Grappler</span></li>
+                <li><span class="gl__year">2001</span> <span class="gl__name">Hellsing</span></li>
+                <li><span class="gl__year">2002</span> <span class="gl__name">Naruto</span></li>
+                <li><span class="gl__year">2003</span> <span class="gl__name">Fullmetal Alchemist</span> <span class="gl__fav" title="Favorito">⭐</span></li>
+                <li><span class="gl__year">2004</span> <span class="gl__name">Bleach</span></li>
+                <li><span class="gl__year">2004</span> <span class="gl__name">Elfen Lied</span></li>
+                <li><span class="gl__year">2006</span> <span class="gl__name">Death Note</span> <span class="gl__fav" title="Favorito">⭐</span></li>
+                <li><span class="gl__year">2007</span> <span class="gl__name">Bakugan</span></li>
+                <li><span class="gl__year">2007</span> <span class="gl__name">Naruto Shippuden</span></li>
+                <li><span class="gl__year">2008</span> <span class="gl__name">Soul Eater</span></li>
+                <li><span class="gl__year">2012</span> <span class="gl__name">JoJo&#x27;s Bizarre Adventure</span></li>
+                <li><span class="gl__year">2012</span> <span class="gl__name">Psycho-Pass</span> <span class="gl__fav" title="Favorito">⭐</span></li>
+                <li><span class="gl__year">2013</span> <span class="gl__name">Ghost in the Shell: Arise</span> <span class="gl__fav" title="Favorito">⭐</span></li>
+                <li><span class="gl__year">2014</span> <span class="gl__name">Persona 4 Golden</span></li>
+                <li><span class="gl__year">2016</span> <span class="gl__name">Mob Psycho 100</span> <span class="gl__fav" title="Favorito">⭐</span></li>
+                <li><span class="gl__year">2019</span> <span class="gl__name">Vinland Saga</span></li>
+                <li><span class="gl__year">2020</span> <span class="gl__name">Jujutsu Kaisen</span> <span class="gl__fav" title="Favorito">⭐</span></li>
+                <li><span class="gl__year">2022</span> <span class="gl__name">Chainsaw Man</span></li>
+                <li><span class="gl__year">2024</span> <span class="gl__name">DanDadan</span></li>
+              </ul>
+            </details>
+            <!-- anime:lista:end -->
+          </div>
+        </section>
+      </div>
+
+      <aside class="col-side">
+        <section class="window" aria-labelledby="ml-title">
+          <h2 class="window__title" id="ml-title">Leyendo</h2>
+          <div class="window__body">
+            <dl class="favs">
+              <!-- manga:leyendo:start -->
+              <dt>Nada por ahora</dt>
+              <dd>Pronto vuelvo a abrir un tomo.</dd>
+              <!-- manga:leyendo:end -->
+            </dl>
+          </div>
+        </section>
+
+        <section class="window" aria-labelledby="mt-title">
+          <h2 class="window__title" id="mt-title">Repisa de manga</h2>
+          <div class="window__body">
+            <ul class="tomos">
+              <!-- manga:tomos:start -->
+              <li class="tomo" style="--spine:#7b3fa8" title="Junji Ito (obras)">
+                <span class="tomo__title">Junji Ito (obras)</span>
+                <span></span>
+              </li>
+              <li class="tomo" style="--spine:#0e7d6e" title="Vagabond">
+                <span class="tomo__title">Vagabond</span>
+                <span></span>
+              </li>
+              <li class="tomo" style="--spine:#7a1f2b" title="Death Note">
+                <span class="tomo__title">Death Note</span>
+                <span></span>
+              </li>
+              <li class="tomo" style="--spine:#7b3fa8" title="Solanin">
+                <span class="tomo__title">Solanin</span>
+                <span></span>
+              </li>
+              <!-- manga:tomos:end -->
+            </ul>
+          </div>
+        </section>
+
+        <section class="window" aria-labelledby="mll-title">
+          <h2 class="window__title" id="mll-title">Manga</h2>
+          <div class="window__body">
+            <!-- manga:lista:start -->
+            <details class="gamelist" open>
+              <summary>Leídos <span class="gamelist__count">10</span></summary>
+              <ul class="gamelist__items">
+                <li><span class="gl__year">1987</span> <span class="gl__name">JoJo&#x27;s Bizarre Adventure: Phantom Blood</span></li>
+                <li><span class="gl__year">1987</span> <span class="gl__name">Junji Ito (obras)</span> <span class="gl__fav" title="Favorito">⭐</span></li>
+                <li><span class="gl__year">1998</span> <span class="gl__name">Vagabond</span> <span class="gl__fav" title="Favorito">⭐</span></li>
+                <li><span class="gl__year">1999</span> <span class="gl__name">Naruto</span></li>
+                <li><span class="gl__year">2003</span> <span class="gl__name">Death Note</span> <span class="gl__fav" title="Favorito">⭐</span></li>
+                <li><span class="gl__year">2005</span> <span class="gl__name">Solanin</span> <span class="gl__fav" title="Favorito">⭐</span></li>
+                <li><span class="gl__year">2009</span> <span class="gl__name">Shingeki no Kyojin</span></li>
+                <li><span class="gl__year">2011</span> <span class="gl__name">Tokyo Ghoul</span></li>
+                <li><span class="gl__year">2018</span> <span class="gl__name">Chainsaw Man</span></li>
+                <li><span class="gl__year">2018</span> <span class="gl__name">Jujutsu Kaisen</span></li>
+              </ul>
+            </details>
+            <!-- manga:lista:end -->
+          </div>
+        </section>
+      </aside>
+    </main>
+
+    <footer class="footer">
+      <p>Hecho a mano y alojado en Neocities. Se ve mejor de noche.</p>
+    </footer>
+  </div>
+</body>
+
+</html>

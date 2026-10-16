@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Música | LeOS</title>
+  <meta name="description" content="Las bandas y discos que me formaron, y Glass Ecosystem, el EP que hice como Aero Memory.">
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" href="/favicon.png" type="image/png">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <div class="page">
+    <header class="subhead">
+      <a class="wordmark wordmark--small" href="index.html">LeOS</a>
+      <a class="subhead__back" href="index.html">Volver a la memory card</a>
+    </header>
+
+    <section class="window intro" aria-labelledby="m-title">
+      <h1 class="window__title" id="m-title">Música</h1>
+      <div class="window__body">
+        <p>Escucho de todo, pero siempre regreso a las guitarras: indie, britpop, shoegaze y el rock que se canta en
+          español. También hago música electrónica con sabor a Frutiger Aero bajo el nombre de Aero Memory.</p>
+      </div>
+    </section>
+
+    <main class="layout">
+      <div class="col-main">
+
+        <!-- Reproductor: la pieza memorable de esta página -->
+        <section class="player" aria-labelledby="p-title">
+          <div class="player__bar">
+            <span class="player__dots" aria-hidden="true"><i></i><i></i><i></i></span>
+            <h2 id="p-title">Aero Memory: Glass Ecosystem</h2>
+          </div>
+
+          <div class="player__main">
+            <div class="player__cover" role="img" aria-label="Portada de Glass Ecosystem"></div>
+            <div class="player__screen">
+              <div class="lcd">
+                <span class="lcd__time" id="lcd-time">02:53</span>
+                <div class="lcd__marquee" aria-live="polite"><span id="lcd-title">1. Liquid Interface</span></div>
+                <div class="lcd__meta"><span>44 kHz</span><span>stereo</span><span>EP 2026</span></div>
+                <div class="viz" aria-hidden="true">
+                  <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+                </div>
+              </div>
+              <div class="seek" aria-hidden="true"><span id="seek-fill"></span></div>
+              <div class="transport">
+                <button type="button" data-act="prev" aria-label="Pista anterior">⏮</button>
+                <button type="button" data-act="play" aria-label="Reproducir" aria-pressed="false">▶</button>
+                <button type="button" data-act="stop" aria-label="Detener">■</button>
+                <button type="button" data-act="next" aria-label="Pista siguiente">⏭</button>
+              </div>
+            </div>
+          </div>
+
+          <ol class="playlist" id="playlist">
+            <li><button type="button" data-i="0" aria-current="true"><span>Liquid Interface</span><span>2:53</span></button></li>
+            <li><button type="button" data-i="1"><span>Skyway Boulevard</span><span>2:38</span></button></li>
+            <li><button type="button" data-i="2"><span>Solar Photosynthesis</span><span>3:37</span></button></li>
+            <li><button type="button" data-i="3"><span>Save Data</span><span>1:56</span></button></li>
+          </ol>
+          <p class="player__foot">4 pistas, 11:04. Salió el 18 de septiembre de 2026. Este reproductor no suena; el EP está en
+            las apps de música como <b>Aero Memory</b>.</p>
+        </section>
+
+        <!-- Discos -->
+        <section class="window" aria-labelledby="d-title">
+          <h2 class="window__title" id="d-title">Discos que me formaron</h2>
+          <div class="window__body">
+            <ul class="cds">
+              <!-- music:discos:start -->
+              <li class="cd" style="--cover:#d6337a;--cover2:#5a1a6e">
+                <span class="cd__case" aria-hidden="true"></span>
+                <span class="cd__title">Loveless</span>
+                <span class="cd__artist">My Bloody Valentine</span>
+                <span class="cd__year">1991</span>
+                <span class="cd__note">El muro de sonido que quiero entender</span>
+              </li>
+              <li class="cd" style="--cover:#1f5fb0;--cover2:#5fe0ff">
+                <span class="cd__case" aria-hidden="true"></span>
+                <span class="cd__title">Souvlaki</span>
+                <span class="cd__artist">Slowdive</span>
+                <span class="cd__year">1993</span>
+                <span class="cd__note">Shoegaze etéreo</span>
+              </li>
+              <li class="cd" style="--cover:#c2862a;--cover2:#3a2a57">
+                <span class="cd__case" aria-hidden="true"></span>
+                <span class="cd__title">OK Computer</span>
+                <span class="cd__artist">Radiohead</span>
+                <span class="cd__year">1997</span>
+                <span class="cd__note">Ansiedad tecnológica de fin de siglo</span>
+              </li>
+              <li class="cd" style="--cover:#1a1a22;--cover2:#3a3a48">
+                <span class="cd__case" aria-hidden="true"></span>
+                <span class="cd__title">AM</span>
+                <span class="cd__artist">Arctic Monkeys</span>
+                <span class="cd__year">2013</span>
+                <span class="cd__note">Con este los conocí</span>
+              </li>
+              <li class="cd" style="--cover:#5a5a66;--cover2:#d9d9e0">
+                <span class="cd__case" aria-hidden="true"></span>
+                <span class="cd__title">Salad Days</span>
+                <span class="cd__artist">Mac DeMarco</span>
+                <span class="cd__year">2014</span>
+                <span class="cd__note">Jangle pop relajado</span>
+              </li>
+              <li class="cd" style="--cover:#5a5a66;--cover2:#d9d9e0">
+                <span class="cd__case" aria-hidden="true"></span>
+                <span class="cd__title">Currents</span>
+                <span class="cd__artist">Tame Impala</span>
+                <span class="cd__year">2015</span>
+                <span class="cd__note">Psicodelia de sintetizadores</span>
+              </li>
+              <li class="cd" style="--cover:#0e7d6e;--cover2:#bff3ff">
+                <span class="cd__case" aria-hidden="true"></span>
+                <span class="cd__title">The New Abnormal</span>
+                <span class="cd__artist">The Strokes</span>
+                <span class="cd__year">2020</span>
+                <span class="cd__note">The Strokes, maduros y melancólicos</span>
+              </li>
+              <!-- music:discos:end -->
+            </ul>
+          </div>
+        </section>
+
+        <!-- Bandas -->
+        <section class="window" aria-labelledby="b-title">
+          <h2 class="window__title" id="b-title">Mis bandas</h2>
+          <div class="window__body">
+            <p class="window__note">Mi top 50 por escuchas, en orden.</p>
+            <!-- music:bandas:start -->
+            <ol class="top10">
+              <li>DRIMS</li>
+              <li>The Strokes</li>
+              <li>Arctic Monkeys</li>
+              <li>The Beatles</li>
+              <li>Mac DeMarco</li>
+              <li>Señor Kino</li>
+              <li>Pink Floyd</li>
+              <li>Tame Impala</li>
+              <li>Duck Fizz</li>
+              <li>SERBIA</li>
+            </ol>
+            <ol class="rest" start="11">
+              <li>Gorillaz</li>
+              <li>Metallica</li>
+              <li>Adiós Cometa</li>
+              <li>Pierce The Veil</li>
+              <li>blink-182</li>
+              <li>Linkin Park</li>
+              <li>Imagine Dragons</li>
+              <li>There For Tomorrow</li>
+              <li>MGMT</li>
+              <li>The Automatic</li>
+              <li>Crystal Castles</li>
+              <li>Radiohead</li>
+              <li>ASIAN KUNG-FU GENERATION</li>
+              <li>Kings of Leon</li>
+              <li>Led Zeppelin</li>
+              <li>El Cuarteto De Nos</li>
+              <li>Scizzie</li>
+              <li>Daft Punk</li>
+              <li>Blur</li>
+              <li>Melted Ice Cream</li>
+              <li>Post Malone</li>
+              <li>Last Dinosaurs</li>
+              <li>Marea Tranquila</li>
+              <li>PXNDX</li>
+              <li>VALORANT</li>
+              <li>The Smashing Pumpkins</li>
+              <li>Vacations</li>
+              <li>Siddharta</li>
+              <li>Bad Bunny</li>
+              <li>Surf Curse</li>
+              <li>Caifanes</li>
+              <li>Soda Stereo</li>
+              <li>Panic! At The Disco</li>
+              <li>SIAMES</li>
+              <li>Bratty</li>
+              <li>Muse</li>
+              <li>Queen</li>
+              <li>Juanes</li>
+              <li>The Lumineers</li>
+              <li>Falling In Reverse</li>
+            </ol>
+            <!-- music:bandas:end -->
+          </div>
+        </section>
+      </div>
+
+      <aside class="col-side">
+        <section class="window" aria-labelledby="now-m-title">
+          <h2 class="window__title" id="now-m-title">En repeat</h2>
+          <div class="window__body">
+            <dl class="favs">
+              <!-- music:ahora:start -->
+              <dt>loveless</dt>
+              <dd>My Bloody Valentine</dd>
+              <!-- music:ahora:end -->
+            </dl>
+          </div>
+        </section>
+
+        <section class="window" aria-labelledby="g-title">
+          <h2 class="window__title" id="g-title">Lo que más escucho</h2>
+          <div class="window__body">
+            <ul class="chips">
+              <li>Indie rock</li><li>Britpop</li><li>Shoegaze</li><li>Indie mexicano</li><li>Rock en español</li>
+              <li>Emo y pop punk</li><li>Psicodelia</li><li>Electrónica</li>
+            </ul>
+          </div>
+        </section>
+
+        <section class="window" aria-labelledby="am-title">
+          <h2 class="window__title" id="am-title">Arctic Monkeys</h2>
+          <div class="window__body">
+            <p class="side-text">Los conocí por <i>AM</i> en YouTube y me quedé por cómo suenan en vivo. Mis favoritas:</p>
+            <ul class="mini-list">
+              <li>There'd Better Be a Mirrorball</li><li>Body Paint</li><li>505</li><li>Crying Lightning</li>
+              <li>Fluorescent Adolescent</li><li>Suck It and See</li>
+            </ul>
+          </div>
+        </section>
+      </aside>
+    </main>
+
+    <footer class="footer">
+      <p>Hecho a mano y alojado en Neocities. Se ve mejor de noche.</p>
+    </footer>
+  </div>
+
+  <script>
+    // Reproductor de adorno: cambia de pista y anima el visualizador, sin audio.
+    (function () {
+      var tracks = [
+        { t: 'Liquid Interface', d: '02:53' },
+        { t: 'Skyway Boulevard', d: '02:38' },
+        { t: 'Solar Photosynthesis', d: '03:37' },
+        { t: 'Save Data', d: '01:56' }
+      ];
+      var player = document.querySelector('.player');
+      var title = document.getElementById('lcd-title');
+      var time = document.getElementById('lcd-time');
+      var playBtn = player.querySelector('[data-act="play"]');
+      var items = player.querySelectorAll('#playlist button');
+      var cur = 0;
+
+      function show(i) {
+        cur = (i + tracks.length) % tracks.length;
+        title.textContent = (cur + 1) + '. ' + tracks[cur].t;
+        time.textContent = tracks[cur].d;
+        items.forEach(function (b, k) {
+          if (k === cur) b.setAttribute('aria-current', 'true'); else b.removeAttribute('aria-current');
+        });
+      }
+      function setPlaying(on) {
+        player.classList.toggle('is-playing', on);
+        playBtn.setAttribute('aria-pressed', on ? 'true' : 'false');
+        playBtn.textContent = on ? '❚❚' : '▶';
+        playBtn.setAttribute('aria-label', on ? 'Pausar' : 'Reproducir');
+      }
+
+      player.addEventListener('click', function (ev) {
+        var b = ev.target.closest('button');
+        if (!b) return;
+        if (b.dataset.i) { show(+b.dataset.i); setPlaying(true); return; }
+        var act = b.dataset.act;
+        if (act === 'play') setPlaying(!player.classList.contains('is-playing'));
+        if (act === 'stop') setPlaying(false);
+        if (act === 'next') show(cur + 1);
+        if (act === 'prev') show(cur - 1);
+      });
+    })();
+  </script>
+</body>
+
+</html>

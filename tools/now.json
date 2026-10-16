@@ -1,0 +1,60 @@
+{
+  "_ayuda": "Plantillas para tools/now_sync.py. {obra} es el título; {1}, {2}... son los grupos que captura el patrón. Las reglas se prueban en orden y gana la primera que coincide.",
+  "vault_now": "D:/LeOS/Vault/Brain/Leo_OS/Knowledge/Lore/Now.md",
+  "index": "../index.html",
+  "tipos": {
+    "🎮": "Juego",
+    "📺": "Anime",
+    "📕": "Libro",
+    "📔": "Cómic",
+    "🎞": "Película"
+  },
+  "formatos": [
+    {
+      "nombre": "episodios con total",
+      "patron": "^(?:S\\d+\\s*)?E(\\d+)\\s*/\\s*(\\d+)$",
+      "texto": "Ep. {1} de {2}",
+      "barra": [
+        1,
+        2
+      ],
+      "ticker": "{obra}"
+    },
+    {
+      "nombre": "episodio suelto",
+      "patron": "^(?:S\\d+\\s*)?E(\\d+)$",
+      "texto": "Ep. {1}",
+      "ticker": "{obra}"
+    },
+    {
+      "nombre": "página",
+      "patron": "^p\\.?\\s*(\\d+)$",
+      "texto": "p. {1}",
+      "ticker": "{obra}"
+    },
+    {
+      "nombre": "número de cómic",
+      "patron": "^#(\\d+)$",
+      "texto": "#{1}",
+      "ticker": "{obra}"
+    },
+    {
+      "nombre": "por empezar",
+      "patron": "^Comenzar$",
+      "texto": "La siguiente en la lista",
+      "ticker": "{obra}"
+    }
+  ],
+  "por_defecto": {
+    "texto": "{voy}",
+    "ticker": "{obra}"
+  },
+  "ticker_tipos": [
+    "Juego",
+    "Anime",
+    "Libro",
+    "Cómic",
+    "Película"
+  ],
+  "neocities_sitio": "leo-os"
+}

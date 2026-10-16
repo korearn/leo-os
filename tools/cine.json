@@ -1,0 +1,21 @@
+{
+  "_ayuda": "Configuración de tools/cine_sync.py. 'colores' asigna color por título exacto: para películas es la tinta del boleto, para cómics la portada (dos colores separados por coma). \"mostrar_calificacion\": false deja las calificaciones solo en el vault.",
+  "vault_movies": "D:/LeOS/Vault/Brain/Leo_OS/Knowledge/Lore/Movies/Movies.md",
+  "vault_series": "D:/LeOS/Vault/Brain/Leo_OS/Knowledge/Lore/Series/Series.md",
+  "vault_comics": "D:/LeOS/Vault/Brain/Leo_OS/Knowledge/Lore/Comics/Comics.md",
+  "vault_now": "D:/LeOS/Vault/Brain/Leo_OS/Knowledge/Lore/Now.md",
+  "cartelera": {
+    "🎞": "Película",
+    "📔": "Cómic"
+  },
+  "pagina": "../cine.html",
+  "mostrar_calificacion": false,
+  "colores": {
+    "Batman": "#1a1a22,#f2c230",
+    "Spider-Man": "#c8302a,#1f5fb0",
+    "The Flash": "#c8302a,#f2c230",
+    "The Boys": "#e8e8ec,#c8302a",
+    "Back to the Future": "#d6802f",
+    "2001: A Space Odyssey": "#1f5fb0"
+  }
+}
