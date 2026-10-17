@@ -254,6 +254,7 @@ a:hover { color: var(--hielo); }
   --m-book: var(--n64-amarillo);
   --m-comic: #4a9bff;
   --m-movie: var(--uva);
+  --m-music: #ff8ad8;
 }
 .now { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
 .now__item {
@@ -797,8 +798,8 @@ a.shot__frame:hover, a.shot__frame:focus-visible {
   background: rgba(18,15,46,.9); border: 1px solid rgba(150,220,255,.2); overflow: hidden;
 }
 .seek span { display: block; width: 0; height: 100%; background: linear-gradient(to right, var(--aqua-deep), var(--aqua)); }
-.player.is-playing .seek span { animation: seek 40s linear infinite; }
-@keyframes seek { to { width: 100%; } }
+.seek { cursor: pointer; }
+.seek span { transition: width .25s linear; }
 
 .transport { display: flex; gap: 6px; }
 .transport button, .playlist button { font: inherit; color: inherit; cursor: pointer; }
@@ -832,6 +833,12 @@ a.shot__frame:hover, a.shot__frame:focus-visible {
 .playlist button[aria-current="true"]::before { color: var(--noche); }
 .player__foot { margin: 10px 14px 0; font-size: 13px; color: var(--niebla); }
 .player__foot b { color: var(--hielo); }
+.player__link { color: var(--aqua); }
+/* Expulsar = llevarse el disco a Spotify */
+.transport__eject { margin-left: auto; }
+.transport__eject:hover { background: linear-gradient(to bottom, #1ed760, #138a3e) !important; color: var(--noche); }
+.player.is-offline .lcd__marquee { color: var(--n64-amarillo); }
+.player.is-offline .transport__eject { box-shadow: 0 0 0 2px var(--n64-amarillo), inset 0 1px 0 rgba(255,255,255,.25); }
 
 /* ---- Discos: estuches de CD ---- */
 .cds { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(118px, 1fr)); gap: 18px 14px; }
@@ -877,7 +884,8 @@ a.shot__frame:hover, a.shot__frame:focus-visible {
   .top10 { grid-template-columns: 1fr; }
 }
 @media (prefers-reduced-motion: reduce) {
-  .player.is-playing .viz i, .player.is-playing .seek span { animation: none; }
+  .player.is-playing .viz i { animation: none; }
+  .seek span { transition: none; }
   .player.is-playing .viz i:nth-child(odd) { height: 70%; }
 }
 

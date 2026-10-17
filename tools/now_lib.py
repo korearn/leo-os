@@ -139,3 +139,41 @@ def leer_now(ruta: Path, cfg: dict | None = None) -> tuple[dict[str, list[dict]]
                               "deja una y pasa la otra a Rotación")
             vistos.setdefault(it["medio"], it["obra"])
     return out, avisos
+
+
+def _clave(t: str) -> str:
+    t = limpiar_obra(t)
+    return re.sub(r"\s+", " ", re.sub(r"\(.*?\)|\*\*", "", t)).strip().lower()
+
+
+def revisar_registro(canon: Path | str | None, catalogos: dict[str, tuple[str, list[str]]]) -> list[str]:
+    """Avisa si una obra del Registro de Canon (medio en `catalogos`) no tiene ficha.
+
+    catalogos: {clave_medio: (nombre_catalogo, [títulos con ficha])}.
+    """
+    if not canon or not Path(canon).exists():
+        return []
+    alias, _ = mapa_medios()
+    avisos, encabezado, en_registro = [], None, False
+    for linea in Path(canon).read_text(encoding="utf-8").splitlines():
+        if linea.startswith("## "):
+            en_registro, encabezado = "registro" in _norm(linea), None
+            continue
+        if not en_registro or not linea.strip().startswith("|"):
+            continue
+        c = _celdas(linea)
+        if encabezado is None:
+            encabezado = [_norm(x) for x in c]
+            continue
+        if all(set(x) <= set("-: ") for x in c):
+            continue
+        fila = dict(zip(encabezado, c))
+        medio = alias.get(_norm(fila.get("medio", "")))
+        if medio not in catalogos:
+            continue
+        nombre, titulos = catalogos[medio]
+        claves = {_clave(x) for x in titulos}
+        obra = fila.get("obra", "")
+        if _clave(obra) not in claves and _clave(obra.split("(")[0]) not in claves:
+            avisos.append(f"'{obra}' está en el Registro de Canon pero no tiene ficha en {nombre}")
+    return avisos

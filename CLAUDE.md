@@ -21,18 +21,21 @@ Todo se genera desde el vault de Obsidian (`D:\LeOS\Vault\Brain\Leo_OS`). Los sc
 | Página | Nota(s) del vault | Script | Config |
 |---|---|---|---|
 | `index.html` (Ahora mismo + "En rotación", barra de estado, fecha, contador de visitas) | `Knowledge/Lore/Now.md` (Activo y Rotación) | `tools/now_sync.py` | `tools/now.json` (formatos de "Voy en", avisos) |
-| `juegos.html` (estante + "Todos mis juegos") | `Knowledge/Games/Shelf.md` | `tools/shelf_sync.py` | `tools/shelf.json` (colores por juego, nombres cortos) |
-| `musica.html` | `Knowledge/Lore/Music/Records.md` + `Bands.md` | `tools/music_sync.py` | `tools/music.json` |
-| `anime.html` | `Lore/Anime/Anime.md`, `Lore/Manga/Manga.md`, filas `Anime` de `Now.md` | `tools/anime_sync.py` | `tools/anime.json` |
+| `juegos.html` (estante + "Todos mis juegos") | `Knowledge/Games/Shelf.md` (+ "Jugando" desde filas `Game` de `Now.md`) | `tools/shelf_sync.py` | `tools/shelf.json` (colores por juego, nombres cortos) |
+| `musica.html` (reproductor de Glass Ecosystem, discos, bandas, "Escuchando ahora") | `Knowledge/Lore/Music/Records.md` + `Bands.md` + filas `Music` de `Now.md` | `tools/music_sync.py` | `tools/music.json` (bloque `aero`: pistas, `base` del audio, enlaces Spotify/Bandcamp) |
+| `anime.html` | `Lore/Anime/Anime.md`, `Lore/Manga/Manga.md`, filas `Anime` y `Manga` de `Now.md` | `tools/anime_sync.py` | `tools/anime.json` |
 | `cine.html` | `Lore/Movies/Movies.md`, `Lore/Series/Series.md`, `Lore/Comics/Comics.md`, filas `Movie`/`Series`/`Comic` de `Now.md` | `tools/cine_sync.py` | `tools/cine.json` |
 | `galeria.html`, `sobre-mi.html`, `construccion.html`, `not_found.html` | — (HTML a mano) | — | — |
 
-- **Now.md** se lee con `tools/now_lib.py` (compartido por now/anime/cine). Medios en `tools/medios.json` (una palabra: `Game`, `Anime`, `Series`, `Manga`, `Book`, `Comic`, `Movie`). "Voy en" en formato código: `E6/11`, `S2E3/10`, `C12/200`, `V3/23`, `P49/779`, `#4/9`, `45%`, `NEW` (con `/total` sale barra). Columnas por encabezado: Medio, Obra, Voy en, Sobre (sale en la web), Hueco (solo vault). Secciones: Activo (1 por medio), Rotación (línea pequeña en la web), Siguiente (no se publica). `tools/now_state.json` guarda cuándo avanzó cada obra para avisar a los 21 días.
+- **Now.md** se lee con `tools/now_lib.py` (compartido por todos los scripts). Medios en `tools/medios.json` (una palabra: `Game`, `Anime`, `Series`, `Manga`, `Book`, `Comic`, `Movie`, `Music`). Juegos sin meta: `PLAY` o celda vacía; `12h` horas. "Voy en" en formato código: `E6/11`, `S2E3/10`, `C12/200`, `V3/23`, `P49/779`, `#4/9`, `45%`, `NEW` (con `/total` sale barra). Columnas por encabezado: Medio, Obra, Voy en, Sobre (sale en la web), Hueco (solo vault). Secciones: Activo (1 por medio), Rotación (bloque compacto en la web), Siguiente (no sale en portada; cine lo muestra como "próxima función"). `tools/now_state.json` guarda cuándo avanzó cada obra para avisar a los 21 días.
 - **Todo de una vez:** `python tools/sync.py` (o `--dry-run`). Python 3 en Windows, solo librería estándar.
 - **⭐** en cualquier tabla = destacado en la web (cartucho, CD, boleto, VHS, tomo…). Sin ⭐ = solo en las listas.
 - **Columna "Nota"** = descripción breve que se muestra en la web (p. ej. "Retrofuturismo y líneas temporales"). Todos los títulos deben tener una.
 - **Calificaciones** (`9/10`) viven solo en el vault; la web no las muestra (`"mostrar_calificacion": false` en `cine.json`).
-- `Knowledge/Lore/Canon.md` = registro con fechas + "por qué me marcó" por medio (películas, series live action/animación, anime, cómics, libros). **Mantener siempre las razones personales de Leo**; las sinopsis van en español, 1–2 líneas, sin spoilers.
+- **Una ficha por obra.** `Movies.md`, `Series.md`, `Comics.md`, `Anime.md`, `Manga.md`, `Books.md` (solo vault) y `Records.md` son la ficha completa: Año, creador, Género, ⭐, **Nota** (web), **Mi nota** (calificación, solo vault; `en curso` la oculta de las vistas), **De qué trata** y **Por qué me marcó** (razones personales de Leo: no borrar ni reescribir). Comics tiene además `## Personajes` (solo vault).
+- `Knowledge/Lore/Canon.md` = **Registro** con fecha de lo terminado (Fecha · Obra · Medio · Análisis, medios con las palabras de Now) + Patrones. Ya no guarda fichas. Cada script avisa si una obra del Registro no tiene ficha en su catálogo o si una ficha publicada no tiene Nota (`now_lib.revisar_registro`).
+- **Estados derivados de Now:** "Jugando" en Shelf, "Escuchando ahora" en música y "Leyendo" de manga salen de Now.md; no se escriben a mano en los catálogos.
+- **Audio de Aero Memory:** Neocities gratis no acepta MP3. Los MP3 van en `audio/aero-memory/` (nombres en `music.json`), se suben a GitHub y se sirven con **GitHub Pages** (`https://korearn.github.io/leo-os/audio/aero-memory/`). Si no cargan, el reproductor muestra "Sin señal" y, si hay enlace de Spotify, el botón ⏏ abre el álbum.
 - Contador de visitas: `now_sync.py` lo lee de `https://neocities.org/api/info?sitename=leo-os` al correr; `index.html` intenta leerlo en vivo (puede fallar por CORS, entonces queda el del último sync).
 
 ## Flujo de Leo
@@ -41,7 +44,7 @@ Todo se genera desde el vault de Obsidian (`D:\LeOS\Vault\Brain\Leo_OS`). Los sc
 3. `git add . ; git commit -m "..." ; git push`.
 4. Sube a Neocities solo los `.html`/`.css`/imágenes que cambiaron.
 
-**Nunca se suben a Neocities:** `tools/`, `README.md`, `CLAUDE.md`, `gameshots/` (originales pesados; las versiones web están en `img/shots/` como WebP).
+**Nunca se suben a Neocities:** `tools/`, `audio/` (Neocities gratis no acepta MP3), `README.md`, `CLAUDE.md`, `gameshots/` (originales pesados; las versiones web están en `img/shots/` como WebP).
 
 ## Reglas para Claude
 - **Lee siempre la versión actual del disco antes de editar** (Leo edita a mano y su editor formatea el HTML). Nunca reescribas desde una copia vieja; al guardar, usa la protección de "archivo cambiado" y si hay conflicto vuelve a leer y fusiona.
@@ -51,10 +54,10 @@ Todo se genera desde el vault de Obsidian (`D:\LeOS\Vault\Brain\Leo_OS`). Los sc
 
 ## Pendientes (ronda de revisiones)
 - [x] **Now.md:** formato nuevo (medios por palabra, códigos de avance, Activo/Rotación/Siguiente) — 2026-10-16. Falta que Leo lo revise en vivo.
-- [ ] Música: que *Glass Ecosystem* (Aero Memory, 4 pistas) suene: embed de Spotify/YouTube o MP3 si el plan gratis los acepta. No vender ni promocionar (reglas de Neocities).
+- [x] Música: reproductor real de *Glass Ecosystem* (2026-10-16). Falta: copiar los MP3 a `audio/aero-memory/`, activar GitHub Pages en el repo y poner el enlace de Spotify en `music.json`.
 - [ ] Música: lista completa desplegable de discos (hoy solo salen los ⭐).
 - [ ] Página propia de Pokémon (equipos por juego desde `Knowledge/Games/Pokemon/Teams.md`).
 - [ ] Medalla "Código" en Sobre mí: ¿link a GitHub o solo adorno?
 - [ ] Revisar todas las páginas en celular.
-- [ ] Evitar doble captura: que el registro de `Canon.md` alimente las listas (hoy lo terminado se anota en Canon y en la nota del medio).
+- [x] Doble captura resuelta para cine (2026-10-16): fichas en Movies/Series/Comics, Canon solo registro. Anime, Manga, Libros y Records también (2026-10-16); Shelf toma "jugando" de Now.
 - [ ] Actualizar `README.md` con `tools/sync.py`.

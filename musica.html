@@ -51,24 +51,27 @@
                   <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
                 </div>
               </div>
-              <div class="seek" aria-hidden="true"><span id="seek-fill"></span></div>
+              <div class="seek" id="seek" aria-hidden="true"><span id="seek-fill"></span></div>
               <div class="transport">
                 <button type="button" data-act="prev" aria-label="Pista anterior">⏮</button>
                 <button type="button" data-act="play" aria-label="Reproducir" aria-pressed="false">▶</button>
                 <button type="button" data-act="stop" aria-label="Detener">■</button>
                 <button type="button" data-act="next" aria-label="Pista siguiente">⏭</button>
+                <button type="button" data-act="eject" class="transport__eject" aria-label="Abrir Glass Ecosystem en Spotify" title="Expulsar: escúchalo en Spotify" hidden>⏏</button>
               </div>
             </div>
           </div>
 
+          <!-- music:aero:start -->
           <ol class="playlist" id="playlist">
             <li><button type="button" data-i="0" aria-current="true"><span>Liquid Interface</span><span>2:53</span></button></li>
             <li><button type="button" data-i="1"><span>Skyway Boulevard</span><span>2:38</span></button></li>
             <li><button type="button" data-i="2"><span>Solar Photosynthesis</span><span>3:37</span></button></li>
             <li><button type="button" data-i="3"><span>Save Data</span><span>1:56</span></button></li>
           </ol>
-          <p class="player__foot">4 pistas, 11:04. Salió el 18 de septiembre de 2026. Este reproductor no suena; el EP está en
-            las apps de música como <b>Aero Memory</b>.</p>
+          <p class="player__foot">4 pistas, 11:04. Salió el 18 de septiembre de 2026.</p>
+          <script type="application/json" id="aero-data">{"base": "https://korearn.github.io/leo-os/audio/aero-memory/", "spotify": "", "pistas": [{"t": "Liquid Interface", "f": "01-liquid-interface.mp3", "d": "2:53"}, {"t": "Skyway Boulevard", "f": "02-skyway-boulevard.mp3", "d": "2:38"}, {"t": "Solar Photosynthesis", "f": "03-solar-photosynthesis.mp3", "d": "3:37"}, {"t": "Save Data", "f": "04-save-data.mp3", "d": "1:56"}]}</script>
+          <!-- music:aero:end -->
         </section>
 
         <!-- Discos -->
@@ -202,7 +205,7 @@
           <div class="window__body">
             <dl class="favs">
               <!-- music:ahora:start -->
-              <dt>loveless</dt>
+              <dt>Loveless</dt>
               <dd>My Bloody Valentine</dd>
               <!-- music:ahora:end -->
             </dl>
@@ -238,28 +241,30 @@
   </div>
 
   <script>
-    // Reproductor de adorno: cambia de pista y anima el visualizador, sin audio.
+    // Reproductor de Glass Ecosystem. Los datos (pistas, dónde vive el audio, enlaces) los escribe
+    // tools/music_sync.py desde music.json. Si el audio no carga, el reproductor lo dice y ofrece Spotify.
     (function () {
-      var tracks = [
-        { t: 'Liquid Interface', d: '02:53' },
-        { t: 'Skyway Boulevard', d: '02:38' },
-        { t: 'Solar Photosynthesis', d: '03:37' },
-        { t: 'Save Data', d: '01:56' }
-      ];
       var player = document.querySelector('.player');
+      var datos = document.getElementById('aero-data');
+      if (!player || !datos) return;
+      var cfg = JSON.parse(datos.textContent);
+      var tracks = cfg.pistas || [];
       var title = document.getElementById('lcd-title');
       var time = document.getElementById('lcd-time');
+      var fill = document.getElementById('seek-fill');
+      var seek = document.getElementById('seek');
       var playBtn = player.querySelector('[data-act="play"]');
+      var eject = player.querySelector('[data-act="eject"]');
       var items = player.querySelectorAll('#playlist button');
-      var cur = 0;
+      var audio = new Audio();
+      audio.preload = 'none';
+      var cur = 0, cargada = -1;
 
-      function show(i) {
-        cur = (i + tracks.length) % tracks.length;
-        title.textContent = (cur + 1) + '. ' + tracks[cur].t;
-        time.textContent = tracks[cur].d;
-        items.forEach(function (b, k) {
-          if (k === cur) b.setAttribute('aria-current', 'true'); else b.removeAttribute('aria-current');
-        });
+      if (cfg.spotify) eject.hidden = false;
+
+      function mmss(s) {
+        s = Math.max(0, Math.floor(s || 0));
+        return String(Math.floor(s / 60)).padStart(2, '0') + ':' + String(s % 60).padStart(2, '0');
       }
       function setPlaying(on) {
         player.classList.toggle('is-playing', on);
@@ -267,17 +272,57 @@
         playBtn.textContent = on ? '❚❚' : '▶';
         playBtn.setAttribute('aria-label', on ? 'Pausar' : 'Reproducir');
       }
+      function show(i) {
+        cur = (i + tracks.length) % tracks.length;
+        player.classList.remove('is-offline');
+        title.textContent = (cur + 1) + '. ' + tracks[cur].t;
+        time.textContent = mmss(0);
+        fill.style.width = '0%';
+        items.forEach(function (b, k) {
+          if (k === cur) b.setAttribute('aria-current', 'true'); else b.removeAttribute('aria-current');
+        });
+      }
+      function sinSenal() {
+        setPlaying(false);
+        player.classList.add('is-offline');
+        title.textContent = cfg.spotify ? 'Sin señal. Pulsa ⏏ para oírlo en Spotify' : 'Sin señal por ahora';
+      }
+      function play() {
+        if (!cfg.base) { sinSenal(); return; }
+        if (cargada !== cur) { audio.src = cfg.base + tracks[cur].f; cargada = cur; }
+        var p = audio.play();
+        if (p && p.catch) p.catch(function (err) { if (err && err.name !== 'AbortError') sinSenal(); });
+      }
+      function stop() { audio.pause(); audio.currentTime = 0; setPlaying(false); fill.style.width = '0%'; time.textContent = mmss(0); }
+
+      audio.addEventListener('playing', function () { setPlaying(true); });
+      audio.addEventListener('pause', function () { setPlaying(false); });
+      audio.addEventListener('error', sinSenal);
+      audio.addEventListener('timeupdate', function () {
+        time.textContent = mmss(audio.currentTime);
+        if (audio.duration) fill.style.width = (audio.currentTime / audio.duration * 100) + '%';
+      });
+      audio.addEventListener('ended', function () {
+        if (cur < tracks.length - 1) { show(cur + 1); play(); } else { stop(); show(0); }
+      });
+      seek.addEventListener('click', function (ev) {
+        if (!audio.duration || cargada !== cur) return;
+        var r = seek.getBoundingClientRect();
+        audio.currentTime = (ev.clientX - r.left) / r.width * audio.duration;
+      });
 
       player.addEventListener('click', function (ev) {
         var b = ev.target.closest('button');
         if (!b) return;
-        if (b.dataset.i) { show(+b.dataset.i); setPlaying(true); return; }
+        if (b.dataset.i) { show(+b.dataset.i); play(); return; }
         var act = b.dataset.act;
-        if (act === 'play') setPlaying(!player.classList.contains('is-playing'));
-        if (act === 'stop') setPlaying(false);
-        if (act === 'next') show(cur + 1);
-        if (act === 'prev') show(cur - 1);
+        if (act === 'play') { if (audio.paused) play(); else audio.pause(); }
+        if (act === 'stop') stop();
+        if (act === 'next') { var on = !audio.paused; show(cur + 1); if (on) play(); }
+        if (act === 'prev') { var on2 = !audio.paused; show(cur - 1); if (on2) play(); }
+        if (act === 'eject' && cfg.spotify) { stop(); window.open(cfg.spotify, '_blank', 'noopener'); }
       });
+      show(0);
     })();
   </script>
 </body>

@@ -1,12 +1,57 @@
 {
   "_ayuda": "Lista única de medios para now_sync, anime_sync y cine_sync. La clave es la palabra que se escribe en la columna Medio de Now.md (sin importar mayúsculas); 'etiqueta' es como se ve en la web; 'alias' son otras formas aceptadas.",
   "medios": {
-    "game":   {"etiqueta": "Juego",    "alias": ["juego", "🎮"]},
-    "anime":  {"etiqueta": "Anime",    "alias": ["📺"]},
-    "series": {"etiqueta": "Serie",    "alias": ["serie"]},
-    "manga":  {"etiqueta": "Manga",    "alias": []},
-    "book":   {"etiqueta": "Libro",    "alias": ["libro", "📕"]},
-    "comic":  {"etiqueta": "Cómic",    "alias": ["cómic", "📔"]},
-    "movie":  {"etiqueta": "Película", "alias": ["película", "pelicula", "🎞"]}
+    "game": {
+      "etiqueta": "Juego",
+      "alias": [
+        "juego",
+        "🎮"
+      ]
+    },
+    "anime": {
+      "etiqueta": "Anime",
+      "alias": [
+        "📺"
+      ]
+    },
+    "series": {
+      "etiqueta": "Serie",
+      "alias": [
+        "serie"
+      ]
+    },
+    "manga": {
+      "etiqueta": "Manga",
+      "alias": []
+    },
+    "book": {
+      "etiqueta": "Libro",
+      "alias": [
+        "libro",
+        "📕"
+      ]
+    },
+    "comic": {
+      "etiqueta": "Cómic",
+      "alias": [
+        "cómic",
+        "📔"
+      ]
+    },
+    "movie": {
+      "etiqueta": "Película",
+      "alias": [
+        "película",
+        "pelicula",
+        "🎞"
+      ]
+    },
+    "music": {
+      "etiqueta": "Música",
+      "alias": [
+        "música",
+        "disco"
+      ]
+    }
   }
 }

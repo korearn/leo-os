@@ -1,6 +1,7 @@
 """Genera el estante y las listas de la página Videojuegos desde Shelf.md del vault.
 
-Lee las secciones de Shelf.md (Clásicos por consola, Modernos, Por jugar, Wishlist)
+Lee las secciones de Shelf.md (Clásicos por consola, Modernos, Por jugar, Wishlist).
+El estado "jugando" sale de Now.md (filas Game); Canon.md solo se revisa (avisos).
 y reescribe en juegos.html lo que hay entre <!-- shelf:estante:start/end --> y
 <!-- shelf:listas:start/end -->. Colores y nombres cortos: tools/shelf.json.
 
@@ -18,6 +19,8 @@ import json
 import re
 import sys
 from pathlib import Path
+
+from now_lib import _clave, leer_now, revisar_registro
 
 AQUI = Path(__file__).resolve().parent
 e = html.escape
@@ -198,11 +201,35 @@ def main() -> None:
     ap = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     ap.add_argument("--dry-run", action="store_true", help="no escribe, solo muestra el resumen")
     ap.add_argument("--shelf", help="ruta a Shelf.md (si no, la de shelf.json)")
+    ap.add_argument("--now", help="ruta a Now.md")
+    ap.add_argument("--canon", help="ruta a Canon.md")
     args = ap.parse_args()
 
     cfg = json.loads((AQUI / "shelf.json").read_text(encoding="utf-8"))
     datos = leer_shelf(Path(args.shelf or cfg["vault_shelf"]))
     pagina = (AQUI / cfg["pagina"]).resolve()
+
+    # "Jugando" sale de Now.md (filas Game de Activo y Rotación); no se escribe a mano en Shelf.
+    avisos = []
+    todos = [j for v in datos["Clásicos"].values() for j in v] + datos["Modernos"]
+    if args.now or cfg.get("vault_now"):
+        ruta_now = Path(args.now or cfg["vault_now"])
+        if ruta_now.exists():
+            now, _ = leer_now(ruta_now)
+            jugando = {_clave(f["obra"]) for f in now["activo"] + now["rotacion"] if f["medio"] == "game"}
+            por_clave = {_clave(j["titulo"]): j for j in todos}
+            for j in todos:
+                if j["estado"] == "jugando" and _clave(j["titulo"]) not in jugando:
+                    avisos.append(f"{j['titulo']} dice 'jugando' en Shelf pero no está en Now (se ignora)")
+                    j["estado"] = ""
+            for k in jugando:
+                if k in por_clave:
+                    por_clave[k]["estado"] = "jugando"
+                else:
+                    avisos.append(f"'{k}' está en Now pero no tiene fila en Shelf (agrégalo a Modernos)")
+    avisos += revisar_registro(args.canon or cfg.get("vault_canon"), {"game": ("Shelf", [j["titulo"] for j in todos])})
+    for a in avisos:
+        print(f"  ⚠ {a}")
 
     conocidas = {c["nombre"] for c in cfg["consolas"]}
     print("Clásicos:")

@@ -1,6 +1,8 @@
 """Genera la página Cine, series y cómics desde el vault.
 
 - Movies.md (⭐ = boleto), Series.md (⭐ = guía de canales), Comics.md (⭐ = cómic embolsado).
+  Una fila = la ficha de la obra. "Mi nota" = calificación (solo vault); "en curso" la oculta de las vistas.
+- Canon.md: solo se revisa que cada obra del Registro tenga su ficha (avisos, no escribe nada).
 - Now.md: "En cartelera" (filas Movie, Series y Comic de Activo y Rotación; las de Siguiente como "próxima función").
 
 Reescribe en cine.html lo que hay entre los marcadores <!-- cine:... -->.
@@ -20,7 +22,7 @@ import re
 import sys
 from pathlib import Path
 
-from now_lib import leer_now
+from now_lib import leer_now, revisar_registro
 
 AQUI = Path(__file__).resolve().parent
 e = html.escape
@@ -51,6 +53,9 @@ def leer_tablas(ruta: Path) -> dict[str, list[dict]]:
                 continue
             fila = dict(zip(encabezado, c))
             fila["_t"] = c[0]
+            if "mi nota" in fila:  # columna nueva; el resto del script la lee como "calificación"
+                fila["calificación"] = fila["mi nota"]
+            fila["_en_curso"] = fila.get("calificación", "").strip().lower() == "en curso"
             fila["_fav"] = "⭐" in "".join(c)
             tablas[seccion].append(fila)
     return tablas
@@ -197,6 +202,21 @@ def cartelera(now: dict, cfg: dict) -> str:
     return "\n".join(out) + "\n"
 
 
+def revisar(m: dict, s: dict, c: dict, cfg: dict) -> list[str]:
+    """Avisos: fichas sin Nota para la web y obras del Registro de Canon sin ficha en su catálogo."""
+    avisos = []
+    catalogos = {"movie": ("Movies", m.get("Vistas", [])), "series": ("Series", s.get("Vistas", [])),
+                 "comic": ("Comics", c.get("Leídos", []))}
+    for nombre, filas in catalogos.values():
+        for f in filas:
+            if not f.get("nota"):
+                avisos.append(f"{f['_t']} ({nombre}) no tiene Nota para la web")
+    avisos += revisar_registro(cfg.get("vault_canon"),
+                               {k: (nombre, [f["_t"] for f in filas])
+                                for k, (nombre, filas) in catalogos.items()})
+    return avisos
+
+
 def reemplazar(doc: str, nombre: str, nuevo: str) -> str:
     patron = re.compile(rf"(<!-- cine:{nombre}:start -->\n?)(.*?)([ \t]*<!-- cine:{nombre}:end -->)", re.S)
     if not patron.search(doc):
@@ -207,7 +227,7 @@ def reemplazar(doc: str, nombre: str, nuevo: str) -> str:
 def main() -> None:
     ap = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     ap.add_argument("--dry-run", action="store_true")
-    for k in ("movies", "series", "comics", "now"):
+    for k in ("movies", "series", "comics", "now", "canon"):
         ap.add_argument(f"--{k}")
     args = ap.parse_args()
 
@@ -217,6 +237,14 @@ def main() -> None:
     c = leer_tablas(Path(args.comics or cfg["vault_comics"]))
     now, _ = leer_now(Path(args.now or cfg["vault_now"]))
     pagina = (AQUI / cfg["pagina"]).resolve()
+
+    # Fichas "en curso": existen en el catálogo pero aún no se muestran como vistas/leídas.
+    for tabla, sec in ((m, "Vistas"), (s, "Vistas"), (c, "Leídos")):
+        tabla[sec] = [f for f in tabla.get(sec, []) if not f["_en_curso"]]
+    if args.canon:
+        cfg["vault_canon"] = args.canon
+    for a in revisar(m, s, c, cfg):
+        print(f"  ⚠ {a}")
 
     def cuenta(lst):
         return f"{len(lst)} ({sum(f['_fav'] for f in lst)} ⭐)"

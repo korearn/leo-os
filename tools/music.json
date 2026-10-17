@@ -2,10 +2,42 @@
   "_ayuda": "Configuración de tools/music_sync.py. 'discos' guarda los colores del estuche por título exacto (--cover y --cover2). Sin colores, cada disco recibe unos automáticos.",
   "vault_records": "D:/LeOS/Vault/Brain/Leo_OS/Knowledge/Lore/Music/Records.md",
   "vault_bands": "D:/LeOS/Vault/Brain/Leo_OS/Knowledge/Lore/Music/Bands.md",
+  "vault_now": "D:/LeOS/Vault/Brain/Leo_OS/Knowledge/Lore/Now.md",
+  "vault_canon": "D:/LeOS/Vault/Brain/Leo_OS/Knowledge/Lore/Canon.md",
   "pagina": "../musica.html",
   "top": 10,
   "discos": {
     "Loveless": "--cover:#d6337a;--cover2:#5a1a6e",
     "AM": "--cover:#1a1a22;--cover2:#3a3a48"
+  },
+  "aero": {
+    "_ayuda": "Reproductor de Aero Memory. Neocities gratis no acepta MP3, así que el audio vive en audio/aero-memory/ del repo y se sirve desde GitHub Pages ('base'). Deja 'spotify' o 'bandcamp' vacíos para ocultar ese enlace.",
+    "titulo": "Glass Ecosystem",
+    "lanzamiento": "18 de septiembre de 2026",
+    "base": "https://korearn.github.io/leo-os/audio/aero-memory/",
+    "spotify": "",
+    "bandcamp": "",
+    "pistas": [
+      {
+        "titulo": "Liquid Interface",
+        "archivo": "01-liquid-interface.mp3",
+        "duracion": "2:53"
+      },
+      {
+        "titulo": "Skyway Boulevard",
+        "archivo": "02-skyway-boulevard.mp3",
+        "duracion": "2:38"
+      },
+      {
+        "titulo": "Solar Photosynthesis",
+        "archivo": "03-solar-photosynthesis.mp3",
+        "duracion": "3:37"
+      },
+      {
+        "titulo": "Save Data",
+        "archivo": "04-save-data.mp3",
+        "duracion": "1:56"
+      }
+    ]
   }
 }

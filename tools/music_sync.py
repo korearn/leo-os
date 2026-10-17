@@ -1,6 +1,8 @@
 """Genera las listas de la página Música desde el vault.
 
-- Records.md: "Escuchando ahora" y "Discos" (los ⭐ salen como estuches de CD).
+- Now.md (filas Music): "Escuchando ahora" (el artista se toma de Discos).
+- Records.md: "Discos" (los ⭐ salen como estuches de CD). "Mi nota" solo vive en el vault.
+- Canon.md: solo avisos (obras del Registro sin ficha).
 - Bands.md: el top de bandas (lista numerada, en orden).
 
 Reescribe en musica.html lo que hay entre <!-- music:ahora/discos/bandas:start/end -->.
@@ -19,6 +21,8 @@ import json
 import re
 import sys
 from pathlib import Path
+
+from now_lib import _clave, leer_now, revisar_registro
 
 AQUI = Path(__file__).resolve().parent
 e = html.escape
@@ -68,13 +72,18 @@ def colores(titulo: str, cfg: dict) -> str:
     return f"--cover:{a};--cover2:{b}"
 
 
-def html_ahora(filas: list[dict]) -> str:
+def html_ahora(escuchando: list[dict], discos: list[dict]) -> str:
+    """Filas Music de Now.md; el artista sale de la tabla Discos si el título coincide."""
+    I = "              "
+    if not escuchando:
+        return f"{I}<dt>Silencio</dt>\n{I}<dd>Nada en repeat por ahora.</dd>\n"
+    por_titulo = {_clave(d.get("disco", "")): d for d in discos}
     out = []
-    for f in filas:
-        que, artista, nota = f.get("qué", f.get("que", "")), f.get("artista", ""), f.get("nota", "")
-        detalle = artista + (f" ({nota})" if nota else "")
-        out.append(f"              <dt>{e(que)}</dt>")
-        out.append(f"              <dd>{e(detalle)}</dd>")
+    for f in escuchando:
+        d = por_titulo.get(_clave(f["obra"]), {})
+        detalle = ", ".join(x for x in [d.get("artista", ""), f.get("sobre", "")] if x)
+        out.append(f"{I}<dt>{e(f['obra'])}</dt>")
+        out.append(f"{I}<dd>{e(detalle)}</dd>")
     return "\n".join(out) + "\n"
 
 
@@ -93,6 +102,38 @@ def html_discos(filas: list[dict], cfg: dict) -> str:
         if f.get("nota"):
             out.append(f'                <span class="cd__note">{e(f["nota"])}</span>')
         out.append("              </li>")
+    return "\n".join(out) + "\n"
+
+
+def _seg(d: str) -> int:
+    m, _, s = d.partition(":")
+    return int(m or 0) * 60 + int(s or 0) if d else 0
+
+
+def html_aero(a: dict) -> str:
+    """Lista de pistas, pie con enlaces y datos para el reproductor (lee música real desde 'base')."""
+    I = "          "
+    pistas = a.get("pistas", [])
+    out = [f'{I}<ol class="playlist" id="playlist">']
+    for i, p in enumerate(pistas):
+        actual = ' aria-current="true"' if i == 0 else ""
+        out.append(f'{I}  <li><button type="button" data-i="{i}"{actual}><span>{e(p["titulo"])}</span>'
+                   f'<span>{e(p.get("duracion", ""))}</span></button></li>')
+    out.append(f"{I}</ol>")
+    total = sum(_seg(p.get("duracion", "")) for p in pistas)
+    enlaces = []
+    if a.get("spotify"):
+        enlaces.append(f'<a class="player__link player__link--spotify" href="{e(a["spotify"])}" rel="noopener" target="_blank">Spotify</a>')
+    if a.get("bandcamp"):
+        enlaces.append(f'<a class="player__link player__link--bandcamp" href="{e(a["bandcamp"])}" rel="noopener" target="_blank">Bandcamp</a>')
+    pie = f"{len(pistas)} pistas, {total // 60}:{total % 60:02d}. Salió el {e(a.get('lanzamiento', ''))}."
+    if enlaces:
+        pie += " También está en " + " y ".join(enlaces) + "."
+    out.append(f'{I}<p class="player__foot">{pie}</p>')
+    datos = {"base": a.get("base", ""), "spotify": a.get("spotify", ""),
+             "pistas": [{"t": p["titulo"], "f": p["archivo"], "d": p.get("duracion", "")} for p in pistas]}
+    js = json.dumps(datos, ensure_ascii=False).replace("</", "<\\/")
+    out.append(f'{I}<script type="application/json" id="aero-data">{js}</script>')
     return "\n".join(out) + "\n"
 
 
@@ -120,12 +161,25 @@ def main() -> None:
     ap.add_argument("--dry-run", action="store_true", help="no escribe, solo muestra el resumen")
     ap.add_argument("--records", help="ruta a Records.md")
     ap.add_argument("--bands", help="ruta a Bands.md")
+    ap.add_argument("--now", help="ruta a Now.md")
+    ap.add_argument("--canon", help="ruta a Canon.md")
     args = ap.parse_args()
 
     cfg = json.loads((AQUI / "music.json").read_text(encoding="utf-8"))
     tablas = leer_tablas(Path(args.records or cfg["vault_records"]))
     bandas = leer_bandas(Path(args.bands or cfg["vault_bands"]))
-    ahora, discos = tablas.get("Escuchando ahora", []), tablas.get("Discos", [])
+    discos = tablas.get("Discos", [])
+    ahora = []
+    ruta_now = Path(args.now or cfg.get("vault_now", ""))
+    if ruta_now.is_file():
+        now, _ = leer_now(ruta_now)
+        ahora = [f for f in now["activo"] + now["rotacion"] if f["medio"] == "music"]
+    avisos = [f"{d.get('disco')} (⭐) no tiene Nota para la web" for d in discos if d["_fav"] and not d.get("nota")]
+    titulos = {_clave(d.get("disco", "")) for d in discos}
+    avisos += [f"'{f['obra']}' está en Now pero no tiene fila en Discos" for f in ahora if _clave(f["obra"]) not in titulos]
+    avisos += revisar_registro(args.canon or cfg.get("vault_canon"), {"music": ("Records", [d.get("disco", "") for d in discos])})
+    for a in avisos:
+        print(f"  ⚠ {a}")
     pagina = (AQUI / cfg["pagina"]).resolve()
 
     print(f"Escuchando ahora: {len(ahora)}  ·  Discos: {len(discos)} ({sum(d['_fav'] for d in discos)} ⭐)  ·  Bandas: {len(bandas)}")
@@ -134,9 +188,11 @@ def main() -> None:
         return
 
     doc = pagina.read_text(encoding="utf-8")
-    doc = reemplazar(doc, "ahora", html_ahora(ahora))
+    doc = reemplazar(doc, "ahora", html_ahora(ahora, discos))
     doc = reemplazar(doc, "discos", html_discos(discos, cfg))
     doc = reemplazar(doc, "bandas", html_bandas(bandas, cfg.get("top", 10)))
+    if cfg.get("aero"):
+        doc = reemplazar(doc, "aero", html_aero(cfg["aero"]))
     pagina.write_text(doc, encoding="utf-8", newline="\n")
     print(f"\nListo: {pagina.name} actualizado.")
 

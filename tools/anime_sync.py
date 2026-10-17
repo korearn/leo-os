@@ -2,7 +2,8 @@
 
 - Now.md (filas Anime de Activo y Rotación): la tele de "Viendo ahora".
 - Anime.md: Vistos (⭐ = cinta VHS) y Por ver.
-- Manga.md: Leyendo, Leídos (⭐ = tomo en la repisa) y Por leer.
+- Manga.md: Leídos (⭐ = tomo en la repisa) y Por leer. Lo que leo ahora sale de Now.md (filas Manga).
+- "Mi nota" = calificación (solo vault); "en curso" oculta la ficha de las vistas. Canon.md: avisos del Registro.
 
 Reescribe en anime.html lo que hay entre los marcadores <!-- anime:... --> y <!-- manga:... -->.
 
@@ -21,7 +22,7 @@ import re
 import sys
 from pathlib import Path
 
-from now_lib import leer_now as leer_now_md
+from now_lib import leer_now as leer_now_md, revisar_registro
 
 AQUI = Path(__file__).resolve().parent
 e = html.escape
@@ -51,6 +52,7 @@ def leer_tablas(ruta: Path) -> dict[str, list[dict]]:
                 continue
             fila = dict(zip(encabezado, c))
             fila["_fav"] = "⭐" in "".join(c)
+            fila["_en_curso"] = fila.get("mi nota", "").strip().lower() == "en curso"
             tablas[seccion].append(fila)
     return tablas
 
@@ -138,15 +140,16 @@ def html_lista_anime(anime: dict) -> str:
     return ("\n".join(out) if out else f'{I}<p class="empty-note">Lista en construcción.</p>') + "\n"
 
 
-def html_leyendo(manga: dict) -> str:
+def html_leyendo(leyendo: list[dict]) -> str:
+    """Manga que leo ahora: filas `Manga` de Now.md (Activo y Rotación)."""
     I = "              "
-    filas = [f for f in manga.get("Leyendo", []) if f.get("manga")]
-    if not filas:
+    if not leyendo:
         return f"{I}<dt>Nada por ahora</dt>\n{I}<dd>Pronto vuelvo a abrir un tomo.</dd>\n"
     out = []
-    for f in filas:
-        detalle = ", ".join(x for x in [f.get("autor", ""), f.get("voy en", "")] if x)
-        out += [f"{I}<dt>{e(f['manga'])}</dt>", f"{I}<dd>{e(detalle)}</dd>"]
+    for f in leyendo:
+        av = f["avance"]
+        detalle = av["texto"] if av["codigo"] and not av["nuevo"] else ("Por empezar" if av["nuevo"] else "")
+        out += [f"{I}<dt>{e(f['obra'])}</dt>", f"{I}<dd>{e(detalle)}</dd>"]
     return "\n".join(out) + "\n"
 
 
@@ -182,7 +185,7 @@ def reemplazar(doc: str, nombre: str, nuevo: str) -> str:
 def main() -> None:
     ap = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     ap.add_argument("--dry-run", action="store_true")
-    ap.add_argument("--anime"); ap.add_argument("--manga"); ap.add_argument("--now")
+    ap.add_argument("--anime"); ap.add_argument("--manga"); ap.add_argument("--now"); ap.add_argument("--canon")
     args = ap.parse_args()
 
     cfg = json.loads((AQUI / "anime.json").read_text(encoding="utf-8"))
@@ -192,10 +195,24 @@ def main() -> None:
     pagina = (AQUI / cfg["pagina"]).resolve()
 
     viendo = [f for f in now["activo"] + now["rotacion"] if f["medio"] == cfg.get("medio_tv", "anime")]
+    leyendo = [f for f in now["activo"] + now["rotacion"] if f["medio"] == "manga"]
+    # Fichas "en curso": existen en el catálogo pero no se muestran como vistas/leídas.
+    anime["Vistos"] = [f for f in anime.get("Vistos", []) if not f["_en_curso"]]
+    manga["Leídos"] = [f for f in manga.get("Leídos", []) if not f["_en_curso"]]
+    for nombre, filas, clave in (("Anime", anime["Vistos"], "anime"), ("Manga", manga["Leídos"], "manga")):
+        for f in filas:
+            if f.get(clave) and not f.get("nota"):
+                avisos.append(f"{f[clave]} ({nombre}) no tiene Nota para la web")
+    todos_a = [f.get("anime", "") for f in leer_tablas(Path(args.anime or cfg["vault_anime"])).get("Vistos", [])]
+    todos_m = [f.get("manga", "") for f in leer_tablas(Path(args.manga or cfg["vault_manga"])).get("Leídos", [])]
+    avisos += revisar_registro(args.canon or cfg.get("vault_canon"),
+                               {"anime": ("Anime", todos_a), "manga": ("Manga", todos_m)})
+    for a in avisos:
+        print(f"  ⚠ {a}")
     vistos = [f for f in anime.get("Vistos", []) if f.get("anime")]
     print(f"Viendo (desde Now): {len(viendo)}  ·  Vistos: {len(vistos)} ({sum(f['_fav'] for f in vistos)} ⭐)  ·  "
           f"Por ver: {len([f for f in anime.get('Por ver', []) if f.get('anime')])}")
-    print(f"Manga: leyendo {len([f for f in manga.get('Leyendo', []) if f.get('manga')])}  ·  "
+    print(f"Manga: leyendo {len(leyendo)} (desde Now)  ·  "
           f"leídos {len([f for f in manga.get('Leídos', []) if f.get('manga')])}  ·  "
           f"por leer {len([f for f in manga.get('Por leer', []) if f.get('manga')])}")
     if args.dry_run:
@@ -206,7 +223,7 @@ def main() -> None:
     doc = reemplazar(doc, "anime:tv", html_tv(viendo))
     doc = reemplazar(doc, "anime:vhs", html_vhs(anime.get("Vistos", []), cfg))
     doc = reemplazar(doc, "anime:lista", html_lista_anime(anime))
-    doc = reemplazar(doc, "manga:leyendo", html_leyendo(manga))
+    doc = reemplazar(doc, "manga:leyendo", html_leyendo(leyendo))
     doc = reemplazar(doc, "manga:tomos", html_tomos(manga, cfg))
     doc = reemplazar(doc, "manga:lista", html_lista_manga(manga))
     pagina.write_text(doc, encoding="utf-8", newline="\n")
