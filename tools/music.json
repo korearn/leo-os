@@ -39,5 +39,12 @@
         "duracion": "1:56"
       }
     ]
+  },
+  "portadas": {
+    "_ayuda": "tools/pixel_covers.py: originales en 'origen' (ignorado por git), PNG pixelados en 'destino'. 'pixeles' = lado en píxeles (más bajo = más pixelado); 'colores' = tamaño de la paleta.",
+    "origen": "covers_src",
+    "destino": "img/covers",
+    "pixeles": 64,
+    "colores": 24
   }
 }

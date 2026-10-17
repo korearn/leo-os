@@ -9,3 +9,6 @@ desktop.ini
 # Editores
 .vscode/
 *.swp
+
+# Portadas originales (solo local; la web usa las pixeladas de img/covers)
+covers_src/

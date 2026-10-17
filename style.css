@@ -754,9 +754,10 @@ a.shot__frame:hover, a.shot__frame:focus-visible {
 .player__main { display: grid; grid-template-columns: 128px minmax(0, 1fr); gap: 14px; padding: 14px 14px 10px; }
 .player__cover {
   aspect-ratio: 1; border-radius: 6px;
-  /* Si subes tu portada como img/glass-ecosystem.webp, aparece aquí sola */
+  /* Portada pixelada: img/covers/glass-ecosystem.png (tools/pixel_covers.py). Si no existe, queda el degradado. */
+  image-rendering: pixelated;
   background:
-    url("img/glass-ecosystem.webp") center / cover no-repeat,
+    url("img/covers/glass-ecosystem.png") center / cover no-repeat,
     radial-gradient(circle at 34% 30%, rgba(255,255,255,.9) 0 6%, rgba(255,255,255,0) 7%),
     radial-gradient(circle at 40% 40%, rgba(191,243,255,.85), rgba(95,224,255,.35) 38%, rgba(28,143,196,0) 39%),
     radial-gradient(circle at 70% 75%, rgba(123,92,255,.55), transparent 45%),
@@ -858,6 +859,14 @@ a.shot__frame:hover, a.shot__frame:focus-visible {
     conic-gradient(from 20deg, #bfe9ff, #f3c6ff, #fff6b8, #b8ffd9, #bfe9ff);
 }
 .cd { position: relative; z-index: 0; }
+/* Portada real pixelada dentro del estuche; el brillo y el lomo van encima */
+.cd__case--art { background: #05060f; }
+.cd__case--art img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; image-rendering: pixelated; border-radius: inherit; }
+.cd__case--art::before {
+  content: ""; position: absolute; inset: 0; z-index: 1; border-radius: inherit; pointer-events: none;
+  background: linear-gradient(135deg, rgba(255,255,255,.28) 0 16%, rgba(255,255,255,0) 38%);
+  box-shadow: inset 9px 0 0 rgba(0,0,0,.35), inset 10px 0 0 rgba(255,255,255,.15);
+}
 .cd__title { font-weight: bold; font-size: 14px; line-height: 1.2; }
 .cd__artist, .cd__year { font-size: 12px; color: var(--niebla); }
 .cd__note { font-size: 12px; font-style: italic; color: var(--niebla); }
@@ -875,6 +884,9 @@ a.shot__frame:hover, a.shot__frame:focus-visible {
 .rest { margin: 0; padding-left: 26px; columns: 3 160px; column-gap: 24px; font-size: 14px; color: var(--hielo); }
 .rest li { padding: 2px 0; break-inside: avoid; }
 .rest li::marker { font-size: 12px; color: var(--niebla); }
+.bands-ever { margin-top: 14px; }
+.bands-ever__list { margin: 8px 0 0; padding: 0; list-style: none; columns: 3 160px; column-gap: 24px; font-size: 14px; color: var(--niebla); }
+.bands-ever__list li { padding: 2px 0; break-inside: avoid; }
 
 .mini-list { margin: 0; padding-left: 18px; font-size: 14px; }
 

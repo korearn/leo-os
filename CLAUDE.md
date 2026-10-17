@@ -36,6 +36,7 @@ Todo se genera desde el vault de Obsidian (`D:\LeOS\Vault\Brain\Leo_OS`). Los sc
 - `Knowledge/Lore/Canon.md` = **Registro** con fecha de lo terminado (Fecha · Obra · Medio · Análisis, medios con las palabras de Now) + Patrones. Ya no guarda fichas. Cada script avisa si una obra del Registro no tiene ficha en su catálogo o si una ficha publicada no tiene Nota (`now_lib.revisar_registro`).
 - **Estados derivados de Now:** "Jugando" en Shelf, "Escuchando ahora" en música y "Leyendo" de manga salen de Now.md; no se escriben a mano en los catálogos.
 - **Audio de Aero Memory:** Neocities gratis no acepta MP3. Los MP3 van en `audio/aero-memory/` (nombres en `music.json`), se suben a GitHub y se sirven con **GitHub Pages** (`https://korearn.github.io/leo-os/audio/aero-memory/`). Si no cargan, el reproductor muestra "Sin señal" y, si hay enlace de Spotify, el botón ⏏ abre el álbum.
+- **Top de bandas desde Spotify:** `python tools/spotify_top.py --api` (app propia en developer.spotify.com con Premium; Client ID en `tools/spotify.local.json`, ignorado por git; redirect `http://127.0.0.1:8765/callback`) o `--historial <carpeta>` (historial descargado de Spotify, todo el tiempo). Reescribe la lista de `Bands.md`; `--dry-run` para ver qué entra y qué sale.
 - Contador de visitas: `now_sync.py` lo lee de `https://neocities.org/api/info?sitename=leo-os` al correr; `index.html` intenta leerlo en vivo (puede fallar por CORS, entonces queda el del último sync).
 
 ## Flujo de Leo

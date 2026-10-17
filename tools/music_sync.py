@@ -3,7 +3,7 @@
 - Now.md (filas Music): "Escuchando ahora" (el artista se toma de Discos).
 - Records.md: "Discos" (los ⭐ salen como estuches de CD). "Mi nota" solo vive en el vault.
 - Canon.md: solo avisos (obras del Registro sin ficha).
-- Bands.md: el top de bandas (lista numerada, en orden).
+- Bands.md: "Top reciente" (numerada, de Spotify) y "De siempre" (las que han pasado por el top; salen plegadas).
 
 Reescribe en musica.html lo que hay entre <!-- music:ahora/discos/bandas:start/end -->.
 
@@ -23,8 +23,10 @@ import sys
 from pathlib import Path
 
 from now_lib import _clave, leer_now, revisar_registro
+from pixel_covers import slug
 
 AQUI = Path(__file__).resolve().parent
+SITIO = AQUI.parent
 e = html.escape
 PALETA = [("#1f5fb0", "#5fe0ff"), ("#7b3fa8", "#d6337a"), ("#2f8f4e", "#c9e27a"), ("#c2862a", "#3a2a57"),
           ("#0e7d6e", "#bff3ff"), ("#b83a3a", "#f2c230"), ("#3a3f9a", "#7b5cff"), ("#5a5a66", "#d9d9e0")]
@@ -56,13 +58,22 @@ def leer_tablas(ruta: Path) -> dict[str, list[dict]]:
     return tablas
 
 
-def leer_bandas(ruta: Path) -> list[str]:
-    bandas = []
+def leer_bandas(ruta: Path) -> tuple[list[str], list[str]]:
+    """Devuelve (top reciente numerado, 'De siempre'). Sin secciones, toda lista numerada es el top."""
+    top, siempre, seccion = [], [], ""
+    limpio = lambda s: re.sub(r"\[\[(?:[^\]|]+\|)?([^\]]+)\]\]", r"\1", s)
     for linea in ruta.read_text(encoding="utf-8").splitlines():
+        if linea.startswith("## "):
+            seccion = linea[3:].strip().lower()
+            continue
         m = re.match(r"^\s*\d+\.\s+(.+?)\s*$", linea)
-        if m:
-            bandas.append(re.sub(r"\[\[(?:[^\]|]+\|)?([^\]]+)\]\]", r"\1", m.group(1)))
-    return bandas
+        if m and seccion != "de siempre":
+            top.append(limpio(m.group(1)))
+            continue
+        m = re.match(r"^\s*[-*]\s+(.+?)\s*$", linea)
+        if m and seccion == "de siempre":
+            siempre.append(limpio(m.group(1)))
+    return top, siempre
 
 
 def colores(titulo: str, cfg: dict) -> str:
@@ -94,7 +105,12 @@ def html_discos(filas: list[dict], cfg: dict) -> str:
     for f in favs:
         titulo = f.get("disco", "")
         out.append(f'              <li class="cd" style="{e(colores(titulo, cfg))}">')
-        out.append('                <span class="cd__case" aria-hidden="true"></span>')
+        portada = SITIO / "img" / "covers" / f"{slug(titulo)}.png"
+        if portada.exists():
+            out.append('                <span class="cd__case cd__case--art" aria-hidden="true">'
+                       f'<img src="img/covers/{portada.name}" alt="" width="32" height="32" loading="lazy"></span>')
+        else:
+            out.append('                <span class="cd__case" aria-hidden="true"></span>')
         out.append(f'                <span class="cd__title">{e(titulo)}</span>')
         out.append(f'                <span class="cd__artist">{e(f.get("artista", ""))}</span>')
         if f.get("año"):
@@ -137,7 +153,7 @@ def html_aero(a: dict) -> str:
     return "\n".join(out) + "\n"
 
 
-def html_bandas(bandas: list[str], top: int) -> str:
+def html_bandas(bandas: list[str], top: int, siempre: list[str] | None = None) -> str:
     I = "            "
     out = [f'{I}<ol class="top10">']
     out += [f"{I}  <li>{e(b)}</li>" for b in bandas[:top]]
@@ -146,6 +162,14 @@ def html_bandas(bandas: list[str], top: int) -> str:
         out.append(f'{I}<ol class="rest" start="{top + 1}">')
         out += [f"{I}  <li>{e(b)}</li>" for b in bandas[top:]]
         out.append(f"{I}</ol>")
+    en_top = {b.lower() for b in bandas}
+    resto = sorted((b for b in (siempre or []) if b.lower() not in en_top), key=str.lower)
+    if resto:
+        out.append(f'{I}<details class="gamelist bands-ever">')
+        out.append(f'{I}  <summary>También de siempre <span class="gamelist__count">{len(resto)}</span></summary>')
+        out.append(f'{I}  <ul class="bands-ever__list">')
+        out += [f"{I}    <li>{e(b)}</li>" for b in resto]
+        out += [f"{I}  </ul>", f"{I}</details>"]
     return "\n".join(out) + "\n"
 
 
@@ -167,7 +191,7 @@ def main() -> None:
 
     cfg = json.loads((AQUI / "music.json").read_text(encoding="utf-8"))
     tablas = leer_tablas(Path(args.records or cfg["vault_records"]))
-    bandas = leer_bandas(Path(args.bands or cfg["vault_bands"]))
+    bandas, siempre = leer_bandas(Path(args.bands or cfg["vault_bands"]))
     discos = tablas.get("Discos", [])
     ahora = []
     ruta_now = Path(args.now or cfg.get("vault_now", ""))
@@ -190,7 +214,7 @@ def main() -> None:
     doc = pagina.read_text(encoding="utf-8")
     doc = reemplazar(doc, "ahora", html_ahora(ahora, discos))
     doc = reemplazar(doc, "discos", html_discos(discos, cfg))
-    doc = reemplazar(doc, "bandas", html_bandas(bandas, cfg.get("top", 10)))
+    doc = reemplazar(doc, "bandas", html_bandas(bandas, cfg.get("top", 10), siempre))
     if cfg.get("aero"):
         doc = reemplazar(doc, "aero", html_aero(cfg["aero"]))
     pagina.write_text(doc, encoding="utf-8", newline="\n")

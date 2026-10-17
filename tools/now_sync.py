@@ -22,6 +22,12 @@ import sys
 import urllib.request
 from pathlib import Path
 
+try:  # usa los certificados del sistema si está instalado truststore (ver spotify_top.py)
+    import truststore
+    truststore.inject_into_ssl()
+except ImportError:
+    pass
+
 from now_lib import AQUI, cargar_json, leer_now
 
 MESES = ["enero", "febrero", "marzo", "abril", "mayo", "junio", "julio",
