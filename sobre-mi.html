@@ -9,17 +9,32 @@
   <link rel="icon" href="/favicon.ico" sizes="any">
   <link rel="icon" href="/favicon.png" type="image/png">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
+  <!-- Sprites que flotan a los lados (solo en pantallas anchas) -->
+  <div class="sprites" aria-hidden="true">
+    <img class="sprite sprite--b" src="img/3d/memoria.gif" alt="" width="56" height="56">
+    <img class="sprite sprite--c" src="img/3d/gema.gif" alt="" width="56" height="56">
+  </div>
   <div class="page">
     <header class="subhead">
       <a class="wordmark wordmark--small" href="index.html">LeOS</a>
-      <a class="subhead__back" href="index.html">Volver a la memory card</a>
+      <nav aria-label="Secciones">
+        <ul class="navbar">
+        <li><a href="index.html">Inicio</a></li>
+        <li><a href="juegos.html">Juegos</a></li>
+        <li><a href="anime.html">Anime</a></li>
+        <li><a href="musica.html">Música</a></li>
+        <li><a href="cine.html">Cine</a></li>
+        <li><a href="galeria.html">Galería</a></li>
+        <li><a href="sobre-mi.html" aria-current="page">Sobre mí</a></li>
+        <li><a href="diario.html">Diario</a></li>
+        <li><a href="contactos.html">Contactos</a></li>
+        <li><a href="libro.html">Guestbook</a></li>
+        </ul>
+      </nav>
     </header>
 
     <main class="about">
@@ -97,6 +112,67 @@
         </div>
       </section>
 
+      <!-- Registro de actividad (antes "Ahora mismo" en la portada); lo llena tools/now_sync.py desde Now.md -->
+      <section class="window actividad" aria-labelledby="now-title">
+        <h2 class="window__title" id="now-title">Registro de actividad</h2>
+        <div class="window__body">
+          <p class="window__note">Lo que traigo en la consola, la tele y el buró últimamente.</p>
+          <ul class="now">
+            <!-- now:list:start -->
+              <li class="now__item" style="--medio: var(--m-game, var(--niebla))">
+                <span class="now__kind"><span class="now__swatch" aria-hidden="true"></span>Juego</span>
+                <span class="now__name">Star Wars Galactic Racer</span>
+                <code class="now__chip now__chip--abierto mono" title="Jugando, sin una meta fija">PLAY</code>
+                <span class="meter meter--abierto" role="img" aria-label="Jugando, sin una meta fija"><span style="--p: 100%"></span></span>
+              </li>
+              <li class="now__item" style="--medio: var(--m-anime, var(--niebla))">
+                <span class="now__kind"><span class="now__swatch" aria-hidden="true"></span>Anime</span>
+                <span class="now__name">Kimetsu no Yaiba: Yuukaku-hen</span>
+                <code class="now__chip now__chip--progreso mono" title="Ep. 1 de 11">E1/11</code>
+                <span class="meter meter--progreso" role="img" aria-label="Ep. 1 de 11"><span style="--p: 9%"></span></span>
+              </li>
+              <li class="now__item" style="--medio: var(--m-book, var(--niebla))">
+                <span class="now__kind"><span class="now__swatch" aria-hidden="true"></span>Libro</span>
+                <span class="now__name">Dune</span>
+                <code class="now__chip now__chip--progreso mono" title="Página 49 de 779">P49/779</code>
+                <span class="meter meter--progreso" role="img" aria-label="Página 49 de 779"><span style="--p: 6%"></span></span>
+              </li>
+              <li class="now__item" style="--medio: var(--m-comic, var(--niebla))">
+                <span class="now__kind"><span class="now__swatch" aria-hidden="true"></span>Cómic</span>
+                <span class="now__name">One World Under Doom</span>
+                <code class="now__chip now__chip--progreso mono" title="Número 4 de 9">#4/9</code>
+                <span class="meter meter--progreso" role="img" aria-label="Número 4 de 9"><span style="--p: 44%"></span></span>
+              </li>
+              <li class="now__item" style="--medio: var(--m-music, var(--niebla))">
+                <span class="now__kind"><span class="now__swatch" aria-hidden="true"></span>Música</span>
+                <span class="now__name">Yumeno Garden</span>
+                <code class="now__chip now__chip--abierto mono" title="Jugando, sin una meta fija">PLAY</code>
+                <span class="meter meter--abierto" role="img" aria-label="Jugando, sin una meta fija"><span style="--p: 100%"></span></span>
+              </li>
+            <!-- now:list:end -->
+          </ul>
+          <!-- now:rotacion:start -->
+            <div class="now__rot">
+              <p class="now__rot-bar"><span class="now__rot-title">En rotación</span></p>
+              <ul class="now now--compact">
+                <li class="now__item now__item--compact" style="--medio: var(--m-game, var(--niebla))">
+                  <span class="now__kind"><span class="now__swatch" aria-hidden="true"></span>Juego</span>
+                  <span class="now__name">Deadlock</span>
+                  <code class="now__chip now__chip--abierto mono" title="Jugando, sin una meta fija">PLAY</code>
+                  <span class="meter meter--abierto" role="img" aria-label="Jugando, sin una meta fija"><span style="--p: 100%"></span></span>
+                </li>
+                <li class="now__item now__item--compact" style="--medio: var(--m-anime, var(--niebla))">
+                  <span class="now__kind"><span class="now__swatch" aria-hidden="true"></span>Anime</span>
+                  <span class="now__name">Kuuchuu Buranko</span>
+                  <code class="now__chip now__chip--progreso mono" title="Ep. 6 de 11">E6/11</code>
+                  <span class="meter meter--progreso" role="img" aria-label="Ep. 6 de 11"><span style="--p: 55%"></span></span>
+                </li>
+              </ul>
+            </div>
+          <!-- now:rotacion:end -->
+        </div>
+      </section>
+
       <div class="about__cols">
         <section class="window" aria-labelledby="hi-title">
           <h2 class="window__title" id="hi-title">Hola</h2>
@@ -111,12 +187,130 @@
           </div>
         </section>
 
+        <!-- Instructivo estilo manual de juego japonés (取扱説明書): dos páginas como un folleto abierto. -->
+        <section class="manual" aria-labelledby="manual-title">
+          <header class="manual__cabeza">
+            <p class="manual__codigo">LEO-OS-001</p>
+            <h2 class="manual__titulo" id="manual-title"><span lang="ja">取扱説明書</span> <small>Instructivo de LeOS</small></h2>
+            <p class="manual__sub" lang="ja">LeOS の あそびかた</p>
+          </header>
+          <div class="manual__hojas">
+            <div class="manual__hoja">
+              <h3 class="manual__h"><span lang="ja">もくじ</span> Índice</h3>
+              <ol class="manual__indice">
+                <li><span lang="ja">あそびかた</span> · Cómo jugar</li>
+                <li><span lang="ja">そうさ</span> · Controles</li>
+                <li><span lang="ja">ひみつ</span> · Secretos</li>
+                <li><span lang="ja">ご注意</span> · Precauciones</li>
+              </ol>
+              <h3 class="manual__h"><span class="manual__n">①</span> <span lang="ja">あそびかた</span> Cómo jugar</h3>
+              <p>Entra por el Menú HOME de la 3DS en la portada: cada app es una sección. En las demás páginas, la botonera de
+                arriba te lleva a cualquier lado.</p>
+              <h3 class="manual__h"><span class="manual__n">②</span> <span lang="ja">そうさ</span> Controles</h3>
+              <ul class="manual__lista">
+                <li><b>Juegos:</b> elige un cartucho y mételo a la consola.</li>
+                <li><b>Anime:</b> cambia de canal con ▲ ▼ o haz clic en una cinta.</li>
+                <li><b>Música:</b> haz clic en un CD para abrirlo, o en una banda del cartel.</li>
+                <li><b>Cine:</b> haz clic en un boleto para romperlo y ver el reverso.</li>
+              </ul>
+              <p class="manual__pag">- 2 -</p>
+            </div>
+            <div class="manual__hoja">
+              <h3 class="manual__h"><span class="manual__n">③</span> <span lang="ja">ひみつ</span> Secretos</h3>
+              <p>Hay ocho estrellas escondidas, una en cada página. Si las juntas todas, la ranura <b>???</b> del Menú HOME
+                se abre. Lo que hay del otro lado no viene en este instructivo.</p>
+              <p>Si el contador de la portada marca una <span lang="ja">キリ番</span>, toma captura y avísame en el
+                <a href="libro.html">libro de visitas</a>.</p>
+              <h3 class="manual__h"><span class="manual__n">④</span> <span lang="ja">使用上のご注意</span> Precauciones</h3>
+              <div class="manual__aviso">
+                <p><b>⚠</b> Usa LeOS en un cuarto bien iluminado y no muy cerca de la pantalla (aunque se ve mejor de noche).</p>
+                <p>Este sitio tiene GIFs y blinkies que parpadean. Si se te cansa la vista, descansa un rato.</p>
+              </div>
+              <p class="manual__pag">- 3 -</p>
+            </div>
+          </div>
+        </section>
+
+        <section class="window gustos-tabla" aria-labelledby="mg-title">
+          <h2 class="window__title" id="mg-title">Me gusta / No me gusta</h2>
+          <div class="window__body">
+            <!-- Borrador escrito por Claude a partir de lo que Leo ha contado; Leo lo va ajustando. -->
+            <table class="mg">
+              <thead><tr><th scope="col">Me gusta</th><th scope="col">No me gusta</th></tr></thead>
+              <tbody>
+                <tr><td>El clic de una 3DS al abrirse</td><td>Juegos que piden internet para jugar solo</td></tr>
+                <tr><td>Shoegaze a todo volumen con audífonos</td><td>Que me cuenten el final de algo</td></tr>
+                <tr><td>Los CDs iridiscentes y sus estuches</td><td>Remasters que le quitan el estilo al original</td></tr>
+                <tr><td>Explorar los rincones del mapa que nadie visita</td><td>Los títulos de YouTube EN MAYÚSCULAS</td></tr>
+                <tr><td>La música de las Ruinas Alfa</td><td>Tiendas digitales que cierran y se llevan tus juegos</td></tr>
+                <tr><td>Pixel art a escala entera</td><td>Que un algoritmo decida qué escucho</td></tr>
+                <tr><td>Tocar la guitarra sin plan</td><td>Las baterías hinchadas de las consolas viejas</td></tr>
+                <tr><td>Ciencia ficción con pantallas de tubo</td><td>Los avisos de cookies (aquí no hay, tranquilo)</td></tr>
+              </tbody>
+            </table>
+            <p class="userboxes"><img src="img/userboxes/cryptids.jpg" alt="This user loves cryptids" width="239" height="49" loading="lazy"></p>
+          </div>
+        </section>
+
+        <!-- Tarjeta StreetPass: el contador de encuentros es del visitante (js/streetpass.js) -->
+        <section class="streetpass" aria-labelledby="sp-title">
+          <p class="streetpass__barra"><span id="sp-title">Tarjeta StreetPass</span><span class="streetpass__led" aria-hidden="true"></span></p>
+          <div class="streetpass__cuerpo">
+            <span class="streetpass__mii" aria-hidden="true"></span>
+            <div>
+              <p class="streetpass__nombre">LeOS</p>
+              <p class="streetpass__saludo">"¡Hola! Pasa, siéntate y curiosea."</p>
+            </div>
+          </div>
+          <dl class="streetpass__datos">
+            <dt>Región</dt><dd>México</dd>
+            <dt>Juego favorito</dt><dd>Majora's Mask</dd>
+            <dt>Hobby</dt><dd>Tocar la guitarra</dd>
+            <dt>Nos hemos cruzado</dt><dd class="js-encuentros">1 vez</dd>
+            <dt>Primer encuentro</dt><dd class="js-primer-encuentro">hoy</dd>
+          </dl>
+        </section>
+
+        <!-- Stamps de colecciones de la web vieja (99x56). Para agregar uno: guárdalo en img/stamps/ y copia un <li>. -->
+        <section class="window stamps-ventana" aria-labelledby="stamps-title">
+          <h2 class="window__title" id="stamps-title">Stamps</h2>
+          <div class="window__body">
+            <ul class="stamps">
+              <li><img src="img/stamps/fierce-deity.png" alt="Fierce Deity" width="99" height="56" loading="lazy"></li>
+              <li><img src="img/stamps/MM.gif" alt="Majora's Mask" width="99" height="56" loading="lazy"></li>
+              <li><img src="img/stamps/skullkid.gif" alt="Skull Kid" width="99" height="56" loading="lazy"></li>
+              <li><img src="img/stamps/Triforce.gif" alt="Trifuerza" width="99" height="56" loading="lazy"></li>
+              <li><img src="img/stamps/zelda1.gif" alt="Zelda" width="99" height="56" loading="lazy"></li>
+              <li><img src="img/stamps/3ds.gif" alt="Nintendo DS" width="99" height="56" loading="lazy"></li>
+              <li><img src="img/stamps/gameboy.gif" alt="Game Boy" width="99" height="56" loading="lazy"></li>
+              <li><img src="img/stamps/y3q72n.png" alt="Control de Nintendo 64" width="99" height="56" loading="lazy"></li>
+              <li><img src="img/stamps/galaga.gif" alt="Galaga" width="99" height="56" loading="lazy"></li>
+              <li class="stamps__par"><img src="img/stamps/portal1.png" alt="Portal (izquierda)" width="99" height="56" loading="lazy"><img src="img/stamps/portal2.png" alt="Portal (derecha)" width="99" height="56" loading="lazy"></li>
+              <li><img src="img/stamps/mmf-mph.gif" alt="Mmf mmmph" width="99" height="56" loading="lazy"></li>
+              <li><img src="img/stamps/creepypasta.gif" alt="Creepypasta" width="99" height="56" loading="lazy"></li>
+              <li><img src="img/stamps/black-hat-man.png" alt="Black Hat Man" width="99" height="56" loading="lazy"></li>
+              <li><img src="img/stamps/hipnosis.gif" alt="Espiral hipnótica" width="99" height="56" loading="lazy"></li>
+              <li><img src="img/stamps/mcr.gif" alt="My Scandalous Romance" width="99" height="56" loading="lazy"></li>
+              <li><img src="img/stamps/noodles-gorillaz.gif" alt="Noodle, de Gorillaz" width="99" height="56" loading="lazy"></li>
+              <li><img src="img/stamps/make-site.jpg" alt="Maybe you should make your own website" width="99" height="56" loading="lazy"></li>
+              <li><img src="img/stamps/onmyputer.gif" alt="Un gato en la compu" width="99" height="56" loading="lazy"></li>
+              <li><img src="img/stamps/nyan-cat.gif" alt="Nyan Cat" width="99" height="56" loading="lazy"></li>
+              <li><img src="img/stamps/carpet3.png" alt="Alfombra de arcade" width="99" height="56" loading="lazy"></li>
+              <li><img src="img/stamps/carpet4.gif" alt="Alfombra de arcade" width="99" height="56" loading="lazy"></li>
+              <li><img src="img/stamps/carpet5.png" alt="Alfombra de arcade" width="99" height="56" loading="lazy"></li>
+              <li><img src="img/stamps/tokyo-cisco1.png" alt="Confeti" width="99" height="56" loading="lazy"></li>
+              <li><img src="img/stamps/blueberry.png" alt="Moras azules" width="99" height="56" loading="lazy"></li>
+            </ul>
+            <p class="window__note">Pasa el mouse para verlos a todo color. Ninguno es mío: vienen de colecciones como Cade's Garden; si uno es tuyo, avísame y te doy crédito.</p>
+          </div>
+        </section>
+
         <section class="window" aria-labelledby="rules-title">
           <h2 class="window__title" id="rules-title">Reglas de la casa</h2>
           <div class="window__body">
             <ul class="mini-list">
-              <li>Un buen juego respeta tu tiempo.</li>
-              <li>Veo y juego por gusto, no por ponerme al corriente.</li>
+              <li>Si algo deja de disfrutarse, se pausa sin culpa.</li>
+              <li>Lo que me nace va primero; el hype puede esperar.</li>
               <li>La tecnología vieja no envejece: se vuelve estética.</li>
             </ul>
           </div>
@@ -126,10 +320,11 @@
           <h2 class="window__title" id="col-title">Cómo está hecho</h2>
           <div class="window__body">
             <dl class="specs">
-              <dt>Código</dt><dd>HTML y CSS a mano, sin frameworks</dd>
+              <dt>Código</dt><dd>HTML y CSS a mano, un poco de JavaScript, sin frameworks</dd>
               <dt>Contenido</dt><dd>Notas de Obsidian convertidas con scripts de Python</dd>
-              <dt>Letras</dt><dd>Pixelify Sans y Trebuchet MS</dd>
-              <dt>Casa</dt><dd>Neocities</dd>
+              <dt>Letras</dt><dd>Pixelify Sans y Tahoma (la de Windows XP)</dd>
+              <dt>Casa</dt><dd>Neocities (el audio vive en GitHub Pages)</dd>
+              <dt>Firmas</dt><dd><a href="libro.html">Guestbook</a> en Atabook</dd>
             </dl>
           </div>
         </section>
@@ -137,9 +332,13 @@
     </main>
 
     <footer class="footer">
+      <p class="footer__best">Mejor visto con cualquier navegador a 1024×768</p>
       <p>Hecho a mano y alojado en Neocities. Se ve mejor de noche.</p>
     </footer>
   </div>
+  <script src="js/streetpass.js" defer></script>
+  <script src="js/estrellas.js" defer></script>
+  <script src="js/mascota.js" defer></script>
 </body>
 
 </html>

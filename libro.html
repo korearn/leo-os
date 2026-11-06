@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Libro de visitas | LeOS</title>
+  <meta name="description" content="Firma el libro de visitas de LeOS y déjame una recomendación.">
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" href="/favicon.png" type="image/png">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Sprites que flotan a los lados (solo en pantallas anchas) -->
+  <div class="sprites" aria-hidden="true">
+    <img class="sprite sprite--a" src="img/3d/corazon.gif" alt="" width="56" height="56">
+    <img class="sprite sprite--d" src="img/sprites/luna.png" alt="" width="66" height="66">
+  </div>
+  <div class="page">
+    <header class="subhead">
+      <a class="wordmark wordmark--small" href="index.html">LeOS</a>
+      <nav aria-label="Secciones">
+        <ul class="navbar">
+        <li><a href="index.html">Inicio</a></li>
+        <li><a href="juegos.html">Juegos</a></li>
+        <li><a href="anime.html">Anime</a></li>
+        <li><a href="musica.html">Música</a></li>
+        <li><a href="cine.html">Cine</a></li>
+        <li><a href="galeria.html">Galería</a></li>
+        <li><a href="sobre-mi.html">Sobre mí</a></li>
+        <li><a href="diario.html">Diario</a></li>
+        <li><a href="contactos.html">Contactos</a></li>
+        <li><a href="libro.html" aria-current="page">Guestbook</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <section class="window intro" aria-labelledby="l-title">
+      <h1 class="window__title" id="l-title">Libro de visitas</h1>
+      <div class="window__body">
+        <p>Gracias por pasar. Firma el libro, dime cómo llegaste aquí y, si quieres, <b class="hl">déjame una recomendación</b>: un juego, un disco, un anime o una película que creas que me puede gustar después de ver este sitio. Las leo todas.</p>
+      </div>
+    </section>
+
+    <main class="layout">
+      <div class="col-main">
+        <section class="window" aria-labelledby="gb-title">
+          <h2 class="window__title" id="gb-title">Firmas</h2>
+          <div class="window__body">
+            <!-- Libro de visitas de Atabook, embebido sin JavaScript -->
+            <div class="guestbook">
+              <iframe src="https://leo-os.atabook.org/" title="Libro de visitas de LeOS" loading="lazy"></iframe>
+            </div>
+            <p class="window__more"><a href="https://leo-os.atabook.org/" target="_blank" rel="noopener">Abrir el libro en otra pestaña</a></p>
+          </div>
+        </section>
+      </div>
+
+      <aside class="col-side">
+        <section class="window" aria-labelledby="ideas-title">
+          <h2 class="window__title" id="ideas-title">¿Qué escribo?</h2>
+          <div class="window__body">
+            <ul class="prompts">
+              <li>¿Cómo encontraste LeOS?</li>
+              <li>Un juego que no aparezca en mi estante y debería.</li>
+              <li>Un disco para escuchar de noche.</li>
+              <li>Un anime o una peli de ciencia ficción que te haya volado la cabeza.</li>
+              <li>El enlace a tu sitio, para ir a visitarte.</li>
+            </ul>
+          </div>
+        </section>
+
+        <section class="window" aria-labelledby="rules-title">
+          <h2 class="window__title" id="rules-title">Reglas de la casa</h2>
+          <div class="window__body">
+            <ul class="mini-list">
+              <li>Buena onda ante todo.</li>
+              <li>Nada de spam ni publicidad.</li>
+              <li>Me reservo el derecho de borrar lo que no vaya con la casa.</li>
+            </ul>
+          </div>
+        </section>
+      </aside>
+    </main>
+
+    <footer class="footer">
+      <p class="footer__best">Mejor visto con cualquier navegador a 1024×768</p>
+      <p>Hecho a mano y alojado en Neocities. Se ve mejor de noche.</p>
+    </footer>
+  </div>
+
+  <script src="js/estrellas.js" defer></script>
+  <script src="js/mascota.js" defer></script>
+</body>
+</html>

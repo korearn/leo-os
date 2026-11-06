@@ -1,8 +1,10 @@
-"""Sincroniza la sección "Ahora mismo" del sitio con la nota Now.md del vault.
+"""Sincroniza el "Registro de actividad" (antes "Ahora mismo") con la nota Now.md del vault.
 
-Lee "## Activo" y "## Rotación" de Now.md y reescribe en index.html lo que hay entre
-los marcadores <!-- now:list -->, <!-- now:rotacion -->, <!-- now:ticker -->,
-<!-- now:date --> y <!-- now:visitas -->. Formatos en tools/now.json; medios en tools/medios.json.
+Lee "## Activo" y "## Rotación" de Now.md y reescribe lo que hay entre los marcadores
+<!-- now:list -->, <!-- now:rotacion -->, <!-- now:ticker -->, <!-- now:date --> y <!-- now:visitas -->
+en index.html y en las páginas de "paginas_extra" de now.json (por defecto sobre-mi.html, que es
+donde vive la lista desde 2026-11-04). Cada marcador es opcional por página, pero al menos una
+página debe tener now:list. Formatos en tools/now.json; medios en tools/medios.json.
 
 Además avisa (sin bloquear) si hay dos obras del mismo medio en Activo, si un medio no existe
 o si algo de Activo lleva más de N días sin avanzar (lo recuerda en tools/now_state.json).
@@ -28,7 +30,7 @@ try:  # usa los certificados del sistema si está instalado truststore (ver spot
 except ImportError:
     pass
 
-from now_lib import AQUI, cargar_json, leer_now
+from now_lib import AQUI, cargar_json, leer_now, resolver
 
 MESES = ["enero", "febrero", "marzo", "abril", "mayo", "junio", "julio",
          "agosto", "septiembre", "octubre", "noviembre", "diciembre"]
@@ -74,7 +76,7 @@ def html_rotacion(items: list[dict]) -> str:
     filas = "\n".join(html_item(it, I + "    ", compacto=True) for it in items)
     return (f'{I}<div class="now__rot">\n'
             f'{I}  <p class="now__rot-bar"><span class="now__rot-title">En rotación</span>'
-            f'<span class="now__rot-note">Lo sigo, sin prisa</span></p>\n'
+            f'</p>\n'
             f'{I}  <ul class="now now--compact">\n{filas}\n{I}  </ul>\n'
             f'{I}</div>\n')
 
@@ -106,14 +108,13 @@ def html_contador(n: int) -> str:
     return "".join(f"<span>{d}</span>" for d in f"{n:06d}")
 
 
-def reemplazar(doc: str, nombre: str, nuevo: str, obligatorio: bool = True) -> str:
+def reemplazar(doc: str, nombre: str, nuevo: str, obligatorio: bool = False, pagina: str = "index.html") -> str:
     import re
     patron = re.compile(
         rf"(<!-- now:{nombre}:start -->\n?)(.*?)([ \t]*<!-- now:{nombre}:end -->)", re.S)
     if not patron.search(doc):
         if obligatorio:
-            sys.exit(f"Falta el marcador now:{nombre} en index.html")
-        print(f"(no hay marcador now:{nombre} en index.html; se omite)")
+            sys.exit(f"Falta el marcador now:{nombre} en {pagina}")
         return doc
     return patron.sub(lambda m: m.group(1) + nuevo + m.group(3), doc, count=1)
 
@@ -147,7 +148,7 @@ def main() -> None:
     args = ap.parse_args()
 
     cfg = cargar_json("now.json")
-    now, avisos = leer_now(Path(args.now or cfg["vault_now"]), cfg)
+    now, avisos = leer_now(resolver(args.now or cfg["vault_now"]), cfg)
     activo, rotacion = now["activo"], now["rotacion"]
     index = (AQUI / cfg["index"]).resolve()
 
@@ -165,21 +166,37 @@ def main() -> None:
         print("\n(dry-run: no se escribió nada)")
         return
 
-    doc = index.read_text(encoding="utf-8")
-    doc = reemplazar(doc, "list", html_lista(activo))
-    doc = reemplazar(doc, "rotacion", html_rotacion(rotacion if cfg.get("rotacion_en_web", True) else []),
-                     obligatorio=False)
-    doc = reemplazar(doc, "ticker", html_ticker(activo, cfg.get("ticker_medios", [])))
-    doc = reemplazar(doc, "date", fecha_hoy())
-    if cfg.get("neocities_sitio") and "<!-- now:visitas:start -->" in doc:
-        n = visitas(cfg["neocities_sitio"])
-        if n is None:
-            print("(sin conexión con Neocities: el contador se queda igual)")
-        else:
-            doc = reemplazar(doc, "visitas", html_contador(n))
-            print(f"Visitas: {n}")
-    index.write_text(doc, encoding="utf-8", newline="\n")
-    print(f"\nListo: {index.name} actualizado ({len(activo)} activos, {len(rotacion)} en rotación).")
+    paginas = [index] + [(index.parent / p).resolve() for p in cfg.get("paginas_extra", ["sobre-mi.html"])]
+    piezas = {
+        "list": html_lista(activo),
+        "rotacion": html_rotacion(rotacion if cfg.get("rotacion_en_web", True) else []),
+        "ticker": html_ticker(activo, cfg.get("ticker_medios", [])),
+        "date": fecha_hoy(),
+    }
+    n_visitas = None
+    con_lista = []
+    for pagina in paginas:
+        if not pagina.exists():
+            print(f"(no encontré {pagina.name}; se omite)")
+            continue
+        doc = pagina.read_text(encoding="utf-8")
+        antes = doc
+        for nombre, nuevo in piezas.items():
+            doc = reemplazar(doc, nombre, nuevo, pagina=pagina.name)
+        if "<!-- now:list:start -->" in doc:
+            con_lista.append(pagina.name)
+        if cfg.get("neocities_sitio") and "<!-- now:visitas:start -->" in doc:
+            if n_visitas is None:
+                n_visitas = visitas(cfg["neocities_sitio"])
+                print("(sin conexión con Neocities: el contador se queda igual)" if n_visitas is None else f"Visitas: {n_visitas}")
+            if n_visitas is not None:
+                doc = reemplazar(doc, "visitas", html_contador(n_visitas), pagina=pagina.name)
+        if doc != antes:
+            pagina.write_text(doc, encoding="utf-8", newline="\n")
+            print(f"  ✓ {pagina.name}")
+    if not con_lista:
+        sys.exit("Ninguna página tiene el marcador now:list (debería estar en sobre-mi.html)")
+    print(f"\nListo: {len(activo)} activos, {len(rotacion)} en rotación (lista en {', '.join(con_lista)}).")
 
 
 if __name__ == "__main__":

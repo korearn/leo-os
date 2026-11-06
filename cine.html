@@ -9,17 +9,32 @@
   <link rel="icon" href="/favicon.ico" sizes="any">
   <link rel="icon" href="/favicon.png" type="image/png">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
+  <!-- Sprites que flotan a los lados (solo en pantallas anchas) -->
+  <div class="sprites" aria-hidden="true">
+    <img class="sprite sprite--b" src="img/3d/planeta.gif" alt="" width="56" height="56">
+    <img class="sprite sprite--c" src="img/3d/gema.gif" alt="" width="56" height="56">
+  </div>
   <div class="page">
     <header class="subhead">
       <a class="wordmark wordmark--small" href="index.html">LeOS</a>
-      <a class="subhead__back" href="index.html">Volver a la memory card</a>
+      <nav aria-label="Secciones">
+        <ul class="navbar">
+        <li><a href="index.html">Inicio</a></li>
+        <li><a href="juegos.html">Juegos</a></li>
+        <li><a href="anime.html">Anime</a></li>
+        <li><a href="musica.html">Música</a></li>
+        <li><a href="cine.html" aria-current="page">Cine</a></li>
+        <li><a href="galeria.html">Galería</a></li>
+        <li><a href="sobre-mi.html">Sobre mí</a></li>
+        <li><a href="diario.html">Diario</a></li>
+        <li><a href="contactos.html">Contactos</a></li>
+        <li><a href="libro.html">Guestbook</a></li>
+        </ul>
+      </nav>
     </header>
 
     <section class="window intro" aria-labelledby="c-title">
@@ -44,6 +59,10 @@
                   <span class="ticket__admit">Admite uno</span>
                   <span class="ticket__title">Godzilla</span>
                   <span class="ticket__note">El kaiju original, hijo de la era atómica</span>
+                  <div class="ticket__back">
+                    <span class="ticket__meta">Dirige Ishirō Honda · Kaiju, tokusatsu, terror</span>
+                    <span class="ticket__sinopsis">Un monstruo despertado por las pruebas nucleares arrasa Japón, y un científico solitario guarda la única arma capaz de detenerlo.</span>
+                  </div>
                 </div>
                 <div class="ticket__stub"><span class="ticket__year">1954</span></div>
               </li>
@@ -52,6 +71,10 @@
                   <span class="ticket__admit">Admite uno</span>
                   <span class="ticket__title">2001: A Space Odyssey</span>
                   <span class="ticket__note">Ciencia ficción contemplativa y HAL 9000</span>
+                  <div class="ticket__back">
+                    <span class="ticket__meta">Dirige Stanley Kubrick · Ciencia ficción</span>
+                    <span class="ticket__sinopsis">Un monolito hallado bajo la superficie lunar lleva a una misión a Júpiter controlada por HAL 9000, la computadora de a bordo.</span>
+                  </div>
                 </div>
                 <div class="ticket__stub"><span class="ticket__year">1968</span></div>
               </li>
@@ -60,22 +83,22 @@
                   <span class="ticket__admit">Admite uno</span>
                   <span class="ticket__title">Star Wars</span>
                   <span class="ticket__note">El viaje del héroe en una galaxia lejana</span>
+                  <div class="ticket__back">
+                    <span class="ticket__meta">Dirige George Lucas · Space opera, fantasía científica</span>
+                    <span class="ticket__sinopsis">Un granjero de un planeta desértico se une a la rebelión contra el Imperio y descubre la Fuerza.</span>
+                  </div>
                 </div>
                 <div class="ticket__stub"><span class="ticket__year">1977</span></div>
-              </li>
-              <li class="ticket" style="--ink:#0e7d6e">
-                <div class="ticket__main">
-                  <span class="ticket__admit">Admite uno</span>
-                  <span class="ticket__title">Alien</span>
-                  <span class="ticket__note">Terror en el espacio profundo</span>
-                </div>
-                <div class="ticket__stub"><span class="ticket__year">1979</span></div>
               </li>
               <li class="ticket" style="--ink:#d6802f">
                 <div class="ticket__main">
                   <span class="ticket__admit">Admite uno</span>
                   <span class="ticket__title">Back to the Future</span>
                   <span class="ticket__note">Retrofuturismo y líneas temporales</span>
+                  <div class="ticket__back">
+                    <span class="ticket__meta">Dirige Robert Zemeckis · Ciencia ficción, comedia</span>
+                    <span class="ticket__sinopsis">Marty McFly viaja por accidente de 1985 a 1955 en el DeLorean del Doc y tiene que lograr que sus padres se enamoren para no borrarse a sí mismo.</span>
+                  </div>
                 </div>
                 <div class="ticket__stub"><span class="ticket__year">1985</span></div>
               </li>
@@ -84,22 +107,22 @@
                   <span class="ticket__admit">Admite uno</span>
                   <span class="ticket__title">Men in Black</span>
                   <span class="ticket__note">Aliens, trajes negros y estética noventera</span>
+                  <div class="ticket__back">
+                    <span class="ticket__meta">Dirige Barry Sonnenfeld · Ciencia ficción, comedia, acción</span>
+                    <span class="ticket__sinopsis">Un policía de Nueva York entra a una agencia secreta que vigila a los extraterrestres que viven en la Tierra.</span>
+                  </div>
                 </div>
                 <div class="ticket__stub"><span class="ticket__year">1997</span></div>
               </li>
               <li class="ticket" style="--ink:#0e7d6e">
                 <div class="ticket__main">
                   <span class="ticket__admit">Admite uno</span>
-                  <span class="ticket__title">Solanin</span>
-                  <span class="ticket__note">Veinteañeros, bandas y qué hacer con la vida</span>
-                </div>
-                <div class="ticket__stub"><span class="ticket__year">2010</span></div>
-              </li>
-              <li class="ticket" style="--ink:#0e7d6e">
-                <div class="ticket__main">
-                  <span class="ticket__admit">Admite uno</span>
                   <span class="ticket__title">Blade Runner 2049</span>
                   <span class="ticket__note">Neo-noir y soledad de máquina</span>
+                  <div class="ticket__back">
+                    <span class="ticket__meta">Dirige Denis Villeneuve · Ciencia ficción, neo-noir</span>
+                    <span class="ticket__sinopsis">El oficial K descubre un secreto enterrado durante décadas que lo lleva a buscar a Rick Deckard, un blade runner desaparecido.</span>
+                  </div>
                 </div>
                 <div class="ticket__stub"><span class="ticket__year">2017</span></div>
               </li>
@@ -116,8 +139,7 @@
               <li><span class="guide__ch">CH 01</span><span class="guide__show">Invader Zim<small>2001</small></span><span class="guide__meta">Sci-fi oscura y absurda, de la infancia</span></li>
               <li><span class="guide__ch">CH 02</span><span class="guide__show">Adventure Time<small>2010</small></span><span class="guide__meta">Fantasía posapocalíptica, de la infancia</span></li>
               <li><span class="guide__ch">CH 03</span><span class="guide__show">Love, Death &amp; Robots<small>2019</small></span><span class="guide__meta">Antología de ciencia ficción animada</span></li>
-              <li><span class="guide__ch">CH 04</span><span class="guide__show">The Boys<small>2019</small></span><span class="guide__meta">Superhéroes sin filtro</span></li>
-              <li><span class="guide__ch">CH 05</span><span class="guide__show">Loki<small>2021</small></span><span class="guide__meta">Líneas temporales y multiverso</span></li>
+              <li><span class="guide__ch">CH 04</span><span class="guide__show">Loki<small>2021</small></span><span class="guide__meta">Líneas temporales y multiverso</span></li>
               <!-- cine:canales:end -->
             </ol>
           </div>
@@ -128,12 +150,6 @@
           <div class="window__body">
             <ul class="comics">
               <!-- cine:comics:start -->
-              <li class="comic" style="--cov:#7b3fa8">
-                <span class="comic__bag" aria-hidden="true"></span>
-                <span class="comic__name">The Flash: Crisis on Infinite Earths</span>
-                <span class="comic__meta">Marv Wolfman, George Pérez, 1985</span>
-                <span class="comic__note">La crisis que reinició el multiverso</span>
-              </li>
               <li class="comic" style="--cov:#1f5fb0">
                 <span class="comic__bag" aria-hidden="true"></span>
                 <span class="comic__name">Scott Pilgrim</span>
@@ -164,10 +180,11 @@
         </section>
 
         <section class="window" aria-labelledby="l-title">
-          <h2 class="window__title" id="l-title">Mi lista</h2>
+          <h2 class="window__title" id="l-title">El archivo</h2>
           <div class="window__body">
+            <p class="window__note">Todo lo que he visto y leído, plegado. Lo que más me marcó está en la taquilla, la guía y la caja.</p>
             <!-- cine:lista:start -->
-            <details class="gamelist" open>
+            <details class="gamelist">
               <summary>Películas <span class="gamelist__count">15</span></summary>
               <ul class="gamelist__items">
                 <li><span class="gl__year">1942</span> <span class="gl__name">Casablanca</span> <span></span></li>
@@ -175,11 +192,11 @@
                 <li><span class="gl__year">1966</span> <span class="gl__name">Star Trek</span> <span></span></li>
                 <li><span class="gl__year">1968</span> <span class="gl__name">2001: A Space Odyssey</span> <span></span> <span class="gl__fav" title="Favorito">⭐</span></li>
                 <li><span class="gl__year">1977</span> <span class="gl__name">Star Wars</span> <span></span> <span class="gl__fav" title="Favorito">⭐</span></li>
-                <li><span class="gl__year">1979</span> <span class="gl__name">Alien</span> <span></span> <span class="gl__fav" title="Favorito">⭐</span></li>
+                <li><span class="gl__year">1979</span> <span class="gl__name">Alien</span> <span></span></li>
                 <li><span class="gl__year">1985</span> <span class="gl__name">Back to the Future</span> <span></span> <span class="gl__fav" title="Favorito">⭐</span></li>
                 <li><span class="gl__year">1997</span> <span class="gl__name">Men in Black</span> <span></span> <span class="gl__fav" title="Favorito">⭐</span></li>
                 <li><span class="gl__year">2005</span> <span class="gl__name">Constantine</span> <span></span></li>
-                <li><span class="gl__year">2010</span> <span class="gl__name">Solanin</span> <span></span> <span class="gl__fav" title="Favorito">⭐</span></li>
+                <li><span class="gl__year">2010</span> <span class="gl__name">Solanin</span> <span></span></li>
                 <li><span class="gl__year">2014</span> <span class="gl__name">Guardians of the Galaxy</span> <span></span></li>
                 <li><span class="gl__year">2017</span> <span class="gl__name">Blade Runner 2049</span> <span></span> <span class="gl__fav" title="Favorito">⭐</span></li>
                 <li><span class="gl__year">2020</span> <span class="gl__name">Sonic the Hedgehog</span> <span></span></li>
@@ -188,21 +205,22 @@
               </ul>
             </details>
             <details class="gamelist">
-              <summary>Series <span class="gamelist__count">7</span></summary>
+              <summary>Series <span class="gamelist__count">8</span></summary>
               <ul class="gamelist__items">
                 <li><span class="gl__year">1999</span> <span class="gl__name">SpongeBob SquarePants</span> <span></span></li>
                 <li><span class="gl__year">2001</span> <span class="gl__name">Invader Zim</span> <span></span> <span class="gl__fav" title="Favorito">⭐</span></li>
                 <li><span class="gl__year">2005</span> <span class="gl__name">Ben 10</span> <span></span></li>
                 <li><span class="gl__year">2010</span> <span class="gl__name">Adventure Time</span> <span></span> <span class="gl__fav" title="Favorito">⭐</span></li>
                 <li><span class="gl__year">2019</span> <span class="gl__name">Love, Death &amp; Robots</span> <span></span> <span class="gl__fav" title="Favorito">⭐</span></li>
-                <li><span class="gl__year">2019</span> <span class="gl__name">The Boys</span> <span></span> <span class="gl__fav" title="Favorito">⭐</span></li>
+                <li><span class="gl__year">2019</span> <span class="gl__name">The Boys</span> <span></span></li>
                 <li><span class="gl__year">2021</span> <span class="gl__name">Loki</span> <span></span> <span class="gl__fav" title="Favorito">⭐</span></li>
+                <li><span class="gl__year">—</span> <span class="gl__name">Cyberpunk Edgerunners</span> <span></span></li>
               </ul>
             </details>
             <details class="gamelist">
               <summary>Cómics <span class="gamelist__count">11</span></summary>
               <ul class="gamelist__items">
-                <li><span class="gl__year">1985</span> <span class="gl__name">The Flash: Crisis on Infinite Earths</span> <span></span> <span class="gl__fav" title="Favorito">⭐</span></li>
+                <li><span class="gl__year">1985</span> <span class="gl__name">The Flash: Crisis on Infinite Earths</span> <span></span></li>
                 <li><span class="gl__year">2004</span> <span class="gl__name">Scott Pilgrim</span> <span></span> <span class="gl__fav" title="Favorito">⭐</span></li>
                 <li><span class="gl__year">2006</span> <span class="gl__name">The Boys</span> <span></span> <span class="gl__fav" title="Favorito">⭐</span></li>
                 <li><span class="gl__year">2011</span> <span class="gl__name">The Flash: Flashpoint</span> <span></span> <span class="gl__fav" title="Favorito">⭐</span></li>
@@ -238,9 +256,13 @@
     </main>
 
     <footer class="footer">
+      <p class="footer__best">Mejor visto con cualquier navegador a 1024×768</p>
       <p>Hecho a mano y alojado en Neocities. Se ve mejor de noche.</p>
     </footer>
   </div>
+  <script src="js/cine.js" defer></script>
+  <script src="js/estrellas.js" defer></script>
+  <script src="js/mascota.js" defer></script>
 </body>
 
 </html>

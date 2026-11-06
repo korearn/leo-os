@@ -10,6 +10,35 @@
     "Loveless": "--cover:#d6337a;--cover2:#5a1a6e",
     "AM": "--cover:#1a1a22;--cover2:#3a3a48"
   },
+  "obi": {
+    "_ayuda": "Franja obi (帯) de los CDs ⭐, como los discos japoneses: el nombre del artista en katakana. Clave = artista tal como está en Records.md. Sin entrada, el CD sale sin obi.",
+    "Pink Floyd": "ピンク・フロイド",
+    "My Bloody Valentine": "マイ・ブラッディ・ヴァレンタイン",
+    "Radiohead": "レディオヘッド",
+    "Asian Kung-Fu Generation": "アジアン・カンフー・ジェネレーション",
+    "The Automatic": "ジ・オートマティック",
+    "Arctic Monkeys": "アークティック・モンキーズ",
+    "Gorillaz": "ゴリラズ",
+    "Mac DeMarco": "マック・デマルコ",
+    "Tame Impala": "テーム・インパラ",
+    "Last Dinosaurs": "ラスト・ダイナソーズ",
+    "The Strokes": "ザ・ストロークス",
+    "Joji": "ジョージ"
+  },
+  "generos_jp": {
+    "_ayuda": "Cómo se escribe cada género en la franja obi. Clave = género tal como está en la columna Género de Records.md.",
+    "Indie rock": "インディー・ロック",
+    "Indie pop": "インディー・ポップ",
+    "Shoegaze": "シューゲイザー",
+    "Psicodelia": "サイケデリック",
+    "Electrónica": "エレクトロニカ",
+    "Lo-fi": "ローファイ",
+    "J-rock": "J-ROCK",
+    "Pop alternativo": "オルタナティヴ・ポップ",
+    "Rock alternativo": "オルタナティヴ・ロック",
+    "Rock progresivo": "プログレッシヴ・ロック",
+    "Britpop": "ブリットポップ"
+  },
   "aero": {
     "_ayuda": "Reproductor de Aero Memory. Neocities gratis no acepta MP3, así que el audio vive en audio/aero-memory/ del repo y se sirve desde GitHub Pages ('base'). Deja 'spotify' o 'bandcamp' vacíos para ocultar ese enlace.",
     "titulo": "Glass Ecosystem",

@@ -39,6 +39,19 @@ import urllib.request
 import webbrowser
 from collections import defaultdict
 from pathlib import Path
+import os
+
+
+def _resolver(p) :
+    """Rutas del vault en los .json: 'D:/LeOS/...' funciona en Windows y también desde WSL/Linux (/mnt/d/LeOS/...)."""
+    if p is None or str(p) == "":
+        return None
+    s = str(p)
+    m = re.match(r"^([A-Za-z]):[\\/](.*)$", s)
+    if m and os.name != "nt":
+        return Path("/mnt") / m.group(1).lower() / m.group(2).replace("\\", "/")
+    return Path(s)
+
 
 # Certificados: en Windows, Python a veces no ve la cadena completa que el navegador sí ve
 # ("CERTIFICATE_VERIFY_FAILED ... unable to get local issuer certificate"). Si está instalado
@@ -219,7 +232,7 @@ def main() -> None:
     args = ap.parse_args()
 
     cfg = json.loads((AQUI / "music.json").read_text(encoding="utf-8"))
-    ruta = Path(args.bands or cfg["vault_bands"])
+    ruta = _resolver(args.bands or cfg["vault_bands"])
     if args.api:
         bandas, fuente = top_api(args.top, args.rango), RANGOS[args.rango]
     else:

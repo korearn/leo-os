@@ -5,21 +5,36 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Anime y manga | LeOS</title>
-  <meta name="description" content="Lo que estoy viendo, mis animes favoritos y mi repisa de manga.">
+  <meta name="description" content="Mis animes favoritos, una tele para hacer zapping y mi repisa de manga.">
   <link rel="icon" href="/favicon.ico" sizes="any">
   <link rel="icon" href="/favicon.png" type="image/png">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
+  <!-- Sprites que flotan a los lados (solo en pantallas anchas) -->
+  <div class="sprites" aria-hidden="true">
+    <img class="sprite sprite--b" src="img/3d/tele.gif" alt="" width="56" height="56">
+    <img class="sprite sprite--a" src="img/sprites/ovni.gif" alt="" width="72" height="42">
+  </div>
   <div class="page">
     <header class="subhead">
       <a class="wordmark wordmark--small" href="index.html">LeOS</a>
-      <a class="subhead__back" href="index.html">Volver a la memory card</a>
+      <nav aria-label="Secciones">
+        <ul class="navbar">
+        <li><a href="index.html">Inicio</a></li>
+        <li><a href="juegos.html">Juegos</a></li>
+        <li><a href="anime.html" aria-current="page">Anime</a></li>
+        <li><a href="musica.html">Música</a></li>
+        <li><a href="cine.html">Cine</a></li>
+        <li><a href="galeria.html">Galería</a></li>
+        <li><a href="sobre-mi.html">Sobre mí</a></li>
+        <li><a href="diario.html">Diario</a></li>
+        <li><a href="contactos.html">Contactos</a></li>
+        <li><a href="libro.html">Guestbook</a></li>
+        </ul>
+      </nav>
     </header>
 
     <section class="window intro" aria-labelledby="a-title">
@@ -40,9 +55,9 @@
               <!-- anime:tv:start -->
               <li class="tv__item">
                 <span class="tv__ch">CH 01</span>
-                <span class="tv__name">Kimetsu no Yaiba</span>
-                <span class="tv__ep" title="Temporada 1, ep. 18 de 26">S1 EP 18/26</span>
-                <span class="tv__bar" role="img" aria-label="Temporada 1, ep. 18 de 26"><span style="--p: 69%"></span></span>
+                <span class="tv__name">Kimetsu no Yaiba: Yuukaku-hen</span>
+                <span class="tv__ep" title="Ep. 1 de 11">EP 01/11</span>
+                <span class="tv__bar" role="img" aria-label="Ep. 1 de 11"><span style="--p: 9%"></span></span>
               </li>
               <li class="tv__item">
                 <span class="tv__ch">CH 02</span>
@@ -77,21 +92,17 @@
                 <span class="tape__label">Death Note <span class="tape__year">2006</span></span>
                 <span class="tape__note">Thriller psicológico de gato y ratón</span>
               </li>
-              <li class="tape" style="--tape:#7b3fa8">
-                <span class="tape__label">Psycho-Pass <span class="tape__year">2012</span></span>
-                <span class="tape__note">Cyberpunk y justicia predictiva</span>
+              <li class="tape" style="--tape:#3a3f9a">
+                <span class="tape__label">Naruto Shippuden <span class="tape__year">2007</span></span>
+                <span class="tape__note">Akatsuki y la guerra ninja</span>
+              </li>
+              <li class="tape" style="--tape:#b83a6a">
+                <span class="tape__label">Soul Eater <span class="tape__year">2008</span></span>
+                <span class="tape__note">Gótico, armas y Halloween todo el año</span>
               </li>
               <li class="tape" style="--tape:#b83a6a">
                 <span class="tape__label">Ghost in the Shell: Arise <span class="tape__year">2013</span></span>
                 <span class="tape__note">El alma en la máquina</span>
-              </li>
-              <li class="tape" style="--tape:#1f5fb0">
-                <span class="tape__label">Mob Psycho 100 <span class="tape__year">2016</span></span>
-                <span class="tape__note">Poderes psíquicos y animación explosiva</span>
-              </li>
-              <li class="tape" style="--tape:#7b3fa8">
-                <span class="tape__label">Jujutsu Kaisen <span class="tape__year">2020</span></span>
-                <span class="tape__note">Maldiciones y peleas con mucho estilo</span>
               </li>
               <!-- anime:vhs:end -->
             </ul>
@@ -99,10 +110,11 @@
         </section>
 
         <section class="window" aria-labelledby="al-title">
-          <h2 class="window__title" id="al-title">Mi lista</h2>
+          <h2 class="window__title" id="al-title">El archivo</h2>
           <div class="window__body">
+            <p class="window__note">Todo lo que he visto y leído, plegado. Lo que más me marcó está arriba, en las cintas y en la repisa.</p>
             <!-- anime:lista:start -->
-            <details class="gamelist" open>
+            <details class="gamelist">
               <summary>Vistos <span class="gamelist__count">23</span></summary>
               <ul class="gamelist__items">
                 <li><span class="gl__year">1986</span> <span class="gl__name">Dragon Ball</span></li>
@@ -117,20 +129,37 @@
                 <li><span class="gl__year">2004</span> <span class="gl__name">Elfen Lied</span></li>
                 <li><span class="gl__year">2006</span> <span class="gl__name">Death Note</span> <span class="gl__fav" title="Favorito">⭐</span></li>
                 <li><span class="gl__year">2007</span> <span class="gl__name">Bakugan</span></li>
-                <li><span class="gl__year">2007</span> <span class="gl__name">Naruto Shippuden</span></li>
-                <li><span class="gl__year">2008</span> <span class="gl__name">Soul Eater</span></li>
+                <li><span class="gl__year">2007</span> <span class="gl__name">Naruto Shippuden</span> <span class="gl__fav" title="Favorito">⭐</span></li>
+                <li><span class="gl__year">2008</span> <span class="gl__name">Soul Eater</span> <span class="gl__fav" title="Favorito">⭐</span></li>
                 <li><span class="gl__year">2012</span> <span class="gl__name">JoJo&#x27;s Bizarre Adventure</span></li>
-                <li><span class="gl__year">2012</span> <span class="gl__name">Psycho-Pass</span> <span class="gl__fav" title="Favorito">⭐</span></li>
+                <li><span class="gl__year">2012</span> <span class="gl__name">Psycho-Pass</span></li>
                 <li><span class="gl__year">2013</span> <span class="gl__name">Ghost in the Shell: Arise</span> <span class="gl__fav" title="Favorito">⭐</span></li>
                 <li><span class="gl__year">2014</span> <span class="gl__name">Persona 4 Golden</span></li>
-                <li><span class="gl__year">2016</span> <span class="gl__name">Mob Psycho 100</span> <span class="gl__fav" title="Favorito">⭐</span></li>
+                <li><span class="gl__year">2016</span> <span class="gl__name">Mob Psycho 100</span></li>
                 <li><span class="gl__year">2019</span> <span class="gl__name">Vinland Saga</span></li>
-                <li><span class="gl__year">2020</span> <span class="gl__name">Jujutsu Kaisen</span> <span class="gl__fav" title="Favorito">⭐</span></li>
+                <li><span class="gl__year">2020</span> <span class="gl__name">Jujutsu Kaisen</span></li>
                 <li><span class="gl__year">2022</span> <span class="gl__name">Chainsaw Man</span></li>
                 <li><span class="gl__year">2024</span> <span class="gl__name">DanDadan</span></li>
               </ul>
             </details>
             <!-- anime:lista:end -->
+            <!-- manga:lista:start -->
+            <details class="gamelist">
+              <summary>Leídos <span class="gamelist__count">10</span></summary>
+              <ul class="gamelist__items">
+                <li><span class="gl__year">1987</span> <span class="gl__name">JoJo&#x27;s Bizarre Adventure: Phantom Blood</span></li>
+                <li><span class="gl__year">1987</span> <span class="gl__name">Junji Ito (obras)</span> <span class="gl__fav" title="Favorito">⭐</span></li>
+                <li><span class="gl__year">1998</span> <span class="gl__name">Vagabond</span> <span class="gl__fav" title="Favorito">⭐</span></li>
+                <li><span class="gl__year">1999</span> <span class="gl__name">Naruto Shippuden</span></li>
+                <li><span class="gl__year">2003</span> <span class="gl__name">Death Note</span></li>
+                <li><span class="gl__year">2005</span> <span class="gl__name">Solanin</span> <span class="gl__fav" title="Favorito">⭐</span></li>
+                <li><span class="gl__year">2009</span> <span class="gl__name">Shingeki no Kyojin</span></li>
+                <li><span class="gl__year">2011</span> <span class="gl__name">Tokyo Ghoul</span> <span class="gl__fav" title="Favorito">⭐</span></li>
+                <li><span class="gl__year">2018</span> <span class="gl__name">Chainsaw Man</span></li>
+                <li><span class="gl__year">2018</span> <span class="gl__name">Jujutsu Kaisen</span> <span class="gl__fav" title="Favorito">⭐</span></li>
+              </ul>
+            </details>
+            <!-- manga:lista:end -->
           </div>
         </section>
       </div>
@@ -161,12 +190,16 @@
                 <span class="tomo__title">Vagabond</span>
                 <span></span>
               </li>
-              <li class="tomo" style="--spine:#7a1f2b" title="Death Note">
-                <span class="tomo__title">Death Note</span>
-                <span></span>
-              </li>
               <li class="tomo" style="--spine:#7b3fa8" title="Solanin">
                 <span class="tomo__title">Solanin</span>
+                <span></span>
+              </li>
+              <li class="tomo" style="--spine:#c2862a" title="Tokyo Ghoul">
+                <span class="tomo__title">Tokyo Ghoul</span>
+                <span></span>
+              </li>
+              <li class="tomo" style="--spine:#7b3fa8" title="Jujutsu Kaisen">
+                <span class="tomo__title">Jujutsu Kaisen</span>
                 <span></span>
               </li>
               <!-- manga:tomos:end -->
@@ -174,35 +207,17 @@
           </div>
         </section>
 
-        <section class="window" aria-labelledby="mll-title">
-          <h2 class="window__title" id="mll-title">Manga</h2>
-          <div class="window__body">
-            <!-- manga:lista:start -->
-            <details class="gamelist" open>
-              <summary>Leídos <span class="gamelist__count">10</span></summary>
-              <ul class="gamelist__items">
-                <li><span class="gl__year">1987</span> <span class="gl__name">JoJo&#x27;s Bizarre Adventure: Phantom Blood</span></li>
-                <li><span class="gl__year">1987</span> <span class="gl__name">Junji Ito (obras)</span> <span class="gl__fav" title="Favorito">⭐</span></li>
-                <li><span class="gl__year">1998</span> <span class="gl__name">Vagabond</span> <span class="gl__fav" title="Favorito">⭐</span></li>
-                <li><span class="gl__year">1999</span> <span class="gl__name">Naruto</span></li>
-                <li><span class="gl__year">2003</span> <span class="gl__name">Death Note</span> <span class="gl__fav" title="Favorito">⭐</span></li>
-                <li><span class="gl__year">2005</span> <span class="gl__name">Solanin</span> <span class="gl__fav" title="Favorito">⭐</span></li>
-                <li><span class="gl__year">2009</span> <span class="gl__name">Shingeki no Kyojin</span></li>
-                <li><span class="gl__year">2011</span> <span class="gl__name">Tokyo Ghoul</span></li>
-                <li><span class="gl__year">2018</span> <span class="gl__name">Chainsaw Man</span></li>
-                <li><span class="gl__year">2018</span> <span class="gl__name">Jujutsu Kaisen</span></li>
-              </ul>
-            </details>
-            <!-- manga:lista:end -->
-          </div>
-        </section>
       </aside>
     </main>
 
     <footer class="footer">
+      <p class="footer__best">Mejor visto con cualquier navegador a 1024×768</p>
       <p>Hecho a mano y alojado en Neocities. Se ve mejor de noche.</p>
     </footer>
   </div>
+  <script src="js/anime.js" defer></script>
+  <script src="js/estrellas.js" defer></script>
+  <script src="js/mascota.js" defer></script>
 </body>
 
 </html>

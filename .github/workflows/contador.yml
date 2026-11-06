@@ -1,0 +1,49 @@
+# Contador de visitas de LeOS.
+# Dos veces al día lee las visitas de Neocities y, SOLO si cambiaron, sube js/contador.js
+# (una línea: window.LEOS_VISITAS = 1234;). No toca ningún otro archivo del sitio.
+#
+# Necesita un secret en el repo: Settings → Secrets and variables → Actions → New repository secret
+#   Nombre: NEOCITIES_API_KEY   Valor: la llave de API de Neocities (Settings del sitio → API)
+#
+# Sin acciones de terceros a propósito: solo curl y jq, que ya vienen en ubuntu-latest,
+# para que no se rompa con actualizaciones de otras acciones.
+# Si un día falla, el sitio sigue igual: el contador solo se queda en el último número.
+
+name: Contador de visitas
+
+on:
+  schedule:
+    - cron: "17 3 * * *"    # 21:17 en Sinaloa (UTC-7)
+    - cron: "17 15 * * *"   # 09:17 en Sinaloa
+  workflow_dispatch:        # botón "Run workflow" para correrlo a mano
+
+permissions: {}
+
+jobs:
+  contador:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Leer visitas y subir contador.js si cambió
+        env:
+          NEOCITIES_API_KEY: ${{ secrets.NEOCITIES_API_KEY }}
+        run: |
+          set -euo pipefail
+          if [ -z "${NEOCITIES_API_KEY:-}" ]; then
+            echo "::error::Falta el secret NEOCITIES_API_KEY"; exit 1
+          fi
+
+          visitas=$(curl -fsS --retry 3 "https://neocities.org/api/info?sitename=leo-os" | jq -r '.info.views')
+          case "$visitas" in (''|*[!0-9]*) echo "::error::Respuesta rara de la API: $visitas"; exit 1;; esac
+          echo "Visitas según Neocities: $visitas"
+
+          actual=$(curl -fsS "https://leo-os.neocities.org/js/contador.js" 2>/dev/null | grep -o '[0-9]\+' | head -1 || true)
+          if [ "${actual:-}" = "$visitas" ]; then
+            echo "Sin cambios ($visitas); no se sube nada."
+            exit 0
+          fi
+
+          printf '// Lo genera GitHub Actions (.github/workflows/contador.yml). No editar ni subir a mano.\nwindow.LEOS_VISITAS = %s;\n' "$visitas" > contador.js
+          respuesta=$(curl -fsS -H "Authorization: Bearer $NEOCITIES_API_KEY" -F "js/contador.js=@contador.js" "https://neocities.org/api/upload")
+          echo "$respuesta" | jq -e '.result == "success"' > /dev/null || { echo "::error::Neocities respondió: $respuesta"; exit 1; }
+          echo "Subido: ${actual:-ninguno} → $visitas"

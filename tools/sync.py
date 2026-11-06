@@ -1,7 +1,7 @@
 """Actualiza todo el sitio desde el vault de una sola vez.
 
-Corre, en orden: now_sync (portada), shelf_sync (videojuegos), music_sync (música),
-anime_sync (anime y manga) y cine_sync (cine, series y cómics).
+Corre, en orden: now_sync (portada y Sobre mí), shelf_sync (videojuegos), music_sync (música),
+anime_sync (anime y manga), cine_sync (cine, series y cómics) y diario_sync (Diario).
 
 Uso (desde la carpeta del sitio):
     python tools/sync.py            # actualiza todas las páginas
@@ -19,6 +19,7 @@ SCRIPTS = [
     ("Música", "music_sync.py"),
     ("Anime y manga", "anime_sync.py"),
     ("Cine, series y cómics", "cine_sync.py"),
+    ("Diario", "diario_sync.py"),
 ]
 
 

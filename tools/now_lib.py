@@ -9,12 +9,24 @@
 from __future__ import annotations
 
 import json
+import os
 import re
 import unicodedata
 from pathlib import Path
 
 AQUI = Path(__file__).resolve().parent
 
+
+
+def resolver(p) -> Path | None:
+    """Rutas del vault en los .json: 'D:/LeOS/...' funciona en Windows y también desde WSL/Linux (/mnt/d/LeOS/...)."""
+    if p is None or str(p) == "":
+        return None
+    s = str(p)
+    m = re.match(r"^([A-Za-z]):[\\/](.*)$", s)
+    if m and os.name != "nt":
+        return Path("/mnt") / m.group(1).lower() / m.group(2).replace("\\", "/")
+    return Path(s)
 
 def _norm(s: str) -> str:
     """minúsculas, sin acentos ni selector de emoji: 'Rotación' -> 'rotacion'."""
@@ -101,7 +113,7 @@ def leer_now(ruta: Path, cfg: dict | None = None) -> tuple[dict[str, list[dict]]
     out = {k: [] for k in SECCIONES.values()}
     avisos: list[str] = []
     seccion, encabezado = None, None
-    for linea in Path(ruta).read_text(encoding="utf-8").splitlines():
+    for linea in resolver(ruta).read_text(encoding="utf-8").splitlines():
         if linea.startswith("## "):
             seccion, encabezado = SECCIONES.get(_norm(linea[3:])), None
             continue
@@ -151,11 +163,11 @@ def revisar_registro(canon: Path | str | None, catalogos: dict[str, tuple[str, l
 
     catalogos: {clave_medio: (nombre_catalogo, [títulos con ficha])}.
     """
-    if not canon or not Path(canon).exists():
+    if not canon or not resolver(canon).exists():
         return []
     alias, _ = mapa_medios()
     avisos, encabezado, en_registro = [], None, False
-    for linea in Path(canon).read_text(encoding="utf-8").splitlines():
+    for linea in resolver(canon).read_text(encoding="utf-8").splitlines():
         if linea.startswith("## "):
             en_registro, encabezado = "registro" in _norm(linea), None
             continue
@@ -177,3 +189,26 @@ def revisar_registro(canon: Path | str | None, catalogos: dict[str, tuple[str, l
         if _clave(obra) not in claves and _clave(obra.split("(")[0]) not in claves:
             avisos.append(f"'{obra}' está en el Registro de Canon pero no tiene ficha en {nombre}")
     return avisos
+
+
+# ---------- Topes de ⭐ por vitrina (solo avisa, no bloquea) ----------
+# Propuesta de 2026-11-04: ⭐ = "si alguien solo viera esto, me conocería". Se ajustan en tools/topes.json.
+TOPES_DEFAULT = {"cartuchos": 10, "estante": 20, "cintas": 8, "tomos": 6, "cds": 12,
+                 "boletos": 8, "canales": 5, "comics": 6}
+
+
+def avisar_tope(vitrina: str, cuantos: int) -> None:
+    """Imprime cuántas ⭐ lleva una vitrina contra su tope sugerido, y avisa si se pasa."""
+    topes = dict(TOPES_DEFAULT)
+    ruta = Path(__file__).resolve().parent / "topes.json"
+    try:
+        topes.update({k: v for k, v in json.loads(ruta.read_text(encoding="utf-8")).items() if not k.startswith("_")})
+    except (OSError, ValueError):
+        pass
+    tope = topes.get(vitrina)
+    if not tope:
+        return
+    if cuantos > tope:
+        print(f"  ⚠ {vitrina}: {cuantos} con ⭐ y el tope sugerido es {tope} (sobran {cuantos - tope}; quítale la ⭐ a lo menos esencial)")
+    else:
+        print(f"  ✓ {vitrina}: {cuantos}/{tope} ⭐")

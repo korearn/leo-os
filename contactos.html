@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Contactos | LeOS</title>
+  <meta name="description" content="Los sitios que me gustan, como una lista de contactos de MSN.">
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" href="/favicon.png" type="image/png">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Sprites que flotan a los lados (solo en pantallas anchas) -->
+  <div class="sprites" aria-hidden="true">
+    <img class="sprite sprite--a" src="img/sprites/ovni.gif" alt="" width="72" height="42">
+    <img class="sprite sprite--d" src="img/3d/tele.gif" alt="" width="56" height="56">
+  </div>
+  <div class="page">
+    <header class="subhead">
+      <a class="wordmark wordmark--small" href="index.html">LeOS</a>
+      <nav aria-label="Secciones">
+        <ul class="navbar">
+        <li><a href="index.html">Inicio</a></li>
+        <li><a href="juegos.html">Juegos</a></li>
+        <li><a href="anime.html">Anime</a></li>
+        <li><a href="musica.html">Música</a></li>
+        <li><a href="cine.html">Cine</a></li>
+        <li><a href="galeria.html">Galería</a></li>
+        <li><a href="sobre-mi.html">Sobre mí</a></li>
+        <li><a href="diario.html">Diario</a></li>
+        <li><a href="contactos.html" aria-current="page">Contactos</a></li>
+        <li><a href="libro.html">Guestbook</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <section class="window intro" aria-labelledby="c-title">
+      <h1 class="window__title" id="c-title">Contactos</h1>
+      <div class="window__body">
+        <p>Sitios que me gustan, me inspiran o me sirven. Si tienes el tuyo, déjamelo en el libro de visitas y te agrego.</p>
+      </div>
+    </section>
+
+    <!-- La ventana de MSN: la pieza memorable de esta página -->
+    <main class="msn" aria-labelledby="msn-title">
+      <div class="msn__barra">
+        <span class="msn__logo" aria-hidden="true"></span>
+        <h2 class="msn__titulo" id="msn-title">Messenger · LeOS</h2>
+        <span class="msn__botones" aria-hidden="true"><i>_</i><i>□</i><i class="x">×</i></span>
+      </div>
+      <p class="msn__menu" aria-hidden="true"><span>Archivo</span><span>Contactos</span><span>Acciones</span><span>Herramientas</span><span>Ayuda</span></p>
+
+      <div class="msn__yo">
+        <div class="msn__foto" aria-hidden="true">
+          <svg viewBox="0 0 16 16" shape-rendering="crispEdges">
+            <rect x="0" y="0" width="16" height="16" fill="#bfe9ff" />
+            <rect x="5" y="2" width="6" height="6" fill="#e8f4ff" />
+            <rect x="6" y="4" width="1" height="1" fill="#120f2e" />
+            <rect x="9" y="4" width="1" height="1" fill="#120f2e" />
+            <rect x="7" y="6" width="2" height="1" fill="#120f2e" />
+            <rect x="3" y="10" width="10" height="6" fill="#00a650" />
+          </svg>
+        </div>
+        <div>
+          <p class="msn__nombre">Leo <span>(Disponible)</span></p>
+          <p class="msn__mensaje">&lt;Si tienes sitio, agrégame ✦&gt;</p>
+        </div>
+      </div>
+
+      <div class="msn__buscar">
+        <label class="sr-only" for="msn-filtro">Buscar un contacto</label>
+        <input type="search" id="msn-filtro" placeholder="Buscar un contacto…" autocomplete="off">
+      </div>
+
+      <div class="msn__lista">
+        <details class="msn__grupo" open>
+          <summary>Inspiración <span class="msn__cuenta"></span></summary>
+          <ul>
+            <li class="contacto"><a href="https://channelonion.neocities.org/home">Channel Onion</a>
+              <span class="contacto__msg">El sitio que me hizo querer rehacer el mío: espacio, GIFs y toda la estética de old web.</span></li>
+            <li class="contacto"><a href="https://scorpichu.neocities.org/trialhome">Naomi's Wii Channel</a>
+              <span class="contacto__msg">Un sitio al estilo de menú de Wii, con tarjeta tipo Mii.</span></li>
+            <li class="contacto"><a href="https://422.neocities.org/">sniper422</a>
+              <span class="contacto__msg">Arte ASCII, button walls y blinkies.</span></li>
+            <li class="contacto"><a href="https://wiggle.monster/interests/websites/directory">wiggle.monster</a>
+              <span class="contacto__msg">Un directorio de sitios personales, cada uno con su botón.</span></li>
+          </ul>
+        </details>
+
+        <details class="msn__grupo" open>
+          <summary>Herramientas <span class="msn__cuenta"></span></summary>
+          <ul>
+            <li class="contacto"><a href="https://blinkies.cafe/">blinkies.cafe</a>
+              <span class="contacto__msg">Para hacer tus propios blinkies.</span></li>
+            <li class="contacto"><a href="https://gifcities.org/">GifCities</a>
+              <span class="contacto__msg">Los GIFs de GeoCities, rescatados por el Internet Archive.</span></li>
+            <li class="contacto"><a href="https://neocities.org/">Neocities</a>
+              <span class="contacto__msg">Donde vive este sitio.</span></li>
+          </ul>
+        </details>
+
+        <details class="msn__grupo" open>
+          <summary>Archivos y rarezas <span class="msn__cuenta"></span></summary>
+          <ul>
+            <li class="contacto"><a href="https://frutigeraeroarchive.org/">Frutiger Aero Archive</a>
+              <span class="contacto__msg">Todo sobre la estética del liquid crystal.</span></li>
+            <li class="contacto"><a href="https://tcrf.net/">The Cutting Room Floor</a>
+              <span class="contacto__msg">Contenido oculto y cortado de videojuegos.</span></li>
+            <li class="contacto"><a href="https://archive.org/">Internet Archive</a>
+              <span class="contacto__msg">La memoria de la web.</span></li>
+          </ul>
+        </details>
+
+        <details class="msn__grupo">
+          <summary>No conectados <span class="msn__cuenta"></span></summary>
+          <ul>
+            <li class="contacto contacto--off"><a href="libro.html">¿Tu sitio?</a>
+              <span class="contacto__msg">Déjamelo en el libro de visitas.</span></li>
+          </ul>
+        </details>
+      </div>
+
+      <p class="msn__agregar"><a href="libro.html">+ Agregar un contacto</a></p>
+      <div class="msn__anuncio">
+        <img src="img/blinkies/explora.gif" alt="¿Y si exploras?" width="150" height="20">
+        <img src="img/leos-88x31.png" alt="LeOS" width="88" height="31">
+      </div>
+    </main>
+
+    <!-- Botones 88x31 de otros sitios. Para agregar uno: guardar su botón en img/botones/ (no enlazar
+         directo a su servidor) y cambiar un <li class="boton--vacio"> por:
+         <li><a href="URL" title="Nombre del sitio"><img src="img/botones/archivo.gif" alt="Nombre del sitio" width="88" height="31"></a></li> -->
+    <section class="window botones-amigos" aria-labelledby="ba-title">
+      <h2 class="window__title" id="ba-title">Botones de amigos</h2>
+      <div class="window__body">
+        <p class="window__note">Si me dejas tu sitio en el libro de visitas, tu botón va aquí. El mío está en la portada, en "Enlázame".</p>
+        <ul class="muro-botones">
+          <li class="boton--vacio"><span>tu botón aquí</span></li>
+          <li class="boton--vacio"><span>tu botón aquí</span></li>
+          <li class="boton--vacio"><span>tu botón aquí</span></li>
+          <li class="boton--vacio"><span>tu botón aquí</span></li>
+          <li class="boton--vacio"><span>tu botón aquí</span></li>
+          <li class="boton--vacio"><span>tu botón aquí</span></li>
+        </ul>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <p class="footer__best">Mejor visto con cualquier navegador a 1024×768</p>
+      <p>Hecho a mano y alojado en Neocities. Se ve mejor de noche.</p>
+    </footer>
+  </div>
+  <script src="js/contactos.js" defer></script>
+  <script src="js/mascota.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Diario | LeOS</title>
+  <meta name="description" content="El diario de LeOS: entradas cortas sobre lo que hago, juego y escucho.">
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" href="/favicon.png" type="image/png">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Sprites que flotan a los lados (solo en pantallas anchas) -->
+  <div class="sprites" aria-hidden="true">
+    <img class="sprite sprite--a" src="img/3d/cristal.gif" alt="" width="56" height="56">
+    <img class="sprite sprite--d" src="img/sprites/disquete.png" alt="" width="48" height="48">
+  </div>
+  <div class="page">
+    <header class="subhead">
+      <a class="wordmark wordmark--small" href="index.html">LeOS</a>
+      <nav aria-label="Secciones">
+        <ul class="navbar">
+        <li><a href="index.html">Inicio</a></li>
+        <li><a href="juegos.html">Juegos</a></li>
+        <li><a href="anime.html">Anime</a></li>
+        <li><a href="musica.html">Música</a></li>
+        <li><a href="cine.html">Cine</a></li>
+        <li><a href="galeria.html">Galería</a></li>
+        <li><a href="sobre-mi.html">Sobre mí</a></li>
+        <li><a href="diario.html" aria-current="page">Diario</a></li>
+        <li><a href="contactos.html">Contactos</a></li>
+        <li><a href="libro.html">Guestbook</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <!-- El blog: la pieza memorable de esta página. Lo llena tools/diario_sync.py desde la carpeta Posts del vault. -->
+    <header class="blog__cabecera">
+      <h1 class="blog__titulo">El diario de LeOS</h1>
+      <p class="blog__lema">notas sueltas desde el otro lado de la pantalla</p>
+    </header>
+
+    <main class="layout">
+      <div class="col-main blog">
+        <!-- diario:entradas:start -->
+          <article class="entrada" id="entry-1">
+            <p class="entrada__entry"><a href="#entry-1">Entry #1</a></p>
+            <p class="entrada__fecha"><time datetime="2026-11-04">miércoles 4 de noviembre de 2026</time></p>
+            <h2 class="entrada__titulo">Rediseño Y2K</h2>
+            <div class="entrada__cuerpo">
+<p>Esta semana LeOS se actualizó: la portada ahora es una 3DS, hay estrellas escondidas por todo el sitio y, si las juntas todas, se abre algo detrás de la ranura ???.</p>
+<ul><li>La tele de Anime hace zapping.</li><li>Los CDs de Música se abren.</li><li>Hay un alien que se pasea por abajo.</li><li>Hay blinkers por todos lados. 👽</li></ul>
+            </div>
+            <p class="entrada__pie"><span><b>Etiquetas:</b> <a href="#tag-sitio">sitio</a>, <a href="#tag-y2k">y2k</a></span> · <span><a href="libro.html">Comentar en el libro de visitas</a></span></p>
+          </article>
+        <!-- diario:entradas:end -->
+      </div>
+
+      <aside class="col-side">
+        <section class="window" aria-labelledby="arch-title">
+          <h2 class="window__title" id="arch-title">Archivo del blog</h2>
+          <div class="window__body">
+            <!-- diario:archivo:start -->
+            <details class="archivo" open><summary>2026 (1)</summary>
+              <p class="archivo__mes">noviembre (1)</p><ul>
+                <li><a href="#entry-1">Entry #1</a> · Rediseño Y2K</li>
+              </ul>
+            </details>
+            <p class="archivo__mes">etiquetas</p><p class="etiquetas"><span id="tag-sitio">sitio (1)</span> <span id="tag-y2k">y2k (1)</span></p>
+            <!-- diario:archivo:end -->
+          </div>
+        </section>
+        <section class="window" aria-labelledby="sobre-d-title">
+          <h2 class="window__title" id="sobre-d-title">Sobre este diario</h2>
+          <div class="window__body">
+            <p class="window__note">Entries cortas, numeradas como cintas encontradas, sin calendario fijo. Si quieres comentar algo, el libro de visitas está abierto.</p>
+          </div>
+        </section>
+      </aside>
+    </main>
+
+    <footer class="footer">
+      <p class="footer__best">Mejor visto con cualquier navegador a 1024×768</p>
+      <p>Hecho a mano y alojado en Neocities. Se ve mejor de noche.</p>
+    </footer>
+  </div>
+  <script src="js/estrellas.js" defer></script>
+  <script src="js/mascota.js" defer></script>
+</body>
+</html>

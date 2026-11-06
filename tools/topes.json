@@ -1,0 +1,11 @@
+{
+  "_nota": "Tope de ⭐ por vitrina (curado 2026-11-04: lo justo para que cada vitrina quepa en una o dos filas). Los scripts solo avisan si te pasas; no quitan nada. Para agregar una ⭐, quítasela a otra. cartuchos = filas de la tabla Recomendados de Shelf.md; estante = juegos con ⭐.",
+  "cartuchos": 10,
+  "estante": 16,
+  "cintas": 6,
+  "tomos": 5,
+  "cds": 12,
+  "boletos": 6,
+  "canales": 4,
+  "comics": 4
+}

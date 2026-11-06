@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>radio_00 · frecuencia desconocida</title>
+  <meta name="robots" content="noindex">
+  <link rel="icon" href="/favicon.png" type="image/png">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="fuera radio-pag" data-zona="radio">
+  <!-- Radio pirata: minijuego de sintonía. La frecuencia cambia cada día (es la misma para todos).
+       Al encontrarla aparece la "transmisión": un chat de Cbox metido como iframe.
+       PARA CONECTAR CBOX: pega en data-cbox la URL del src del iframe que da Cbox en Publish
+       (algo como https://wwwN.cbox.ws/box/?boxid=...&boxtag=...). Vacío = "fuera del aire". -->
+  <main class="radio-zona">
+    <p class="fuera__debug" aria-hidden="true">radio_00 · band: FM · rx: ON · tx: ???</p>
+    <h1 class="radio-zona__titulo">Radio pirata <span class="jp" lang="ja">ラジオ</span></h1>
+    <p class="radio-zona__intro">Alguien transmite desde aquí abajo. La frecuencia cambia cada día: mueve la perilla
+      y sigue la señal hasta que se limpie la estática.</p>
+
+    <div class="radio" id="radio">
+      <div class="radio__frente">
+        <div class="radio__bocina" aria-hidden="true"><canvas class="radio__estatica" id="r-estatica" width="96" height="64"></canvas></div>
+        <div class="radio__panel">
+          <p class="radio__lcd" aria-live="off"><span class="radio__fm">FM</span> <b id="r-frec">88.1</b> <span class="radio__mhz">MHz</span></p>
+          <p class="radio__barras" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></p>
+          <p class="radio__estado" id="r-estado" aria-live="polite">Buscando señal…</p>
+        </div>
+      </div>
+      <label class="radio__dial">
+        <span class="radio__marcas" aria-hidden="true"><span>88</span><span>92</span><span>96</span><span>100</span><span>104</span><span>108</span></span>
+        <input type="range" id="r-perilla" min="88.1" max="107.9" step="0.2" value="88.1" aria-label="Frecuencia en MHz">
+      </label>
+      <p class="radio__botones">
+        <button type="button" class="radio__btn" id="r-sonido" aria-pressed="false">🔈 Sonido</button>
+      </p>
+    </div>
+
+    <section class="radio__chat" id="r-chat" data-cbox="" hidden aria-labelledby="r-chat-titulo">
+      <h2 class="radio__chat-titulo" id="r-chat-titulo">● AL AIRE</h2>
+      <p class="radio__chat-nota">Lo que escribas aquí lo leen quienes lleguen hasta esta frecuencia, y yo. Los mensajes
+        viejos se borran solos. Sé amable y no pongas datos personales.</p>
+      <div class="radio__marco" id="r-marco">
+        <p class="radio__fuera">Transmisión fuera del aire. Vuelve más tarde.</p>
+      </div>
+    </section>
+
+    <noscript><p class="radio-zona__intro">Esta radio necesita JavaScript para sintonizarse.</p></noscript>
+    <p class="fuera__volver"><a href="fuera.html">↩ volver a test_room_00</a></p>
+  </main>
+  <script src="js/fuera.js" defer></script>
+  <script src="js/radio.js" defer></script>
+</body>
+</html>

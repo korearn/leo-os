@@ -21,6 +21,19 @@ import re
 import sys
 import unicodedata
 from pathlib import Path
+import os
+
+
+def _resolver(p) :
+    """Rutas del vault en los .json: 'D:/LeOS/...' funciona en Windows y también desde WSL/Linux (/mnt/d/LeOS/...)."""
+    if p is None or str(p) == "":
+        return None
+    s = str(p)
+    m = re.match(r"^([A-Za-z]):[\\/](.*)$", s)
+    if m and os.name != "nt":
+        return Path("/mnt") / m.group(1).lower() / m.group(2).replace("\\", "/")
+    return Path(s)
+
 
 AQUI = Path(__file__).resolve().parent
 SITIO = AQUI.parent
@@ -79,7 +92,7 @@ def main() -> None:
     n, colores = int(pc.get("pixeles", 32)), int(pc.get("colores", 24))
 
     if args.lista:
-        ruta = Path(args.records or cfg["vault_records"])
+        ruta = _resolver(args.records or cfg["vault_records"])
         esperados = [slug(t) for t in discos_favoritos(ruta)] + [slug(cfg.get("aero", {}).get("titulo", "glass-ecosystem"))]
         hechos = {p.stem for p in destino_dir.glob("*.png")}
         fuentes = {p.stem for p in origen_dir.glob("*") if p.suffix.lower() in EXT}

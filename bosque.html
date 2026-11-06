@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>bosque_00</title>
+  <meta name="robots" content="noindex">
+  <link rel="icon" href="/favicon.png" type="image/png">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="fuera bosque" data-zona="bosque">
+  <div class="bosque__arboles" aria-hidden="true"></div>
+  <main class="bosque__claro">
+    <p class="fuera__debug" aria-hidden="true">bosque_00 · <span id="b-claro">claro_01</span> · fog: ON</p>
+    <h1 class="bosque__titulo" id="b-titulo">Un bosque donde todo se repite</h1>
+    <p id="b-texto">Los árboles son idénticos hacia todos lados. Algo pequeño brilla entre las ramas.</p>
+    <noscript><p>La niebla es demasiado espesa. (Este bosque necesita JavaScript.)</p></noscript>
+
+    <div class="rosa" id="b-rosa" aria-label="Caminos">
+      <button type="button" class="rosa__dir rosa__n" data-dir="n">Norte</button>
+      <button type="button" class="rosa__dir rosa__o" data-dir="o">Oeste</button>
+      <span class="rosa__centro" aria-hidden="true">✦</span>
+      <button type="button" class="rosa__dir rosa__e" data-dir="e">Este</button>
+      <button type="button" class="rosa__dir rosa__s" data-dir="s">Sur</button>
+      <img class="luciernaga" id="b-luz" src="img/oob/luciernaga.gif" alt="" width="16" height="16">
+    </div>
+
+    <p class="fuera__volver"><a href="fuera.html">↩ volver a test_room_00</a></p>
+  </main>
+  <script src="js/fuera.js" defer></script>
+  <script src="js/bosque.js" defer></script>
+</body>
+</html>

@@ -22,10 +22,11 @@ import re
 import sys
 from pathlib import Path
 
-from now_lib import leer_now, revisar_registro
+from now_lib import avisar_tope, leer_now, revisar_registro, resolver
 
 AQUI = Path(__file__).resolve().parent
 e = html.escape
+ABRIR_LISTAS = False  # las listas completas salen plegadas: lo que sobresale son los ⭐ (2026-11-04)
 TINTAS = ["#c8302a", "#1f5fb0", "#2f8f4e", "#7b3fa8", "#d6802f", "#0e7d6e"]
 
 
@@ -103,6 +104,15 @@ def boletos(pelis: list[dict], cfg: dict) -> str:
         out.append(f'{I}    <span class="ticket__title">{e(t)}</span>')
         if f.get("nota"):
             out.append(f'{I}    <span class="ticket__note">{e(f["nota"])}</span>')
+        # Reverso del boleto (se ve al "romperlo" con un clic; js/cine.js): director, género y de qué trata
+        meta = " · ".join(x for x in (f"Dirige {f['director']}" if f.get("director") else "", f.get("género", "")) if x)
+        if meta or f.get("de qué trata"):
+            out.append(f'{I}    <div class="ticket__back">')
+            if meta:
+                out.append(f'{I}      <span class="ticket__meta">{e(meta)}</span>')
+            if f.get("de qué trata"):
+                out.append(f'{I}      <span class="ticket__sinopsis">{e(f["de qué trata"])}</span>')
+            out.append(f"{I}    </div>")
         out.append(f"{I}  </div>")
         out.append(f'{I}  <div class="ticket__stub"><span class="ticket__year">{anio(f) or "—"}</span>'
                    + (f'<span class="ticket__score">{e(f["calificación"])}</span>' if con_nota(cfg) and f.get("calificación") else "")
@@ -151,7 +161,7 @@ def bloque_lista(titulo: str, filas: list[dict], abierta: bool, con_anio: bool, 
     if not filas:
         return []
     filas = sorted(filas, key=orden if con_anio else (lambda f: f["_t"].lower()))
-    out = [f'{I}<details class="gamelist"{" open" if abierta else ""}>',
+    out = [f'{I}<details class="gamelist"{" open" if abierta and ABRIR_LISTAS else ""}>',
            f'{I}  <summary>{titulo} <span class="gamelist__count">{len(filas)}</span></summary>']
     clase = "gamelist__items" if con_anio else "gamelist__items gamelist__items--plain"
     out.append(f'{I}  <ul class="{clase}">')
@@ -232,10 +242,10 @@ def main() -> None:
     args = ap.parse_args()
 
     cfg = json.loads((AQUI / "cine.json").read_text(encoding="utf-8"))
-    m = leer_tablas(Path(args.movies or cfg["vault_movies"]))
-    s = leer_tablas(Path(args.series or cfg["vault_series"]))
-    c = leer_tablas(Path(args.comics or cfg["vault_comics"]))
-    now, _ = leer_now(Path(args.now or cfg["vault_now"]))
+    m = leer_tablas(resolver(args.movies or cfg["vault_movies"]))
+    s = leer_tablas(resolver(args.series or cfg["vault_series"]))
+    c = leer_tablas(resolver(args.comics or cfg["vault_comics"]))
+    now, _ = leer_now(resolver(args.now or cfg["vault_now"]))
     pagina = (AQUI / cfg["pagina"]).resolve()
 
     # Fichas "en curso": existen en el catálogo pero aún no se muestran como vistas/leídas.
@@ -249,6 +259,9 @@ def main() -> None:
     def cuenta(lst):
         return f"{len(lst)} ({sum(f['_fav'] for f in lst)} ⭐)"
     print(f"Películas: {cuenta(m.get('Vistas', []))}  ·  Series: {cuenta(s.get('Vistas', []))}  ·  Cómics: {cuenta(c.get('Leídos', []))}")
+    avisar_tope("boletos", sum(f["_fav"] for f in m.get("Vistas", [])))
+    avisar_tope("canales", sum(f["_fav"] for f in s.get("Vistas", [])))
+    avisar_tope("comics", sum(f["_fav"] for f in c.get("Leídos", [])))
     if args.dry_run:
         print("\n(dry-run: no se escribió nada)")
         return

@@ -22,10 +22,11 @@ import re
 import sys
 from pathlib import Path
 
-from now_lib import leer_now as leer_now_md, revisar_registro
+from now_lib import avisar_tope, leer_now as leer_now_md, revisar_registro, resolver
 
 AQUI = Path(__file__).resolve().parent
 e = html.escape
+ABRIR_LISTAS = False  # las listas completas salen plegadas: lo que sobresale son los ⭐ (2026-11-04)
 PALETA = ["#1f5fb0", "#c8302a", "#2f8f4e", "#7b3fa8", "#c2862a", "#0e7d6e", "#b83a6a", "#3a3f9a"]
 
 
@@ -118,7 +119,7 @@ def lista(titulo: str, filas: list[dict], clave: str, abierta: bool, I: str, con
     if not filas:
         return []
     filas.sort(key=lambda f: ((anio(f) or "9999") if con_anio else "", f.get(clave, "").lower()))
-    out = [f'{I}<details class="gamelist"{" open" if abierta else ""}>',
+    out = [f'{I}<details class="gamelist"{" open" if abierta and ABRIR_LISTAS else ""}>',
            f'{I}  <summary>{titulo} <span class="gamelist__count">{len(filas)}</span></summary>']
     if con_anio:
         out.append(f'{I}  <ul class="gamelist__items">')
@@ -189,9 +190,9 @@ def main() -> None:
     args = ap.parse_args()
 
     cfg = json.loads((AQUI / "anime.json").read_text(encoding="utf-8"))
-    anime = leer_tablas(Path(args.anime or cfg["vault_anime"]))
-    manga = leer_tablas(Path(args.manga or cfg["vault_manga"]))
-    now, avisos = leer_now_md(Path(args.now or cfg["vault_now"]))
+    anime = leer_tablas(resolver(args.anime or cfg["vault_anime"]))
+    manga = leer_tablas(resolver(args.manga or cfg["vault_manga"]))
+    now, avisos = leer_now_md(resolver(args.now or cfg["vault_now"]))
     pagina = (AQUI / cfg["pagina"]).resolve()
 
     viendo = [f for f in now["activo"] + now["rotacion"] if f["medio"] == cfg.get("medio_tv", "anime")]
@@ -203,13 +204,15 @@ def main() -> None:
         for f in filas:
             if f.get(clave) and not f.get("nota"):
                 avisos.append(f"{f[clave]} ({nombre}) no tiene Nota para la web")
-    todos_a = [f.get("anime", "") for f in leer_tablas(Path(args.anime or cfg["vault_anime"])).get("Vistos", [])]
-    todos_m = [f.get("manga", "") for f in leer_tablas(Path(args.manga or cfg["vault_manga"])).get("Leídos", [])]
+    todos_a = [f.get("anime", "") for f in leer_tablas(resolver(args.anime or cfg["vault_anime"])).get("Vistos", [])]
+    todos_m = [f.get("manga", "") for f in leer_tablas(resolver(args.manga or cfg["vault_manga"])).get("Leídos", [])]
     avisos += revisar_registro(args.canon or cfg.get("vault_canon"),
                                {"anime": ("Anime", todos_a), "manga": ("Manga", todos_m)})
     for a in avisos:
         print(f"  ⚠ {a}")
     vistos = [f for f in anime.get("Vistos", []) if f.get("anime")]
+    avisar_tope("cintas", sum(f["_fav"] for f in vistos))
+    avisar_tope("tomos", sum(f["_fav"] for f in manga.get("Leídos", []) if f.get("manga")))
     print(f"Viendo (desde Now): {len(viendo)}  ·  Vistos: {len(vistos)} ({sum(f['_fav'] for f in vistos)} ⭐)  ·  "
           f"Por ver: {len([f for f in anime.get('Por ver', []) if f.get('anime')])}")
     print(f"Manga: leyendo {len(leyendo)} (desde Now)  ·  "

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>debug_room</title>
+  <meta name="robots" content="noindex">
+  <link rel="icon" href="/favicon.png" type="image/png">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="fuera debug" data-zona="debug">
+  <main class="debug__menu">
+    <p class="fuera__debug" aria-hidden="true">debug_room · build LeOS-y2k · NOT FOR RELEASE</p>
+    <pre class="debug__ascii" aria-hidden="true"> __              _____   ____
+/\ \            /\  __`\/\  _`\
+\ \ \         __\ \ \/\ \ \,\L\_\
+ \ \ \  __  /&#x27;__`\ \ \ \ \/_\__ \
+  \ \ \L\ \/\  __/\ \ \_\ \/\ \L\ \
+   \ \____/\ \____\\ \_____\ `\____\
+    \/___/  \/____/ \/_____/\/_____/</pre>
+    <h1 class="debug__titulo">*** DEBUG MENU ***</h1>
+
+    <section class="debug__caja" aria-labelledby="flags-t">
+      <h2 id="flags-t">FLAGS</h2>
+      <p class="debug__nota">Se guardan en tu navegador y afectan todo el sitio.</p>
+      <ul class="debug__lista">
+        <li><label><input type="checkbox" data-flag="noclip"> noclip <span>· ver las paredes de todas las páginas</span></label></li>
+        <li><label><input type="checkbox" data-flag="verEstrellas"> show_stars <span>· las estrellas escondidas brillan</span></label></li>
+      </ul>
+      <p><button type="button" class="debug__btn" id="d-reset">RESET estrellas</button>
+        <span class="debug__nota" id="d-reset-msg" role="status"></span></p>
+    </section>
+
+    <section class="debug__caja" aria-labelledby="logros-t">
+      <h2 id="logros-t">LOGROS</h2>
+      <ul class="debug__lista debug__logros" id="d-logros"></ul>
+    </section>
+
+    <section class="debug__caja" aria-labelledby="cut-t">
+      <h2 id="cut-t">CONTENIDO CORTADO</h2>
+      <figure class="debug__beta">
+        <img src="img/oob/beta-2001.webp" alt="La portada vieja de LeOS, con la memory card como menú" width="504" height="354" loading="lazy">
+        <figcaption><b>beta_2001</b> · portada con la memory card (1 al 3 de noviembre de 2026). Cortada: la reemplazó la 3DS.</figcaption>
+      </figure>
+      <ul class="debug__lista">
+        <li><b>font_VT323</b> · la letra de terminal de la versión 2001. Cortada: la reemplazó Tahoma.</li>
+        <li><b>ahora_mismo</b> · la lista de lo que estaba viendo iba en la portada. Se mudó a Sobre mí.</li>
+        <li><b>blinkie_rosa</b> · el de "pixel art" era rosa con corazones. Ahora usa los colores de la Game Boy Color.</li>
+      </ul>
+    </section>
+
+    <p class="fuera__volver"><a href="fuera.html">↩ volver a test_room_00</a></p>
+  </main>
+  <script src="js/fuera.js" defer></script>
+  <script src="js/debug.js" defer></script>
+</body>
+</html>

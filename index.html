@@ -1,10 +1,22 @@
 <!DOCTYPE html>
+<!--
+ __              _____   ____
+/\ \            /\  __`\/\  _`\
+\ \ \         __\ \ \/\ \ \,\L\_\
+ \ \ \  __  /'__`\ \ \ \ \/_\__ \
+  \ \ \L\ \/\  __/\ \ \_\ \/\ \L\ \
+   \ \____/\ \____\\ \_____\ `\____\
+    \/___/  \/____/ \/_____/\/_____/
+
+  Si estás leyendo el código fuente: hola. Todo aquí está hecho a mano.
+  Pista: hay 8 estrellas escondidas en el sitio.
+-->
 <html lang="es">
 
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>LeOS</title>
+  <title>✦ LeOS ✦ Retro Web Core</title>
   <meta name="description" content="El rincón de Leo en la web: videojuegos, anime, música y todo lo que me gusta.">
   <link rel="canonical" href="https://leo-os.neocities.org/">
   <meta property="og:title" content="LeOS">
@@ -14,13 +26,10 @@
   <link rel="icon" href="/favicon.ico" sizes="any">
   <link rel="icon" href="/favicon.png" type="image/png">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
 
-<body>
+<body class="portada">
   <a class="skip" href="#contenido">Saltar al contenido</a>
 
   <!-- Barra de estado: lo que suena ahora -->
@@ -29,194 +38,331 @@
       <span class="statusbar__label">En la consola</span>
       <div class="ticker" aria-hidden="true">
         <!-- now:ticker:start -->
-        <span>Star Wars Galactic Racer &nbsp;&nbsp;✦&nbsp;&nbsp; Kimetsu no Yaiba &nbsp;&nbsp;✦&nbsp;&nbsp; Dune &nbsp;&nbsp;✦&nbsp;&nbsp; One World Under Doom &nbsp;&nbsp;✦&nbsp;&nbsp; </span>
-        <span>Star Wars Galactic Racer &nbsp;&nbsp;✦&nbsp;&nbsp; Kimetsu no Yaiba &nbsp;&nbsp;✦&nbsp;&nbsp; Dune &nbsp;&nbsp;✦&nbsp;&nbsp; One World Under Doom &nbsp;&nbsp;✦&nbsp;&nbsp; </span>
+        <span>Star Wars Galactic Racer &nbsp;&nbsp;✦&nbsp;&nbsp; Kimetsu no Yaiba: Yuukaku-hen &nbsp;&nbsp;✦&nbsp;&nbsp; Dune &nbsp;&nbsp;✦&nbsp;&nbsp; One World Under Doom &nbsp;&nbsp;✦&nbsp;&nbsp; </span>
+        <span>Star Wars Galactic Racer &nbsp;&nbsp;✦&nbsp;&nbsp; Kimetsu no Yaiba: Yuukaku-hen &nbsp;&nbsp;✦&nbsp;&nbsp; Dune &nbsp;&nbsp;✦&nbsp;&nbsp; One World Under Doom &nbsp;&nbsp;✦&nbsp;&nbsp; </span>
         <!-- now:ticker:end -->
       </div>
-      <time class="statusbar__clock" id="reloj">--:--</time>
+      <time class="statusbar__clock js-reloj" id="reloj">--:--</time>
     </div>
   </div>
 
-  <div class="page">
+  <!-- Sprites que flotan alrededor de la página (solo en pantallas anchas) -->
+  <div class="sprites" aria-hidden="true">
+    <img class="sprite sprite--ovni" src="img/sprites/ovni.gif" alt="" width="72" height="42">
+    <img class="sprite sprite--luna" src="img/sprites/luna.png" alt="" width="66" height="66">
+    <img class="sprite sprite--disquete" src="img/sprites/disquete.png" alt="" width="48" height="48">
+    <img class="sprite sprite--cd" src="img/sprites/cd.gif" alt="" width="54" height="54">
+    <img class="sprite sprite--cartucho" src="img/sprites/cartucho.png" alt="" width="54" height="48">
+    <img class="sprite sprite--planeta" src="img/3d/planeta.gif" alt="" width="56" height="56">
+    <img class="sprite sprite--gema" src="img/3d/gema.gif" alt="" width="56" height="56">
+  </div>
 
-    <!-- HERO: la memory card -->
-    <header class="hero">
-      <div class="hero__brand">
-        <h1 class="wordmark">LeOS</h1>
-        <p class="hero__bio">Hola, soy Leo. Este es mi espacio en la web: los juegos, el anime, la música y las cosas que
-          han sido de mi interés. Siéntete libre de curiosear 👾</p>
-      </div>
+  <div class="page page--tri">
+    <main id="contenido" class="tri">
 
-      <nav class="card" aria-labelledby="card-title">
-        <div class="card__bar">
-          <svg class="card__chip" viewBox="0 0 10 12" aria-hidden="true" shape-rendering="crispEdges">
-            <rect x="0" y="0" width="10" height="12" fill="#2a2463" />
-            <rect x="1" y="1" width="8" height="5" fill="#5fe0ff" />
-            <rect x="2" y="8" width="1" height="3" fill="#ffc20e" />
-            <rect x="4" y="8" width="1" height="3" fill="#ffc20e" />
-            <rect x="6" y="8" width="1" height="3" fill="#ffc20e" />
-          </svg>
-          <h2 id="card-title">Memory Card, ranura A</h2>
-          <span class="card__free">Elige un archivo</span>
-        </div>
-
-        <ul class="slots">
-          <li>
-            <a class="slot" href="juegos.html">
-              <svg class="slot__icon" viewBox="0 0 16 16" aria-hidden="true" shape-rendering="crispEdges">
-                <rect x="2" y="5" width="12" height="6" fill="#9aa6d6" />
-                <rect x="1" y="6" width="1" height="5" fill="#9aa6d6" />
-                <rect x="14" y="6" width="1" height="5" fill="#9aa6d6" />
-                <rect x="1" y="11" width="3" height="2" fill="#9aa6d6" />
-                <rect x="12" y="11" width="3" height="2" fill="#9aa6d6" />
-                <rect x="4" y="7" width="1" height="3" fill="#120f2e" />
-                <rect x="3" y="8" width="3" height="1" fill="#120f2e" />
-                <rect x="11" y="7" width="1" height="1" fill="#e2231a" />
-                <rect x="12" y="8" width="1" height="1" fill="#00a650" />
-                <rect x="10" y="8" width="1" height="1" fill="#ffc20e" />
-                <rect x="11" y="9" width="1" height="1" fill="#0062ae" />
-              </svg>
-              <span class="slot__name">Videojuegos</span>
-              <span class="slot__meta">De Ocarina of Time a Cyberpunk</span>
-            </a>
-          </li>
-          <li>
-            <a class="slot" href="anime.html">
-              <svg class="slot__icon" viewBox="0 0 16 16" aria-hidden="true" shape-rendering="crispEdges">
-                <rect x="7" y="1" width="2" height="3" fill="#ffc20e" />
-                <rect x="1" y="6" width="14" height="2" fill="#ffc20e" />
-                <rect x="3" y="8" width="10" height="2" fill="#ffc20e" />
-                <rect x="5" y="4" width="6" height="2" fill="#ffc20e" />
-                <rect x="4" y="10" width="3" height="3" fill="#ffc20e" />
-                <rect x="9" y="10" width="3" height="3" fill="#ffc20e" />
-                <rect x="3" y="13" width="2" height="2" fill="#ffc20e" />
-                <rect x="11" y="13" width="2" height="2" fill="#ffc20e" />
-              </svg>
-              <span class="slot__name">Anime y manga</span>
-              <span class="slot__meta">Lo que veo y lo que me marcó</span>
-            </a>
-          </li>
-          <li>
-            <a class="slot" href="musica.html">
-              <svg class="slot__icon" viewBox="0 0 16 16" aria-hidden="true" shape-rendering="crispEdges">
-                <rect x="6" y="2" width="8" height="2" fill="#5fe0ff" />
-                <rect x="6" y="4" width="2" height="8" fill="#5fe0ff" />
-                <rect x="12" y="4" width="2" height="6" fill="#5fe0ff" />
-                <rect x="3" y="11" width="4" height="3" fill="#5fe0ff" />
-                <rect x="9" y="9" width="4" height="3" fill="#5fe0ff" />
-              </svg>
-              <span class="slot__name">Música</span>
-              <span class="slot__meta">Bandas, discos y lo que produzco</span>
-            </a>
-          </li>
-          <li>
-            <a class="slot" href="cine.html">
-              <svg class="slot__icon" viewBox="0 0 16 16" aria-hidden="true" shape-rendering="crispEdges">
-                <rect x="2" y="3" width="5" height="10" fill="#7b5cff" />
-                <rect x="9" y="3" width="5" height="10" fill="#7b5cff" />
-                <rect x="7" y="4" width="2" height="9" fill="#2a2463" />
-                <rect x="3" y="5" width="3" height="1" fill="#e8f4ff" />
-                <rect x="3" y="7" width="3" height="1" fill="#e8f4ff" />
-                <rect x="10" y="5" width="3" height="1" fill="#e8f4ff" />
-                <rect x="10" y="7" width="2" height="1" fill="#e8f4ff" />
-              </svg>
-              <span class="slot__name">Cine, series y cómics</span>
-              <span class="slot__meta">Sobre todo ciencia ficción</span>
-            </a>
-          </li>
-          <li>
-            <a class="slot" href="galeria.html">
-              <svg class="slot__icon" viewBox="0 0 16 16" aria-hidden="true" shape-rendering="crispEdges">
-                <rect x="1" y="4" width="14" height="10" fill="#9aa6d6" />
-                <rect x="4" y="2" width="5" height="2" fill="#9aa6d6" />
-                <rect x="5" y="6" width="6" height="6" fill="#120f2e" />
-                <rect x="6" y="7" width="4" height="4" fill="#5fe0ff" />
-                <rect x="7" y="8" width="1" height="1" fill="#e8f4ff" />
-                <rect x="12" y="5" width="2" height="1" fill="#e2231a" />
-              </svg>
-              <span class="slot__name">Galería</span>
-              <span class="slot__meta">Fotos que tomo dentro de los juegos</span>
-            </a>
-          </li>
-          <li>
-            <a class="slot" href="sobre-mi.html">
-              <svg class="slot__icon" viewBox="0 0 16 16" aria-hidden="true" shape-rendering="crispEdges">
-                <rect x="5" y="1" width="6" height="6" fill="#e8f4ff" />
-                <rect x="6" y="3" width="1" height="1" fill="#120f2e" />
-                <rect x="9" y="3" width="1" height="1" fill="#120f2e" />
-                <rect x="7" y="5" width="2" height="1" fill="#120f2e" />
-                <rect x="3" y="9" width="10" height="6" fill="#00a650" />
-                <rect x="2" y="10" width="1" height="5" fill="#00a650" />
-                <rect x="13" y="10" width="1" height="5" fill="#00a650" />
-              </svg>
-              <span class="slot__name">Sobre mí</span>
-              <span class="slot__meta">Quién está detrás de esta página</span>
-            </a>
-          </li>
-        </ul>
-      </nav>
-    </header>
-
-    <main id="contenido" class="layout">
-
-      <div class="col-main">
-        <!-- Ahora mismo -->
-        <section class="window" aria-labelledby="now-title">
-          <h2 class="window__title" id="now-title">Ahora mismo</h2>
+      <!-- ===== Columna izquierda ===== -->
+      <aside class="col-izq">
+        <section class="window ultima" aria-labelledby="ult-title">
+          <h2 class="window__title" id="ult-title">Diario</h2>
           <div class="window__body">
-            <ul class="now">
-              <!-- now:list:start -->
-              <li class="now__item" style="--medio: var(--m-game, var(--niebla))">
-                <span class="now__kind"><span class="now__swatch" aria-hidden="true"></span>Juego</span>
-                <span class="now__name">Star Wars Galactic Racer</span>
-                <code class="now__chip now__chip--abierto mono" title="Jugando, sin una meta fija">PLAY</code>
-                <span class="meter meter--abierto" role="img" aria-label="Jugando, sin una meta fija"><span style="--p: 100%"></span></span>
-              </li>
-              <li class="now__item" style="--medio: var(--m-anime, var(--niebla))">
-                <span class="now__kind"><span class="now__swatch" aria-hidden="true"></span>Anime</span>
-                <span class="now__name">Kimetsu no Yaiba</span>
-                <code class="now__chip now__chip--progreso mono" title="Temporada 1, ep. 18 de 26">S1E18/26</code>
-                <span class="meter meter--progreso" role="img" aria-label="Temporada 1, ep. 18 de 26"><span style="--p: 69%"></span></span>
-              </li>
-              <li class="now__item" style="--medio: var(--m-book, var(--niebla))">
-                <span class="now__kind"><span class="now__swatch" aria-hidden="true"></span>Libro</span>
-                <span class="now__name">Dune</span>
-                <code class="now__chip now__chip--progreso mono" title="Página 49 de 779">P49/779</code>
-                <span class="meter meter--progreso" role="img" aria-label="Página 49 de 779"><span style="--p: 6%"></span></span>
-              </li>
-              <li class="now__item" style="--medio: var(--m-comic, var(--niebla))">
-                <span class="now__kind"><span class="now__swatch" aria-hidden="true"></span>Cómic</span>
-                <span class="now__name">One World Under Doom</span>
-                <code class="now__chip now__chip--progreso mono" title="Número 4 de 9">#4/9</code>
-                <span class="meter meter--progreso" role="img" aria-label="Número 4 de 9"><span style="--p: 44%"></span></span>
-              </li>
-              <li class="now__item" style="--medio: var(--m-music, var(--niebla))">
-                <span class="now__kind"><span class="now__swatch" aria-hidden="true"></span>Música</span>
-                <span class="now__name">Yumeno Garden</span>
-                <code class="now__chip now__chip--abierto mono" title="Jugando, sin una meta fija">PLAY</code>
-                <span class="meter meter--abierto" role="img" aria-label="Jugando, sin una meta fija"><span style="--p: 100%"></span></span>
-              </li>
-              <!-- now:list:end -->
+            <!-- diario:ultima:start --><p class="ultima__fecha">04/11/2026</p><p class="ultima__titulo"><a href="diario.html#entry-1">Entry #1</a> · Rediseño Y2K</p><p class="window__note">Esta semana LeOS se actualizó: la portada ahora es una 3DS, hay estrellas escondidas por todo el sitio y, si las juntas todas, se abre algo…</p><!-- diario:ultima:end -->
+            <p class="window__more"><a href="diario.html">Leer el diario</a></p>
+          </div>
+        </section>
+
+        <section class="window" aria-labelledby="vis-title">
+          <h2 class="window__title" id="vis-title">Bitácora <span class="jp" lang="ja">カウンター</span></h2>
+          <div class="window__body">
+            <p class="counter-label">Eres el visitante número</p>
+            <p class="counter" id="visitas" aria-label="Visitas al sitio"><!-- now:visitas:start --><span>0</span><span>0</span><span>0</span><span>6</span><span>0</span><span>9</span><!-- now:visitas:end --></p>
+            <p class="kiriban"><span class="jp" lang="ja">キリ番</span> La próxima es la <b class="js-kiriban">000600</b>.</p>
+            <p class="window__note kiriban__nota">En los sitios japoneses, quien le atinaba a un número redondo del contador (600, 666, 777, 1000…) lo reportaba en el libro de visitas. Si te toca uno, toma captura y avísame.</p>
+            <p class="window__note"><!-- now:date:start -->Actualizado el 5 de noviembre de 2026.<!-- now:date:end --></p>
+          </div>
+        </section>
+
+        <section class="window" aria-labelledby="upd-title">
+          <h2 class="window__title" id="upd-title">Actualizaciones <span class="jp" lang="ja">更新履歴</span></h2>
+          <div class="window__body">
+            <ul class="updates">
+              <li><time datetime="2026-11-04">2026.11.04</time>Webrings, cuatro historias en el foro de leyendas, el LeOS Fest en Música, Entries en el diario y un toque de internet japonés.<span class="updates__new">NUEVO</span></li>
+              <li><time datetime="2026-11-04">2026.11.04</time>Nueva página de Contactos estilo MSN, blinkies de cosas que me gustan y alguien nuevo que se pasea por abajo.</li>
+              <li><time datetime="2026-11-04">2026.11.04</time>Tele con zapping en Anime, CDs que se abren en Música y boletos que se rompen en Cine.</li>
+              <li><time datetime="2026-11-03">2026.11.03</time>Logo en 3D, blinkies, galería revelada con visor de XP… y estrellas escondidas por todo el sitio.</li>
+              <li><time datetime="2026-11-03">2026.11.03</time>Rediseño: portada en una 3DS, fondo y sprites en pixel art, letra de Windows XP.</li>
+              <li><time datetime="2026-11-01">2026.11.01</time>Rediseño: el sitio ahora se ve como en 2001.</li>
+              <li><time datetime="2026-10-17">2026.10.17</time>Portadas pixeladas en Música.</li>
+              <li><time datetime="2026-10-17">2026.10.17</time>Ya se puede escuchar <i>Glass Ecosystem</i> en el reproductor.</li>
+              <li><time datetime="2026-10-16">2026.10.16</time>"Ahora mismo" con nuevo diseño y contador de visitas.</li>
+              <li><time datetime="2026-10-13">2026.10.13</time>LeOS v1: portada, galería y favicon.</li>
             </ul>
-            <!-- now:rotacion:start -->
-            <div class="now__rot">
-              <p class="now__rot-bar"><span class="now__rot-title">En rotación</span><span class="now__rot-note">Lo sigo, sin prisa</span></p>
-              <ul class="now now--compact">
-                <li class="now__item now__item--compact" style="--medio: var(--m-game, var(--niebla))">
-                  <span class="now__kind"><span class="now__swatch" aria-hidden="true"></span>Juego</span>
-                  <span class="now__name">Deadlock</span>
-                  <code class="now__chip now__chip--abierto mono" title="Jugando, sin una meta fija">PLAY</code>
-                  <span class="meter meter--abierto" role="img" aria-label="Jugando, sin una meta fija"><span style="--p: 100%"></span></span>
+          </div>
+        </section>
+
+        <section class="window" aria-labelledby="btn-title">
+          <h2 class="window__title" id="btn-title">Enlázame <span class="jp" lang="ja">リンクフリー</span></h2>
+          <div class="window__body">
+            <p class="window__note">Si tienes sitio, copia mi botón. Los sitios que me gustan están en <a href="contactos.html">Contactos</a>.</p>
+            <img class="mybutton" src="img/leos-88x31.png" alt="LeOS" width="88" height="31">
+            <label class="code-label" for="btn-code">Código para tu sitio</label>
+            <textarea class="code" id="btn-code" rows="5" readonly>&lt;a href="https://leo-os.neocities.org"&gt;&lt;img src="https://leo-os.neocities.org/img/leos-88x31.png" alt="LeOS" width="88" height="31"&gt;&lt;/a&gt;</textarea>
+            <!-- Banner de 200x40: el tamaño de los banners de enlace de los sitios personales japoneses -->
+            <img class="mybutton mybutton--jp" src="img/leos-200x40.png" alt="LeOS: juegos, música, anime y diario" width="200" height="40">
+            <label class="code-label" for="btn-code-jp">Banner de 200×40 <span class="jp" lang="ja">バナー</span></label>
+            <textarea class="code" id="btn-code-jp" rows="5" readonly>&lt;a href="https://leo-os.neocities.org"&gt;&lt;img src="https://leo-os.neocities.org/img/leos-200x40.png" alt="LeOS" width="200" height="40"&gt;&lt;/a&gt;</textarea>
+          </div>
+        </section>
+
+        <!-- Webrings: anillos de sitios. Cada uno pide su código tal cual; se pegan aquí.
+             Ghostring = solo enlaces HTML (slug: leo-os). DSring = widget onionring con JS externo de su sitio
+             (CSP de Neocities lo permite porque es <script src>, no código en línea). -->
+        <section class="window webrings" aria-labelledby="ring-title">
+          <h2 class="window__title" id="ring-title">Webrings <span class="jp" lang="ja">ウェブリング</span></h2>
+          <div class="window__body">
+            <p class="window__note">Anillos de sitios hechos a mano. Las flechas te llevan al vecino de al lado.</p>
+            <div class="ring ring--ghost">
+              <a class="ring__flecha" href="https://ghostring.neocities.org/leo-os/previous" title="Sitio anterior">◀</a>
+              <a class="ring__nombre" href="https://ghostring.neocities.org/">Ghostring</a>
+              <a class="ring__flecha" href="https://ghostring.neocities.org/leo-os/next" title="Sitio siguiente">▶</a>
+            </div>
+            <div class="ring ring--ds" id="dsring">
+              <script type="text/javascript" src="https://dsring.neocities.org/dswidget/onionring-variables.js"></script>
+              <script type="text/javascript" src="https://dsring.neocities.org/dswidget/onionring-widget.js"></script>
+            </div>
+          </div>
+        </section>
+      </aside>
+
+      <!-- ===== Centro: la 3DS (la pieza memorable de la portada) ===== -->
+      <div class="col-centro">
+        <section class="ds" aria-label="LeOS dentro de una consola portátil de dos pantallas">
+
+          <!-- Tapa: pantalla de arriba -->
+          <div class="ds__lid">
+            <div class="ds__speaker ds__speaker--l" aria-hidden="true"></div>
+            <div class="ds__screen ds__screen--top">
+              <div class="ds__bar" aria-hidden="true">
+                <span class="ds__wifi"><i></i><i></i><i></i></span>
+                <span class="ds__estrellas js-estrellas" hidden></span>
+                <span class="ds__date js-fecha">--/--</span>
+                <span class="ds__time js-reloj">--:--</span>
+                <span class="ds__batt"><i></i></span>
+              </div>
+
+              <!-- Banner por defecto -->
+              <div class="banner banner--home">
+                <img class="banner__img" src="img/3ds/home.png" alt="" width="200" height="120">
+                <div class="banner__home-text">
+                  <h1 class="logo3d"><img src="img/3d/logo.gif" alt="LeOS" width="124" height="50"></h1>
+                  <p class="hero__bio">Hola, soy Leo. Este es mi espacio en la web: los juegos, el anime, la música y
+                    las cosas que han sido de mi interés. Siéntete libre de curiosear 👾</p>
+                </div>
+              </div>
+
+              <!-- Banners de cada app: se muestran al pasar el mouse por su icono -->
+              <div class="banner" data-app="juegos" aria-hidden="true">
+                <img class="banner__img" src="img/3ds/juegos.png" alt="" width="200" height="120" loading="lazy">
+                <p class="banner__info"><b>Videojuegos</b>De Ocarina of Time a Cyberpunk</p>
+              </div>
+              <div class="banner" data-app="anime" aria-hidden="true">
+                <img class="banner__img" src="img/3ds/anime.gif" alt="" width="200" height="120" loading="lazy">
+                <p class="banner__info"><b>Anime y manga</b>Lo que veo y lo que me marcó</p>
+              </div>
+              <div class="banner" data-app="musica" aria-hidden="true">
+                <img class="banner__img" src="img/3ds/musica.png" alt="" width="200" height="120" loading="lazy">
+                <p class="banner__info"><b>Música</b>Bandas, discos y lo que produzco</p>
+              </div>
+              <div class="banner" data-app="cine" aria-hidden="true">
+                <img class="banner__img" src="img/3ds/cine.png" alt="" width="200" height="120" loading="lazy">
+                <p class="banner__info"><b>Cine, series y cómics</b>Sobre todo ciencia ficción</p>
+              </div>
+              <div class="banner" data-app="galeria" aria-hidden="true">
+                <img class="banner__img" src="img/3ds/galeria.png" alt="" width="200" height="120" loading="lazy">
+                <p class="banner__info"><b>Galería</b>Fotos que tomo dentro de los juegos</p>
+              </div>
+              <div class="banner" data-app="sobre-mi" aria-hidden="true">
+                <img class="banner__img" src="img/3ds/sobre-mi.png" alt="" width="200" height="120" loading="lazy">
+                <p class="banner__info"><b>Sobre mí</b>Quién está detrás de esta página</p>
+              </div>
+              <div class="banner" data-app="libro" aria-hidden="true">
+                <img class="banner__img" src="img/3ds/libro.png" alt="" width="200" height="120" loading="lazy">
+                <p class="banner__info"><b>Libro de visitas</b>Siéntate un rato y firma</p>
+              </div>
+            </div>
+            <div class="ds__speaker ds__speaker--r" aria-hidden="true"></div>
+          </div>
+
+          <div class="ds__hinge" aria-hidden="true"><span class="ds__led"></span></div>
+
+          <!-- Base: controles + pantalla táctil con el menú HOME -->
+          <div class="ds__base">
+            <div class="ds__left" aria-hidden="true">
+              <span class="ds__pad"></span>
+              <span class="ds__dpad"><i></i><i></i></span>
+            </div>
+
+            <nav class="ds__screen ds__screen--bottom" aria-labelledby="home-title">
+              <p class="ds__menu-bar"><span id="home-title">Menú HOME</span><span class="ds__hint">Elige una app ▾</span></p>
+              <ul class="apps">
+                <li>
+                  <a class="app" data-app="juegos" href="juegos.html" title="Videojuegos">
+                    <svg class="app__icon" viewBox="0 0 16 16" aria-hidden="true" shape-rendering="crispEdges">
+                      <rect x="2" y="5" width="12" height="6" fill="#9aa6d6" />
+                      <rect x="1" y="6" width="1" height="5" fill="#9aa6d6" />
+                      <rect x="14" y="6" width="1" height="5" fill="#9aa6d6" />
+                      <rect x="1" y="11" width="3" height="2" fill="#9aa6d6" />
+                      <rect x="12" y="11" width="3" height="2" fill="#9aa6d6" />
+                      <rect x="4" y="7" width="1" height="3" fill="#120f2e" />
+                      <rect x="3" y="8" width="3" height="1" fill="#120f2e" />
+                      <rect x="11" y="7" width="1" height="1" fill="#e2231a" />
+                      <rect x="12" y="8" width="1" height="1" fill="#00a650" />
+                      <rect x="10" y="8" width="1" height="1" fill="#ffc20e" />
+                      <rect x="11" y="9" width="1" height="1" fill="#0062ae" />
+                    </svg>
+                    <span class="app__name">Juegos</span>
+                  </a>
                 </li>
-                <li class="now__item now__item--compact" style="--medio: var(--m-anime, var(--niebla))">
-                  <span class="now__kind"><span class="now__swatch" aria-hidden="true"></span>Anime</span>
-                  <span class="now__name">Kuuchuu Buranko</span>
-                  <code class="now__chip now__chip--progreso mono" title="Ep. 6 de 11">E6/11</code>
-                  <span class="meter meter--progreso" role="img" aria-label="Ep. 6 de 11"><span style="--p: 55%"></span></span>
+                <li>
+                  <a class="app" data-app="anime" href="anime.html" title="Anime y manga">
+                    <svg class="app__icon" viewBox="0 0 16 16" aria-hidden="true" shape-rendering="crispEdges">
+                      <rect x="7" y="1" width="2" height="3" fill="#ffc20e" />
+                      <rect x="1" y="6" width="14" height="2" fill="#ffc20e" />
+                      <rect x="3" y="8" width="10" height="2" fill="#ffc20e" />
+                      <rect x="5" y="4" width="6" height="2" fill="#ffc20e" />
+                      <rect x="4" y="10" width="3" height="3" fill="#ffc20e" />
+                      <rect x="9" y="10" width="3" height="3" fill="#ffc20e" />
+                      <rect x="3" y="13" width="2" height="2" fill="#ffc20e" />
+                      <rect x="11" y="13" width="2" height="2" fill="#ffc20e" />
+                    </svg>
+                    <span class="app__name">Anime</span>
+                  </a>
+                </li>
+                <li>
+                  <a class="app" data-app="musica" href="musica.html" title="Música">
+                    <svg class="app__icon" viewBox="0 0 16 16" aria-hidden="true" shape-rendering="crispEdges">
+                      <rect x="6" y="2" width="8" height="2" fill="#5fe0ff" />
+                      <rect x="6" y="4" width="2" height="8" fill="#5fe0ff" />
+                      <rect x="12" y="4" width="2" height="6" fill="#5fe0ff" />
+                      <rect x="3" y="11" width="4" height="3" fill="#5fe0ff" />
+                      <rect x="9" y="9" width="4" height="3" fill="#5fe0ff" />
+                    </svg>
+                    <span class="app__name">Música</span>
+                  </a>
+                </li>
+                <li>
+                  <a class="app" data-app="cine" href="cine.html" title="Cine, series y cómics">
+                    <svg class="app__icon" viewBox="0 0 16 16" aria-hidden="true" shape-rendering="crispEdges">
+                      <rect x="2" y="3" width="5" height="10" fill="#7b5cff" />
+                      <rect x="9" y="3" width="5" height="10" fill="#7b5cff" />
+                      <rect x="7" y="4" width="2" height="9" fill="#2a2463" />
+                      <rect x="3" y="5" width="3" height="1" fill="#e8f4ff" />
+                      <rect x="3" y="7" width="3" height="1" fill="#e8f4ff" />
+                      <rect x="10" y="5" width="3" height="1" fill="#e8f4ff" />
+                      <rect x="10" y="7" width="2" height="1" fill="#e8f4ff" />
+                    </svg>
+                    <span class="app__name">Cine</span>
+                  </a>
+                </li>
+                <li>
+                  <a class="app" data-app="galeria" href="galeria.html" title="Galería">
+                    <svg class="app__icon" viewBox="0 0 16 16" aria-hidden="true" shape-rendering="crispEdges">
+                      <rect x="1" y="4" width="14" height="10" fill="#9aa6d6" />
+                      <rect x="4" y="2" width="5" height="2" fill="#9aa6d6" />
+                      <rect x="5" y="6" width="6" height="6" fill="#120f2e" />
+                      <rect x="6" y="7" width="4" height="4" fill="#5fe0ff" />
+                      <rect x="7" y="8" width="1" height="1" fill="#e8f4ff" />
+                      <rect x="12" y="5" width="2" height="1" fill="#e2231a" />
+                    </svg>
+                    <span class="app__name">Galería</span>
+                  </a>
+                </li>
+                <li>
+                  <a class="app" data-app="sobre-mi" href="sobre-mi.html" title="Sobre mí">
+                    <svg class="app__icon" viewBox="0 0 16 16" aria-hidden="true" shape-rendering="crispEdges">
+                      <rect x="5" y="1" width="6" height="6" fill="#e8f4ff" />
+                      <rect x="6" y="3" width="1" height="1" fill="#120f2e" />
+                      <rect x="9" y="3" width="1" height="1" fill="#120f2e" />
+                      <rect x="7" y="5" width="2" height="1" fill="#120f2e" />
+                      <rect x="3" y="9" width="10" height="6" fill="#00a650" />
+                      <rect x="2" y="10" width="1" height="5" fill="#00a650" />
+                      <rect x="13" y="10" width="1" height="5" fill="#00a650" />
+                    </svg>
+                    <span class="app__name">Sobre mí</span>
+                  </a>
+                </li>
+                <li>
+                  <a class="app" data-app="libro" href="libro.html" title="Libro de visitas">
+                    <svg class="app__icon" viewBox="0 0 16 16" aria-hidden="true" shape-rendering="crispEdges">
+                      <rect x="2" y="3" width="11" height="11" fill="#e2231a" />
+                      <rect x="3" y="4" width="9" height="9" fill="#ff6f91" />
+                      <rect x="3" y="4" width="1" height="9" fill="#e2231a" />
+                      <rect x="5" y="6" width="6" height="1" fill="#e8f4ff" />
+                      <rect x="5" y="8" width="5" height="1" fill="#e8f4ff" />
+                      <rect x="13" y="1" width="2" height="2" fill="#ffc20e" />
+                      <rect x="12" y="3" width="2" height="2" fill="#ffc20e" />
+                      <rect x="11" y="5" width="2" height="2" fill="#e8f4ff" />
+                      <rect x="10" y="7" width="1" height="1" fill="#120f2e" />
+                    </svg>
+                    <span class="app__name">Libro</span>
+                  </a>
+                </li>
+                <li>
+                  <!-- Ranura vacía… por ahora -->
+                  <span class="app app--vacia" title="Ranura vacía… ¿cuántas estrellas has visto?"><span class="app__name">???</span></span>
                 </li>
               </ul>
+            </nav>
+
+            <div class="ds__right" aria-hidden="true">
+              <span class="ds__abxy"><i class="x">X</i><i class="y">Y</i><i class="a">A</i><i class="b">B</i></span>
             </div>
-            <!-- now:rotacion:end -->
+            <div class="ds__under" aria-hidden="true">
+              <span class="ds__pill">SELECT</span><span class="ds__home"></span><span class="ds__pill">START</span>
+            </div>
+          </div>
+        </section>
+
+        <!-- Intereses: blinkies (los míos se generan con tools/blinkies.py; los de otras personas se guardan en img/blinkies/otros/ con su crédito en el title) -->
+        <section class="window" aria-labelledby="gustos-title">
+          <h2 class="window__title" id="gustos-title">Intereses</h2>
+          <div class="window__body">
+            <div class="gustos">
+            <img src="img/blinkies/i-majoras-mask.gif" alt="Majora's Mask" width="150" height="20" loading="lazy">
+            <img src="img/blinkies/i-ocarina.gif" alt="Ocarina of Time" width="150" height="20" loading="lazy">
+            <img src="img/blinkies/i-pokemon-crystal.gif" alt="Pokémon Crystal" width="150" height="20" loading="lazy">
+            <img src="img/blinkies/i-stadium.gif" alt="Pokémon Stadium" width="150" height="20" loading="lazy">
+            <img src="img/blinkies/i-dkc.gif" alt="Donkey Kong Country" width="150" height="20" loading="lazy">
+            <img src="img/blinkies/i-starfox.gif" alt="Star Fox 64" width="150" height="20" loading="lazy">
+            <img src="img/blinkies/otros/n64.gif" alt="Nintendo 64" width="150" height="20" loading="lazy" title="De una colección de la web vieja (vía Cade's Garden u otras)">
+            <img src="img/blinkies/otros/portal-2.gif" alt="Portal" width="150" height="20" loading="lazy" title="De una colección de la web vieja (vía Cade's Garden u otras)">
+            <img src="img/blinkies/otros/tcoaal3.gif" alt="The Coffin of Andy and Leyley" width="150" height="20" loading="lazy" title="De una colección de la web vieja (vía Cade's Garden u otras)">
+            <img src="img/blinkies/i-britpop.gif" alt="Britpop e indie" width="150" height="20" loading="lazy">
+            <img src="img/blinkies/i-guitarra.gif" alt="Toco la guitarra" width="150" height="20" loading="lazy">
+            <img src="img/blinkies/i-produzco.gif" alt="Produzco música" width="150" height="20" loading="lazy">
+            <img src="img/blinkies/otros/hawaiipartii.gif" alt="Hawaii: Part II" width="150" height="20" loading="lazy" title="De una colección de la web vieja (vía Cade's Garden u otras)">
+            <img src="img/blinkies/otros/v68.gif" alt="Polygon wave" width="150" height="20" loading="lazy" title="De una colección de la web vieja (vía Cade's Garden u otras)">
+            <img src="img/blinkies/i-windows-xp.gif" alt="Nostalgia de XP" width="150" height="20" loading="lazy">
+            <img src="img/blinkies/otros/dont-like.gif" alt="Don't like it?!" width="150" height="20" loading="lazy" title="De una colección de la web vieja (vía Cade's Garden u otras)">
+            <img src="img/blinkies/otros/paint.gif" alt="MS Paint" width="150" height="20" loading="lazy" title="De una colección de la web vieja (vía Cade's Garden u otras)">
+            <img src="img/blinkies/otros/computer-nerd.gif" alt="Computer nerd" width="150" height="20" loading="lazy" title="De una colección de la web vieja (vía Cade's Garden u otras)">
+            <img src="img/blinkies/i-y2k.gif" alt="Y2K forever" width="150" height="20" loading="lazy">
+            <img src="img/blinkies/i-frutiger.gif" alt="Frutiger Aero" width="150" height="20" loading="lazy">
+            <img src="img/blinkies/i-creepypastas.gif" alt="Creepypastas de 2010" width="150" height="20" loading="lazy">
+            <img src="img/blinkies/otros/scp.gif" alt="SCP Foundation" width="150" height="20" loading="lazy" title="De una colección de la web vieja (vía Cade's Garden u otras)">
+            <img src="img/blinkies/otros/hp-lovecraft.gif" alt="H. P. Lovecraft" width="150" height="20" loading="lazy" title="De una colección de la web vieja (vía Cade's Garden u otras)">
+            <img src="img/blinkies/otros/loch-ness-monster.gif" alt="Loch Ness Monster" width="150" height="20" loading="lazy" title="De una colección de la web vieja (vía Cade's Garden u otras)">
+            <img src="img/blinkies/otros/ovni.gif" alt="Ovni" width="150" height="20" loading="lazy" title="De una colección de la web vieja (vía Cade's Garden u otras)">
+            <img src="img/blinkies/i-scifi.gif" alt="Ciencia ficción" width="150" height="20" loading="lazy">
+            <img src="img/blinkies/otros/stargazer2.gif" alt="Stargazer" width="150" height="20" loading="lazy" title="De una colección de la web vieja (vía Cade's Garden u otras)">
+            <img src="img/blinkies/i-fisica.gif" alt="Física y filosofía" width="150" height="20" loading="lazy">
+            <img src="img/blinkies/i-anime.gif" alt="Anime de los 2000" width="150" height="20" loading="lazy">
+            <img src="img/blinkies/otros/invader-zim.gif" alt="Invader Zim" width="150" height="20" loading="lazy" title="De una colección de la web vieja (vía Cade's Garden u otras)">
+            <img src="img/blinkies/i-comics.gif" alt="Lector de cómics" width="150" height="20" loading="lazy">
+            <img src="img/blinkies/i-foto.gif" alt="Foto analógica" width="150" height="20" loading="lazy">
+            <img src="img/blinkies/otros/dr-pepper.gif" alt="Dr Pepper" width="150" height="20" loading="lazy" title="De una colección de la web vieja (vía Cade's Garden u otras)">
+            <img src="img/blinkies/otros/koolaid.gif" alt="Kool-Aid" width="150" height="20" loading="lazy" title="De una colección de la web vieja (vía Cade's Garden u otras)">
+            <img src="img/blinkies/otros/sci-fi-reader.gif" alt="Monster Energy" width="150" height="20" loading="lazy" title="De una colección de la web vieja (vía Cade's Garden u otras)">
+            </div>
           </div>
         </section>
 
@@ -227,36 +373,36 @@
             <p class="window__note">Fotos que tomo dentro de los juegos. Toca una para verla en grande.</p>
             <div class="gallery">
               <figure class="shot">
-                <a class="shot__frame" href="img/shots/ffx.webp"><img src="img/shots/ffx-mini.webp"
+                <a class="shot__frame" data-fecha="'26 10 13" href="img/shots/ffx.webp"><img src="img/shots/ffx-mini.webp"
                     alt="Tidus en un muelle frente al mar turquesa" width="640" height="360" loading="lazy"></a>
                 <figcaption>Final Fantasy X</figcaption>
               </figure>
               <figure class="shot">
-                <a class="shot__frame" href="img/shots/nms.webp"><img src="img/shots/nms-mini.webp"
+                <a class="shot__frame" data-fecha="'26 10 13" href="img/shots/nms.webp"><img src="img/shots/nms-mini.webp"
                     alt="Viaje por el hiperespacio entre luces violeta y amarillas" width="640" height="360"
                     loading="lazy"></a>
                 <figcaption>No Man's Sky</figcaption>
               </figure>
               <figure class="shot">
-                <a class="shot__frame" href="img/shots/hollow-night.webp"><img src="img/shots/hollow-night-mini.webp"
+                <a class="shot__frame" data-fecha="'26 10 13" href="img/shots/hollow-night.webp"><img src="img/shots/hollow-night-mini.webp"
                     alt="El Caballero descansa en una banca bajo una luz azul" width="640" height="360"
                     loading="lazy"></a>
                 <figcaption>Hollow Knight</figcaption>
               </figure>
               <figure class="shot">
-                <a class="shot__frame" href="img/shots/cyber2077-cars.webp"><img
+                <a class="shot__frame" data-fecha="'26 10 13" href="img/shots/cyber2077-cars.webp"><img
                     src="img/shots/cyber2077-cars-mini.webp"
                     alt="Autos frente a un letrero de neón en Night City, de noche" width="640" height="360"
                     loading="lazy"></a>
                 <figcaption>Cyberpunk 2077</figcaption>
               </figure>
               <figure class="shot">
-                <a class="shot__frame" href="img/shots/outer-wilds.webp"><img src="img/shots/outer-wilds-mini.webp"
+                <a class="shot__frame" data-fecha="'26 10 13" href="img/shots/outer-wilds.webp"><img src="img/shots/outer-wilds-mini.webp"
                     alt="Cabina de la nave con notas pegadas en la pared" width="640" height="360" loading="lazy"></a>
                 <figcaption>Outer Wilds</figcaption>
               </figure>
               <figure class="shot">
-                <a class="shot__frame" href="img/shots/sekiro.webp"><img src="img/shots/sekiro-mini.webp"
+                <a class="shot__frame" data-fecha="'26 10 13" href="img/shots/sekiro.webp"><img src="img/shots/sekiro-mini.webp"
                     alt="Dos personajes junto a un campo de juncos, de noche" width="640" height="360"
                     loading="lazy"></a>
                 <figcaption>Sekiro</figcaption>
@@ -267,7 +413,25 @@
         </section>
       </div>
 
-      <aside class="col-side">
+      <!-- ===== Columna derecha ===== -->
+      <aside class="col-der">
+        <section class="window window--hola" aria-labelledby="hola-title" lang="en">
+          <h2 class="window__title" id="hola-title">Hi! / ¡Hola!</h2>
+          <div class="window__body">
+            <p class="window__note">This little corner of the web is mostly in Spanish: games, anime, music and things I love.
+              Click around, there are secrets hidden in every page ★</p>
+          </div>
+        </section>
+
+        <section class="window" aria-labelledby="gbk-title">
+          <h2 class="window__title" id="gbk-title">Libro de visitas <span class="jp" lang="ja">掲示板</span></h2>
+          <div class="window__body">
+            <p class="window__note">¿Pasaste por aquí? Firma el libro y déjame una recomendación.</p>
+            <a class="bigbtn" href="libro.html">✎ Firmar el libro</a>
+            <p class="gbk__boton"><a href="libro.html" title="Libro de visitas hecho con Atabook"><img src="img/blinkies/otros/atabook.gif" alt="Atabook" width="88" height="31"></a></p>
+          </div>
+        </section>
+
         <section class="window" aria-labelledby="fav-title">
           <h2 class="window__title" id="fav-title">Favoritos de siempre</h2>
           <div class="window__body">
@@ -286,64 +450,64 @@
           </div>
         </section>
 
-        <section class="window" aria-labelledby="btn-title">
-          <h2 class="window__title" id="btn-title">Enlázame</h2>
-          <div class="window__body">
-            <p class="window__note">Si tienes sitio, copia mi botón. Si me gusta el tuyo, lo pongo aquí.</p>
-            <img class="mybutton" src="img/leos-88x31.png" alt="LeOS" width="88" height="31">
-            <label class="code-label" for="btn-code">Código para tu sitio</label>
-            <textarea class="code" id="btn-code" rows="5" readonly onclick="this.select()">&lt;a href="https://leo-os.neocities.org"&gt;&lt;img src="https://leo-os.neocities.org/img/leos-88x31.png" alt="LeOS" width="88" height="31"&gt;&lt;/a&gt;</textarea>
-            <div class="badges">
-              <span class="badge badge--neo">neocities</span>
-              <span class="badge badge--hand">hecho a mano</span>
-              <span class="badge badge--night">modo noche</span>
-            </div>
+        <section class="window" aria-labelledby="blk-title">
+          <h2 class="window__title" id="blk-title">Blinkies</h2>
+          <div class="window__body blinkies">
+            <img src="img/blinkies/explora.gif" alt="¿Y si exploras?" width="150" height="20">
+            <img src="img/blinkies/hecho-a-mano.gif" alt="Hecho a mano" width="150" height="20">
+            <img src="img/blinkies/team-3ds.gif" alt="Team 3DS" width="150" height="20">
+            <img src="img/blinkies/n64-kid.gif" alt="N64 kid" width="150" height="20">
+            <img src="img/blinkies/pixel-art.gif" alt="Pixel art" width="150" height="20">
+            <img src="img/blinkies/shoegaze.gif" alt="Escucho shoegaze" width="150" height="20">
+            <img src="img/blinkies/modo-noche.gif" alt="Modo noche: on" width="150" height="20">
+            <img src="img/blinkies/insert-coin.gif" alt="Insert coin" width="150" height="20">
           </div>
         </section>
 
-        <section class="window" aria-labelledby="vis-title">
-          <h2 class="window__title" id="vis-title">Bitácora</h2>
-          <div class="window__body">
-            <p class="counter" id="visitas" aria-label="Visitas al sitio"><!-- now:visitas:start --><span>0</span><span>0</span><span>0</span><span>2</span><span>7</span><span>0</span><!-- now:visitas:end --></p>
-            <p class="window__note"><!-- now:date:start -->Actualizado el 17 de octubre de 2026.<!-- now:date:end --></p>
-          </div>
-        </section>
       </aside>
 
     </main>
 
+    <!-- Tira de botones 88x31: los míos + los de colecciones de la web vieja -->
+    <div class="tira-botones" aria-label="Botones">
+        <img src="img/leos-88x31.png" alt="LeOS" width="88" height="31" loading="lazy">
+        <img src="img/blinkies/otros/3DS.jpg" alt="3DS" width="88" height="31" loading="lazy">
+        <img src="img/blinkies/otros/n64.jpg" alt="Nintendo 64" width="88" height="31" loading="lazy">
+        <img src="img/blinkies/otros/made-windows.gif" alt="Made with Windows" width="88" height="31" loading="lazy">
+        <img src="img/blinkies/otros/msn.gif" alt="Windows Live Messenger" width="88" height="31" loading="lazy">
+        <img src="img/blinkies/otros/steam.gif" alt="Play with Steam" width="88" height="31" loading="lazy">
+        <img src="img/blinkies/otros/shareware.gif" alt="Pass the shareware please" width="88" height="31" loading="lazy">
+        <img src="img/blinkies/otros/aperture.jpg" alt="Aperture Laboratories" width="88" height="31" loading="lazy">
+        <img src="img/blinkies/otros/hotline.gif" alt="Hotline Café" width="88" height="31" loading="lazy">
+        <img src="img/blinkies/otros/vhss.webp" alt="VHS" width="88" height="31" loading="lazy">
+        <img src="img/blinkies/otros/syslbnth.gif" alt="System labyrinth" width="88" height="31" loading="lazy">
+        <img src="img/blinkies/otros/fingerofgod.gif" alt="La creación" width="88" height="31" loading="lazy">
+        <img src="img/blinkies/otros/thevoid.gif" alt="Powered by the void" width="88" height="31" loading="lazy">
+        <img src="img/blinkies/otros/truth-now.gif" alt="The truth now!" width="88" height="31" loading="lazy">
+        <img src="img/blinkies/otros/cookie-free.png" alt="Este sitio no tiene cookies" width="88" height="31" loading="lazy">
+        <img src="img/blinkies/otros/drpepper.gif" alt="Powered by Dr Pepper" width="88" height="31" loading="lazy">
+        <span class="badge badge--neo">neocities</span>
+        <span class="badge badge--hand">hecho a mano</span>
+        <span class="badge badge--night">modo noche</span>
+        <span class="badge badge--res">mejor visto a<b>1024×768</b></span>
+        <span class="badge badge--nofw">&lt;/&gt; sin<br>frameworks</span>
+        <img class="tira-botones__mini" src="img/blinkies/otros/badgeleo.gif" alt="Leo" width="80" height="15">
+      <p class="tira-botones__credito">Los blinkies, stamps y botones que no hice yo vienen de colecciones de la web vieja (como Cade's Garden). Si alguno es tuyo, avísame en el libro de visitas y te doy crédito.</p>
+    </div>
+
     <footer class="footer">
+      <p class="footer__best">Mejor visto con cualquier navegador a 1024×768</p>
       <p>Hecho a mano y alojado en Neocities. Se ve mejor de noche.</p>
+      <p class="footer__aviso">⚠ Aviso: este sitio tiene GIFs y blinkies que parpadean.</p>
     </footer>
   </div>
 
-  <script>
-    // Reloj de la barra de estado
-    (function () {
-      var el = document.getElementById('reloj');
-      function tick() {
-        var d = new Date();
-        el.textContent = d.toLocaleTimeString('es-MX', { hour: '2-digit', minute: '2-digit' });
-        el.setAttribute('datetime', d.toISOString());
-      }
-      tick();
-      setInterval(tick, 30000);
-    })();
-  </script>
-  <script>
-    // Contador de visitas: intenta leerlo en vivo de Neocities; si no puede, se queda el del último sync.
-    (function () {
-      var el = document.getElementById('visitas');
-      if (!el || !window.fetch) return;
-      fetch('https://neocities.org/api/info?sitename=leo-os')
-        .then(function (r) { return r.json(); })
-        .then(function (d) {
-          var n = String(d.info.views).padStart(6, '0');
-          el.innerHTML = n.split('').map(function (c) { return '<span>' + c + '</span>'; }).join('');
-        })
-        .catch(function () {});
-    })();
-  </script>
+  <!-- contador.js lo sube GitHub Actions a Neocities; no existe en local ni se sube a mano -->
+  <script src="js/contador.js" defer></script>
+  <script src="js/portada.js" defer></script>
+  <script src="js/galeria.js" defer></script>
+  <script src="js/estrellas.js" defer></script>
+  <script src="js/mascota.js" defer></script>
 </body>
 
 </html>
